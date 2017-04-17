@@ -73,7 +73,10 @@
             android:textColor="#ffffff"
             android:layout_gravity="center"
             android:layout_margin="10dp"
-            android:onClick="open_activity_19_22"/>
+            android:onClick="
+
+
+"/>
 
         <Button
             android:id="@+id/button_age_23p"

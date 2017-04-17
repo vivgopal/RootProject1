@@ -11,6 +11,7 @@
     android:background="@color/colorBackground"
     tools:context="com.example.vivekgopal.project1.MainActivity">
 
-    <include layout="@layout/linear_layout_screen1"/>
+    <!--<include layout="@layout/home_screen_logo"/>-->
+    <include layout="@layout/home_screen_dyn_spinner"/>
 
 </RelativeLayout>
