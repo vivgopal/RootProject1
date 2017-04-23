@@ -2,6 +2,7 @@ package com.example.vivekgopal.project1;
 
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -43,30 +44,57 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // Initialize spinners
-        Spinner dynamicSpinnerAge = (Spinner) findViewById(R.id.dynamic_spinner_age);
+        final Spinner dynamicSpinnerAge = (Spinner) findViewById(R.id.dynamic_spinner_age);
         Spinner dynamicSpinnerPresent = (Spinner) findViewById(R.id.dynamic_spinner_present);
         Spinner dynamicSpinnerFuture = (Spinner) findViewById(R.id.dynamic_spinner_future);
 
         // Spinner array adapter strings
-        String[] ageItems = new String[] { "14 - 15", "16 - 18", "19 - 22", "23+" };
-        String[] presentItems = new String[] { "10th", "12th", "Diploma", "1st Year" };
-        String[] futureItems = new String[] { "Work", "Study" };
+        String[] ageItems = new String[] { "14 - 15", "16 - 18", "19 - 22", "23+", "Select Age" };
+        String[] presentItems = new String[] { "10th", "12th", "Diploma", "1st Year", "Currently I do" };
+        String[] futureItems = new String[] { "Work", "Study", "I want to" };
 
-        // Set spinner prompt
-        //dynamicSpinnerAge.setPrompt("Select Age");
-        //dynamicSpinnerPresent.setPrompt("Currently I do");
-        //dynamicSpinnerFuture.setPrompt("I want to");
+        // Reduce the size to display all but the last item, which is the title
+        final int ageItemsSize = ageItems.length - 1;
+        final int presentItemsSize = presentItems.length - 1;
+        final int futureItemsSize = futureItems.length - 1;
 
-        // Array adapter initialization
-        ArrayAdapter<String> adapterAge = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, ageItems);
-        ArrayAdapter<String> adapterPresent = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, presentItems);
-        ArrayAdapter<String> adapterFuture = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, futureItems);
+
+        // Array adapter initializations
+        ArrayAdapter<String> adapterAge = new ArrayAdapter<String>(this, R.layout.textview_with_font_change, R.id.textView1, ageItems){
+        //ArrayAdapter<String> adapterAge = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, ageItems){
+            @Override
+            public int getCount() {
+                return(ageItemsSize); // Truncate the list
+            }
+        };
+
+
+        ArrayAdapter<String> adapterPresent = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, presentItems){
+            @Override
+            public int getCount() {
+                return(presentItemsSize); // Truncate the list
+            }
+        };
+
+        ArrayAdapter<String> adapterFuture = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, futureItems){
+            @Override
+            public int getCount() {
+                return(futureItemsSize); // Truncate the list
+            }
+        };
+
 
         // set adapter
         dynamicSpinnerAge.setAdapter(adapterAge);
         dynamicSpinnerPresent.setAdapter(adapterPresent);
         dynamicSpinnerFuture.setAdapter(adapterFuture);
 
+        // Reduce the selection to length-1
+        dynamicSpinnerAge.setSelection(ageItemsSize);
+        dynamicSpinnerPresent.setSelection(presentItemsSize);
+        dynamicSpinnerFuture.setSelection(futureItemsSize);
+
+        // Listeners for spinners
         dynamicSpinnerAge.setOnItemSelectedListener(new OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view,

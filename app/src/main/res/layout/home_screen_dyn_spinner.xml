@@ -10,19 +10,34 @@
     tools:context="com.example.vivekgopal.project1.MainActivity"
     tools:showIn="@layout/activity_main">
 
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="30dp"
+        />
+
     <Spinner
         android:id="@+id/dynamic_spinner_age"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:spinnerMode="dropdown"
-        android:prompt="@string/spinner_age_prompt"
-    />
+        android:textSize="40dp"
+        />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="10dp"
+        />
 
     <Spinner
         android:id="@+id/dynamic_spinner_present"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:spinnerMode="dropdown" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="10dp"
+        />
 
     <Spinner
         android:id="@+id/dynamic_spinner_future"

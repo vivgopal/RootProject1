@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">Project1</string>
-    <string name="spinner_age_prompt">Select Age</string>
+    <string-array name="select_age">
+        <item>14 - 15</item>
+        <item>16 - 18</item>
+        <item>19 - 22</item>
+        <item>23+</item>
+        <item>Select Age</item>
+    </string-array>
 </resources>
