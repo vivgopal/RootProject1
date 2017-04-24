@@ -12,7 +12,24 @@
 
     <View
         android:layout_width="fill_parent"
-        android:layout_height="30dp"
+        android:layout_height="75dp"
+        />
+
+    <TextView
+        android:id="@+id/myRectangleView"
+        android:layout_width="fill_parent"
+        android:layout_height="100dp"
+        android:background="@drawable/rectangle"
+        android:textColor="@color/colorWhite"
+        android:padding="10dp"
+        android:textSize="20sp"
+        android:text="@string/pathxplore_logo"
+        android:gravity="center"
+        />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="75dp"
         />
 
     <Spinner
@@ -20,12 +37,12 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:spinnerMode="dropdown"
-        android:textSize="40dp"
+        android:popupBackground="#0F0F0F"
         />
 
     <View
         android:layout_width="fill_parent"
-        android:layout_height="10dp"
+        android:layout_height="30dp"
         />
 
     <Spinner
@@ -36,7 +53,7 @@
 
     <View
         android:layout_width="fill_parent"
-        android:layout_height="10dp"
+        android:layout_height="30dp"
         />
 
     <Spinner

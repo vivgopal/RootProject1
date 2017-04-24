@@ -7,6 +7,7 @@ package com.example.vivekgopal.project1;
 import java.lang.reflect.Field;
 import android.content.Context;
 import android.graphics.Typeface;
+import android.util.Log;
 
 public final class FontsOverride {
 
@@ -28,6 +29,18 @@ public final class FontsOverride {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
             e.printStackTrace();
+        }
+    }
+
+    protected static void overrideFont(Context context, String defaultFontNameToOverride, String customFontFileNameInAssets) {
+        try {
+            final Typeface customFontTypeface = Typeface.createFromAsset(context.getAssets(), customFontFileNameInAssets);
+
+            final Field defaultFontTypefaceField = Typeface.class.getDeclaredField(defaultFontNameToOverride);
+            defaultFontTypefaceField.setAccessible(true);
+            defaultFontTypefaceField.set(null, customFontTypeface);
+        } catch (Exception e) {
+            Log.e("TypefaceUtil","Can not set custom font " + customFontFileNameInAssets + " instead of " + defaultFontNameToOverride);
         }
     }
 }
