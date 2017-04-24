@@ -1,14 +1,19 @@
 package com.example.vivekgopal.project1;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.support.v7.app.AppCompatActivity;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,80 +31,64 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // Initialize spinners
-        Spinner dynamicSpinnerAge = (Spinner) findViewById(R.id.dynamic_spinner_age);
-        Spinner dynamicSpinnerPresent = (Spinner) findViewById(R.id.dynamic_spinner_present);
-        Spinner dynamicSpinnerFuture = (Spinner) findViewById(R.id.dynamic_spinner_future);
+        final Spinner dynamicSpinnerPresent = (Spinner) findViewById(R.id.dynamic_spinner_present);
+        final Spinner dynamicSpinnerFuture = (Spinner) findViewById(R.id.dynamic_spinner_future);
+        final Button goButton = (Button) findViewById(R.id.home_go_button);
 
         // Spinner array adapter strings
-        String[] ageItems = new String[] { "14 - 15", "16 - 18", "19 - 22", "23+", "Select Age" };
-        String[] presentItems = new String[] { "10th", "12th", "Diploma", "1st Year", "Currently I do" };
-        String[] futureItems = new String[] { "Work", "Study", "I want to" };
+        final List<String> presentItems;
+        final List<String> futureItems;
 
-        // Reduce the size to display all but the last item, which is the title
-        final int ageItemsSize = ageItems.length - 1;
-        final int presentItemsSize = presentItems.length - 1;
-        final int futureItemsSize = futureItems.length - 1;
+        // Initialize array lists
+        presentItems = new ArrayList<>();
+        futureItems = new ArrayList<>();
 
+        // Add to array list
+        presentItems.add("10th");
+        presentItems.add("11th/12th");
+        presentItems.add("Bachelors");
+        presentItems.add("Masters");
+        presentItems.add("Currently I do");
+        futureItems.add("Work");
+        futureItems.add("Study Further");
+        futureItems.add("I want to");
 
-        // Array adapter initializations
-        ArrayAdapter<String> adapterAge = new ArrayAdapter<String>(this, R.layout.textview_spinner_font, R.id.textViewSpinner, ageItems){
-            @Override
-            public int getCount() {
-                return(ageItemsSize); // Truncate the list
-            }
-        };
-
-
+        // Create array adapter instances
         ArrayAdapter<String> adapterPresent = new ArrayAdapter<String>(this, R.layout.textview_spinner_font, R.id.textViewSpinner,  presentItems){
             @Override
             public int getCount() {
-                return(presentItemsSize); // Truncate the list
+                return(presentItems.size() - 1); // Truncate the list
             }
         };
-
         ArrayAdapter<String> adapterFuture = new ArrayAdapter<String>(this, R.layout.textview_spinner_font, R.id.textViewSpinner,  futureItems){
             @Override
             public int getCount() {
-                return(futureItemsSize); // Truncate the list
+                return(futureItems.size() - 1); // Truncate the list
             }
         };
 
-
-        // set adapter
-        dynamicSpinnerAge.setAdapter(adapterAge);
+        // set adapter to spinners
         dynamicSpinnerPresent.setAdapter(adapterPresent);
         dynamicSpinnerFuture.setAdapter(adapterFuture);
 
         // Reduce the selection to length-1
-        dynamicSpinnerAge.setSelection(ageItemsSize);
-        dynamicSpinnerPresent.setSelection(presentItemsSize);
-        dynamicSpinnerFuture.setSelection(futureItemsSize);
+        dynamicSpinnerPresent.setSelection(presentItems.size() - 1);
+        dynamicSpinnerFuture.setSelection(futureItems.size() - 1);
 
-        // Listeners for spinners
-        dynamicSpinnerAge.setOnItemSelectedListener(new OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view,
-                                       int position, long id) {
-                Log.v("item", (String) parent.getItemAtPosition(position));
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                // TODO Auto-generated method stub
-            }
-        });
-
+        // Listeners for Spinners
         dynamicSpinnerPresent.setOnItemSelectedListener(new OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view,
                                        int position, long id) {
                 Log.v("item", (String) parent.getItemAtPosition(position));
+                //presentPos = position;
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
                 // TODO Auto-generated method stub
             }
+
         });
 
         dynamicSpinnerFuture.setOnItemSelectedListener(new OnItemSelectedListener() {
@@ -107,11 +96,23 @@ public class MainActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view,
                                        int position, long id) {
                 Log.v("item", (String) parent.getItemAtPosition(position));
+                //futurePos = position;
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
                 // TODO Auto-generated method stub
+            }
+        });
+
+        // Listener for Button
+        goButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // Perform action on click
+                if(dynamicSpinnerPresent.getSelectedItemPosition() == 1 && dynamicSpinnerFuture.getSelectedItemPosition() == 1) {
+                    Intent intent = new Intent(MainActivity.this, eleventhStudyOptionActivity.class);
+                    startActivity(intent);
+                }
             }
         });
 
