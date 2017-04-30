@@ -9,41 +9,18 @@
     android:background="@color/colorBackground"
     tools:context="com.example.vivekgopal.project1.eleventhStudyOptionActivity">
 
-    <Button
-        android:id="@+id/option1"
-        android:layout_height="wrap_content"
-        android:layout_width="fill_parent"
-        android:layout_gravity="center"
-        android:text="@string/home_button_go"
-        android:background="@color/colorButtonDark"
-        />
-
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="75dp"
-        />
-
-    <Button
-        android:id="@+id/option2"
-        android:layout_height="wrap_content"
-        android:layout_width="fill_parent"
-        android:layout_gravity="center"
-        android:text="@string/home_button_go"
-        android:background="@color/colorButtonDark"
-        />
-
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="75dp"
-        />
-
-    <Button
-        android:id="@+id/option3"
-        android:layout_height="wrap_content"
-        android:layout_width="fill_parent"
-        android:layout_gravity="center"
-        android:text="@string/home_button_go"
-        android:background="@color/colorButtonDark"
-        />
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/activity_eleventh_study_option_scroll"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/activity_eleventh_study_option_container"
+        android:orientation="vertical"
+        >
+    </LinearLayout>
+</ScrollView>
 
 </LinearLayout>
