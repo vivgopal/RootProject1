@@ -4,23 +4,38 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
     android:id="@+id/activity_eleventh_study_option"
     android:orientation="vertical"
     android:background="@color/colorBackground"
     tools:context="com.example.vivekgopal.project1.eleventhStudyOptionActivity">
+    <Button
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:paddingBottom="15dp"
+        android:paddingTop="15dp"
+        android:background="@drawable/ic_home_white_48dp" />
 
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/activity_eleventh_study_option_scroll"
-    >
-    <LinearLayout
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:background="@color/colorWhite"/>
+
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/activity_eleventh_study_option_container"
-        android:orientation="vertical"
+        android:id="@+id/activity_eleventh_study_option_scroll"
         >
-    </LinearLayout>
-</ScrollView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/activity_eleventh_study_option_container"
+            android:orientation="vertical"
+            >
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

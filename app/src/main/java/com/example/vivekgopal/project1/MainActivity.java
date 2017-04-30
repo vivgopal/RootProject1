@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // Listener for Button
+        // Listener for Go Button
         goButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Perform action on click
