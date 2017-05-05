@@ -6,11 +6,12 @@
     android:layout_height="match_parent"
     android:paddingLeft="5dp"
     android:paddingRight="5dp"
-    android:id="@+id/activity_eleventh_study_option"
+    android:id="@+id/activity_generic_option_select"
     android:orientation="vertical"
     android:background="@color/colorBackground"
-    tools:context="com.example.vivekgopal.project1.eleventhStudyOptionActivity">
+    tools:context="com.example.vivekgopal.project1.genericOptionSelectActivity">
     <Button
+        android:id="@+id/activity_generic_option_select_home_button"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:paddingBottom="15dp"
@@ -18,6 +19,7 @@
         android:background="@drawable/ic_home_white_48dp" />
 
     <ImageView
+        android:id="@+id/activity_generic_option_select_title_divider"
         android:layout_width="fill_parent"
         android:layout_height="1dp"
         android:paddingLeft="15dp"
@@ -25,14 +27,18 @@
         android:background="@color/colorWhite"/>
 
     <ScrollView
+        android:id="@+id/activity_generic_option_select__scrollview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/activity_eleventh_study_option_scroll"
+        android:scrollbarSize="3dp"
+        android:scrollbarTrackVertical="@color/colorButtonDark"
         >
         <LinearLayout
+            android:id="@+id/activity_generic_option_select_button_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/activity_eleventh_study_option_container"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
             android:orientation="vertical"
             >
         </LinearLayout>

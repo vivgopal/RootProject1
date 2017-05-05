@@ -2,4 +2,54 @@
     <string name="app_name">Project1</string>
     <string name="pathxplore_logo">PathXplore Logo</string>
     <string name="home_button_go">GO</string>
+
+    <string-array name="present_items">
+        <item>10th</item>
+        <item>11th/12rh</item>
+        <item>Bachelors</item>
+        <item>Masters</item>
+        <item>Currently I do</item>
+    </string-array>
+
+    <string-array name="future_items">
+        <item>Work</item>
+        <item>Study Further</item>
+        <item>I want to</item>
+    </string-array>
+
+    <string-array name="eleventh_study_options">
+        <item>Diploma</item>
+        <item>BSc</item>
+        <item>BTech</item>
+        <item>BArch</item>
+        <item>BCom</item>
+        <item>MBBS</item>
+        <item>BBA</item>
+        <item>LLB</item>
+        <item>BA</item>
+    </string-array>
+
+    <string-array name="eleventh_study_options1">
+        <item>Diploma1</item>
+        <item>BSc1</item>
+        <item>BTech1</item>
+        <item>BArch1</item>
+        <item>BCom1</item>
+        <item>MBBS1</item>
+        <item>BBA1</item>
+        <item>LLB1</item>
+        <item>BA1</item>
+    </string-array>
+
+    <string-array name="eleventh_study_options2">
+        <item>Diploma2</item>
+        <item>BSc2</item>
+        <item>BTech2</item>
+        <item>BArch2</item>
+        <item>BCom2</item>
+        <item>MBBS2</item>
+        <item>BBA2</item>
+        <item>LLB2</item>
+        <item>BA2</item>
+    </string-array>
 </resources>
