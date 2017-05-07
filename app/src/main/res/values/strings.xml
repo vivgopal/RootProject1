@@ -2,10 +2,11 @@
     <string name="app_name">Project1</string>
     <string name="pathxplore_logo">PathXplore Logo</string>
     <string name="home_button_go">GO</string>
+    <string name="sample_title">Sample Title</string>
 
     <string-array name="present_items">
         <item>10th</item>
-        <item>11th/12rh</item>
+        <item>11th/12th</item>
         <item>Bachelors</item>
         <item>Masters</item>
         <item>Currently I do</item>

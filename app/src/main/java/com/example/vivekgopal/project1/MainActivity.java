@@ -60,27 +60,33 @@ public class MainActivity extends AppCompatActivity {
         goButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Perform action on click
-                Bundle bundle = new Bundle();
-                Intent intent = new Intent(MainActivity.this, genericOptionSelectActivity.class);
-                String[] items = {""};
+                String[] items;
                 int dynSpinnerPresentPos = dynamicSpinnerPresent.getSelectedItemPosition();
                 int dynSpinnerFuturePos = dynamicSpinnerFuture.getSelectedItemPosition();
 
                 if(dynSpinnerPresentPos == 0 && dynSpinnerFuturePos == 1) {
                     items = res.getStringArray(R.array.eleventh_study_options);
+                    startGenericOptionSelectActivity(items);
                 }
                 else if(dynSpinnerPresentPos == 1 && dynSpinnerFuturePos == 1) {
                     items = res.getStringArray(R.array.eleventh_study_options1);
+                    startGenericOptionSelectActivity(items);
                 }
                 else if(dynSpinnerPresentPos == 2 && dynSpinnerFuturePos == 1) {
                     items = res.getStringArray(R.array.eleventh_study_options2);
+                    startGenericOptionSelectActivity(items);
                 }
-                bundle.putStringArray("stringKey", items);
-                intent.putExtras(bundle);
-                startActivity(intent);
             }
         });
 
+    }
+
+    protected void startGenericOptionSelectActivity(String[] items){
+        Bundle bundle = new Bundle();
+        Intent intent = new Intent(MainActivity.this, genericOptionSelectActivity.class);
+        bundle.putStringArray("stringKey", items);
+        intent.putExtras(bundle);
+        startActivity(intent);
     }
 
 }

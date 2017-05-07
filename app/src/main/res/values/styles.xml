@@ -6,4 +6,9 @@
         <item name="android:typeface">monospace</item>
     </style>
 
+    <style name="AppThemeActionBar" parent="ThemeOverlay.AppCompat.ActionBar">
+        <!-- Customize your theme here. -->
+        <item name="android:typeface">monospace</item>
+    </style>
+
 </resources>

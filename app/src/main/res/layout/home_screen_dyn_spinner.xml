@@ -31,19 +31,6 @@
         android:layout_height="75dp"
         />
 
-<!--    <Spinner
-        android:id="@+id/dynamic_spinner_age"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:spinnerMode="dropdown"
-        android:popupBackground="#0F0F0F"
-        />
-
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="30dp"
-        />-->
-
     <Spinner
         android:id="@+id/dynamic_spinner_present"
         android:layout_width="fill_parent"
@@ -73,6 +60,8 @@
         android:layout_gravity="center"
         android:text="@string/home_button_go"
         android:background="@color/colorButtonDark"
-         />
+        android:alpha="0.90"
+        android:elevation="40dp"
+        />
 
 </LinearLayout>
