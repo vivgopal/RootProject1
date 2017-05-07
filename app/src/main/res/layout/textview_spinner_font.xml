@@ -7,5 +7,6 @@
     android:layout_centerHorizontal="true"
     android:layout_centerVertical="true"
     android:textColor="@color/colorWhite"
-    android:padding="10dp"
-    android:textSize="20dp" />
+    android:textSize="20dp"
+    android:padding="10sp"
+    android:alpha="0.9"/>

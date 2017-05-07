@@ -2,7 +2,6 @@
     <string name="app_name">Project1</string>
     <string name="pathxplore_logo">PathXplore Logo</string>
     <string name="home_button_go">GO</string>
-    <string name="sample_title">Sample Title</string>
 
     <string-array name="present_items">
         <item>10th</item>
@@ -18,7 +17,8 @@
         <item>I want to</item>
     </string-array>
 
-    <string-array name="eleventh_study_options">
+    <string name="eleventh_study_options1_title">Sample Title 1</string>
+    <string-array name="eleventh_study_options1">
         <item>Diploma</item>
         <item>BSc</item>
         <item>BTech</item>
@@ -30,7 +30,8 @@
         <item>BA</item>
     </string-array>
 
-    <string-array name="eleventh_study_options1">
+    <string name="eleventh_study_options_title">Sample Title </string>
+    <string-array name="eleventh_study_options">
         <item>Diploma1</item>
         <item>BSc1</item>
         <item>BTech1</item>
@@ -42,6 +43,7 @@
         <item>BA1</item>
     </string-array>
 
+    <string name="eleventh_study_options2_title">Sample Title 2</string>
     <string-array name="eleventh_study_options2">
         <item>Diploma2</item>
         <item>BSc2</item>

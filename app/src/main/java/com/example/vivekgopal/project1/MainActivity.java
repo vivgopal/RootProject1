@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -40,11 +41,25 @@ public class MainActivity extends AppCompatActivity {
             public int getCount() {
                 return(presentItems.length - 1); // Truncate the list
             }
+
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                View view = super.getView(position, convertView, parent);
+                view.setPadding(0, 0, 0, 0);
+                return view;
+            }
         };
         ArrayAdapter<String> adapterFuture = new ArrayAdapter<String>(this, R.layout.textview_spinner_font, R.id.textViewSpinner,  futureItems){
             @Override
             public int getCount() {
                 return(futureItems.length - 1); // Truncate the list
+            }
+
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                View view = super.getView(position, convertView, parent);
+                view.setPadding(0, 0, 0, 0);
+                return view;
             }
         };
 
@@ -61,30 +76,35 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // Perform action on click
                 String[] items;
+                String title = "";
                 int dynSpinnerPresentPos = dynamicSpinnerPresent.getSelectedItemPosition();
                 int dynSpinnerFuturePos = dynamicSpinnerFuture.getSelectedItemPosition();
 
                 if(dynSpinnerPresentPos == 0 && dynSpinnerFuturePos == 1) {
                     items = res.getStringArray(R.array.eleventh_study_options);
-                    startGenericOptionSelectActivity(items);
+                    title = res.getString(R.string.eleventh_study_options_title);
+                    startGenericOptionSelectActivity(items, title);
                 }
                 else if(dynSpinnerPresentPos == 1 && dynSpinnerFuturePos == 1) {
                     items = res.getStringArray(R.array.eleventh_study_options1);
-                    startGenericOptionSelectActivity(items);
+                    title = res.getString(R.string.eleventh_study_options1_title);
+                    startGenericOptionSelectActivity(items, title);
                 }
                 else if(dynSpinnerPresentPos == 2 && dynSpinnerFuturePos == 1) {
                     items = res.getStringArray(R.array.eleventh_study_options2);
-                    startGenericOptionSelectActivity(items);
+                    title = res.getString(R.string.eleventh_study_options2_title);
+                    startGenericOptionSelectActivity(items, title);
                 }
             }
         });
 
     }
 
-    protected void startGenericOptionSelectActivity(String[] items){
+    protected void startGenericOptionSelectActivity(String[] items, String title){
         Bundle bundle = new Bundle();
         Intent intent = new Intent(MainActivity.this, genericOptionSelectActivity.class);
         bundle.putStringArray("stringKey", items);
+        bundle.putString("titleKey", title);
         intent.putExtras(bundle);
         startActivity(intent);
     }

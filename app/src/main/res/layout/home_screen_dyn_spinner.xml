@@ -28,25 +28,41 @@
 
     <View
         android:layout_width="fill_parent"
-        android:layout_height="75dp"
+        android:layout_height="125dp"
         />
 
-    <Spinner
-        android:id="@+id/dynamic_spinner_present"
-        android:layout_width="fill_parent"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:spinnerMode="dropdown" />
+        android:background="@color/colorButtonLight"
+        android:padding="10sp"
+        >
+        <Spinner
+            android:id="@+id/dynamic_spinner_present"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:spinnerMode="dropdown"
+            />
+    </LinearLayout>
 
     <View
         android:layout_width="fill_parent"
         android:layout_height="30dp"
         />
 
-    <Spinner
-        android:id="@+id/dynamic_spinner_future"
-        android:layout_width="fill_parent"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:spinnerMode="dropdown" />
+        android:background="@color/colorButtonLight"
+        android:padding="10sp"
+        >
+        <Spinner
+            android:id="@+id/dynamic_spinner_future"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:spinnerMode="dropdown" />
+    </LinearLayout>
+
 
     <View
         android:layout_width="fill_parent"
