@@ -7,4 +7,6 @@
     <color name="colorButtonDark">#265881</color>
     <color name="colorButtonLight">#60B4F9</color>
     <color name="colorWhite">#FFFFFF</color>
+    <color name="colorScrollTrack">#59A3F7</color>
+    <color name="colorScrollThumb">#656C77</color>
 </resources>
