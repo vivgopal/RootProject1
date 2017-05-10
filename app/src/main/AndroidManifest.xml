@@ -21,6 +21,10 @@
             android:parentActivityName=".MainActivity">
         </activity>
 
+        <activity android:name=".genericSpecializationOptionActivity"
+            android:parentActivityName=".MainActivity">
+        </activity>
+
     </application>
 
 </manifest>

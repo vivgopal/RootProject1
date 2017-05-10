@@ -93,7 +93,9 @@ public class MainActivity extends AppCompatActivity {
                 else if(dynSpinnerPresentPos == 2 && dynSpinnerFuturePos == 1) {
                     items = res.getStringArray(R.array.eleventh_study_options2);
                     title = res.getString(R.string.eleventh_study_options2_title);
-                    startGenericOptionSelectActivity(items, title);
+                    //startGenericOptionSelectActivity(items, title);
+                    Intent intent = new Intent(MainActivity.this, genericSpecializationOptionActivity.class);
+                    startActivity(intent);
                 }
             }
         });
