@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
+    android:background="@color/colorBackground"
+    >
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/activity_generic_option_select_home_button"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:paddingBottom="15dp"
+            android:paddingTop="15dp"
+            android:alpha="0.65"
+            android:elevation="40dp"
+            android:background="@drawable/home_button_black" />
+        <TextView
+            android:id="@+id/activity_generic_option_select_title"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:textColor="@color/colorWhite"
+            android:padding="10dp"
+            android:paddingLeft="20dp"
+            android:textSize="20dp"
+            android:alpha="0.9"
+            app:layout_constraintLeft_toRightOf="@id/activity_generic_option_select_home_button"
+            />
+    </android.support.constraint.ConstraintLayout>
+
+    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:stretchColumns="1"
+        >
+        <TableRow>
+            <TextView
+                android:text="Infosys"
+                android:padding="3dip"
+                android:textSize="20dp"/>
+            <TextView
+                android:text="₹513,111"
+                android:gravity="right"
+                android:padding="3dip"
+                android:textSize="20dp"/>
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:text="HCL Technologies"
+                android:padding="3dip"
+                android:textSize="20dp"/>
+            <TextView
+                android:text="@string/Rs"
+                android:gravity="right"
+                android:padding="3dip"
+                android:fontFamily="sans-serif-smallcaps"
+                android:textSize="20dp"/>
+        </TableRow>
+    </TableLayout>
+
+</LinearLayout>

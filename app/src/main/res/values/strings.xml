@@ -3,6 +3,15 @@
     <string name="pathxplore_logo">PathXplore Logo</string>
     <string name="home_button_go">GO</string>
 
+    <string name="skills">Skills</string>
+    <string name="companies">Companies</string>
+    <string name="salaries">Salaries</string>
+    <string name="certifications">Certifications</string>
+    <string name="career_tips">Career Tips</string>
+    <string name="career_ladder">Career Ladder</string>
+
+    <string name="Rs">\u20B9</string>
+
     <string-array name="present_items">
         <item>10th</item>
         <item>11th/12th</item>
