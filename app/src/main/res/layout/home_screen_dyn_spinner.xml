@@ -6,7 +6,7 @@
     android:id="@+id/home_screen_dyn_spinner"
     android:orientation="vertical"
 
-    tools:context="com.example.vivekgopal.project1.MainActivity"
+    tools:context="com.example.vivekgopal.project1.activities.MainActivity"
     tools:showIn="@layout/activity_main">
 
     <View

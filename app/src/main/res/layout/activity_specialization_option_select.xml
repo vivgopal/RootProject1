@@ -9,7 +9,7 @@
     android:background="@color/colorBackground"
     android:id="@+id/activity_specialization_option_select"
     android:orientation="vertical"
-    tools:context="com.example.vivekgopal.project1.genericSpecializationOptionActivity">
+    tools:context="com.example.vivekgopal.project1.activities.genericSpecializationOptionActivity">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"

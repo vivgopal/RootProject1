@@ -1,4 +1,4 @@
-package com.example.vivekgopal.project1;
+package com.example.vivekgopal.project1.preferences;
 
 /**
  * Created by vivekgopal on 2/8/17.

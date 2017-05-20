@@ -9,7 +9,7 @@
     android:id="@+id/activity_generic_option_select"
     android:orientation="vertical"
     android:background="@color/colorBackground"
-    tools:context="com.example.vivekgopal.project1.genericOptionSelectActivity">
+    tools:context="com.example.vivekgopal.project1.activities.genericOptionSelectActivity">
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">

@@ -9,7 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".activities.MainActivity"
             android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,12 +18,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".genericOptionSelectActivity"
-            android:parentActivityName=".MainActivity"></activity>
+            android:name=".activities.genericOptionSelectActivity"
+            android:parentActivityName=".activities.MainActivity"></activity>
         <activity
-            android:name=".genericSpecializationOptionActivity"
-            android:parentActivityName=".MainActivity"></activity>
-        <activity android:name=".DisplaySalary"></activity>
+            android:name=".activities.genericSpecializationOptionActivity"
+            android:parentActivityName=".activities.MainActivity"></activity>
+        <activity android:name=".activities.DisplaySalary"></activity>
     </application>
 
 </manifest>

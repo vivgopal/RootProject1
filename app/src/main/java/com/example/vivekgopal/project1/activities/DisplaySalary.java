@@ -1,7 +1,9 @@
-package com.example.vivekgopal.project1;
+package com.example.vivekgopal.project1.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.example.vivekgopal.project1.R;
 
 public class DisplaySalary extends AppCompatActivity {
 

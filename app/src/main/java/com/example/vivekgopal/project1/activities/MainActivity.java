@@ -1,4 +1,4 @@
-package com.example.vivekgopal.project1;
+package com.example.vivekgopal.project1.activities;
 
 
 import android.content.Intent;
@@ -10,6 +10,9 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.support.v7.app.AppCompatActivity;
+
+import com.example.vivekgopal.project1.preferences.FontsOverride;
+import com.example.vivekgopal.project1.R;
 
 
 public class MainActivity extends AppCompatActivity {

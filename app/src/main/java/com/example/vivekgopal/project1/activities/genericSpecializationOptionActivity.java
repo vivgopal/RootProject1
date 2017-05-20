@@ -1,20 +1,22 @@
-package com.example.vivekgopal.project1;
+package com.example.vivekgopal.project1.activities;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.vivekgopal.project1.R;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class genericOptionSelectActivity extends AppCompatActivity {
+public class genericSpecializationOptionActivity extends AppCompatActivity {
 
     LinearLayout container;
     List<Button> btnList = new ArrayList<>();
@@ -25,10 +27,10 @@ public class genericOptionSelectActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_generic_option_select);
+        setContentView(R.layout.activity_specialization_option_select);
 
 
-        // Initialize button parameters
+/*        // Initialize button parameters
         final Button homeButton = (Button) findViewById(R.id.activity_generic_option_select_home_button);
         TextView textView = (TextView) findViewById(R.id.activity_generic_option_select_title);
 
@@ -57,7 +59,7 @@ public class genericOptionSelectActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
             }
-        });
+        });*/
 
     }
 
