@@ -16,7 +16,7 @@ import com.example.vivekgopal.project1.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class genericOptionSelectActivity extends AppCompatActivity {
+public class GenericOptionSelectActivity extends AppCompatActivity {
 
     LinearLayout container;
     List<Button> btnList = new ArrayList<>();

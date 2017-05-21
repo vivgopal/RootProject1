@@ -97,14 +97,14 @@ public class MainActivity extends AppCompatActivity {
                     items = res.getStringArray(R.array.eleventh_study_options2);
                     title = res.getString(R.string.eleventh_study_options2_title);
                     //startGenericOptionSelectActivity(items, title);
-                    Intent intent = new Intent(MainActivity.this, genericSpecializationOptionActivity.class);
+                    Intent intent = new Intent(MainActivity.this, GenericSpecializationOptionActivity.class);
                     startActivity(intent);
                 }
                 else if(dynSpinnerPresentPos == 3 && dynSpinnerFuturePos == 1) {
                     items = res.getStringArray(R.array.eleventh_study_options2);
                     title = res.getString(R.string.eleventh_study_options2_title);
                     //startGenericOptionSelectActivity(items, title);
-                    Intent intent = new Intent(MainActivity.this, DisplaySalary.class);
+                    Intent intent = new Intent(MainActivity.this, DisplaySalaryActivity.class);
                     startActivity(intent);
                 }
             }
@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
 
     protected void startGenericOptionSelectActivity(String[] items, String title){
         Bundle bundle = new Bundle();
-        Intent intent = new Intent(MainActivity.this, genericOptionSelectActivity.class);
+        Intent intent = new Intent(MainActivity.this, GenericOptionSelectActivity.class);
         bundle.putStringArray("stringKey", items);
         bundle.putString("titleKey", title);
         intent.putExtras(bundle);

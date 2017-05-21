@@ -18,12 +18,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.genericOptionSelectActivity"
+            android:name=".activities.GenericOptionSelectActivity"
             android:parentActivityName=".activities.MainActivity"></activity>
         <activity
-            android:name=".activities.genericSpecializationOptionActivity"
+            android:name=".activities.GenericSpecializationOptionActivity"
             android:parentActivityName=".activities.MainActivity"></activity>
-        <activity android:name=".activities.DisplaySalary"></activity>
+        <activity android:name=".activities.DisplaySalaryActivity"></activity>
     </application>
 
 </manifest>
