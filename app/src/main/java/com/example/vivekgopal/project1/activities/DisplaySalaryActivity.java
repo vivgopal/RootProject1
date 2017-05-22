@@ -21,8 +21,22 @@ public class DisplaySalaryActivity extends AppCompatActivity {
         mDbHelper.open();
 
         Cursor testdata = mDbHelper.getTestData();
-        String[] columnNames = testdata.getColumnNames();
-        tv.setText(columnNames[0]);
+        //String[] columnNames = testdata.getColumnNames();
+        //int arraySize = columnNames.length;
+        //for(int i = 0; i < arraySize; i++) {
+        //    tv.append(columnNames[i]);
+        //    tv.append("\n");
+        //}
+        while (testdata.moveToNext()) {
+            tv.append("" + testdata.getInt(0));
+            tv.append("\n");
+            tv.append(testdata.getString(1));
+            tv.append("\n");
+            tv.append(testdata.getString(2));
+            tv.append("\n");
+        }
+
+        tv.append("count = " + testdata.getCount() + "\n");
         mDbHelper.close();
 
     }
