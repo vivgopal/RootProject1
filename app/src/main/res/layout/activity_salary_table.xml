@@ -35,43 +35,15 @@
             />
     </android.support.constraint.ConstraintLayout>
 
-    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:stretchColumns="1"
-        >
-        <TableRow>
-            <TextView
-                android:text="Infosys"
-                android:padding="3dip"
-                android:textSize="20dp"/>
-            <TextView
-                android:id="@+id/textview_salary1"
-                android:text="₹513,111"
-                android:gravity="right"
-                android:padding="3dip"
-                android:textSize="20dp"/>
-        </TableRow>
-
-        <TableRow>
-            <TextView
-                android:text="HCL Technologies"
-                android:padding="3dip"
-                android:textSize="20dp"/>
-            <TextView
-                android:text="@string/Rs"
-                android:gravity="right"
-                android:padding="3dip"
-                android:fontFamily="sans-serif-smallcaps"
-                android:textSize="20dp"/>
-        </TableRow>
-    </TableLayout>
-    <TextView
-        android:id="@+id/sample_tv"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:gravity="right"
-        android:padding="3dip"
-        android:textAllCaps="false"
-        android:textSize="20dp"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/salary_table"
+            android:stretchColumns="1"
+            >
+        </TableLayout>
+    </ScrollView>
 </LinearLayout>

@@ -3,6 +3,9 @@ package com.example.vivekgopal.project1.activities;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.example.vivekgopal.project1.R;
@@ -14,30 +17,20 @@ public class DisplaySalaryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_salary_table);
-
-        TextView tv = (TextView) findViewById(R.id.sample_tv);
         DatabaseAdapter mDbHelper = new DatabaseAdapter(getApplicationContext());
         mDbHelper.createDatabase();
         mDbHelper.open();
 
+        TableLayout table = (TableLayout)DisplaySalaryActivity.this.findViewById(R.id.salary_table);
         Cursor testdata = mDbHelper.getTestData();
-        //String[] columnNames = testdata.getColumnNames();
-        //int arraySize = columnNames.length;
-        //for(int i = 0; i < arraySize; i++) {
-        //    tv.append(columnNames[i]);
-        //    tv.append("\n");
-        //}
+
         while (testdata.moveToNext()) {
-            tv.append("" + testdata.getInt(0));
-            tv.append("\n");
-            tv.append(testdata.getString(1));
-            tv.append("\n");
-            tv.append(testdata.getString(2));
-            tv.append("\n");
+            TableRow row = (TableRow) LayoutInflater.from(DisplaySalaryActivity.this).inflate(R.layout.table_row, null);
+            ((TextView) row.findViewById(R.id.row_name)).setText(testdata.getString(1));
+            ((TextView) row.findViewById(R.id.row_value)).setText(testdata.getString(2));
+            table.addView(row);
         }
 
-        tv.append("count = " + testdata.getCount() + "\n");
         mDbHelper.close();
-
     }
 }
