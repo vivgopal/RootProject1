@@ -18,40 +18,23 @@ import java.util.List;
 
 public class GenericSpecializationOptionActivity extends AppCompatActivity {
 
-    LinearLayout container;
-    List<Button> btnList = new ArrayList<>();
-    LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ActionBar.LayoutParams.MATCH_PARENT, ActionBar.LayoutParams.WRAP_CONTENT);
-    String[] items = {""};
     String title;
+    String subtitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_specialization_option_select);
 
+        final Button homeButton = (Button) findViewById(R.id.generic_header_home_button);
+        TextView titleTextView = (TextView) findViewById(R.id.generic_header_title);
+        TextView subtitleTextView = (TextView) findViewById(R.id.generic_header_subtitle);
 
-/*        // Initialize button parameters
-        final Button homeButton = (Button) findViewById(R.id.activity_generic_option_select_home_button);
-        TextView textView = (TextView) findViewById(R.id.activity_generic_option_select_title);
-
-        float buttonAlpha = (float) 0.90;
-        int buttonIntAlpha = (int) (buttonAlpha * 255);
         initButtonStrings();
 
-        textView.setText(title);
-        container = (LinearLayout) findViewById(R.id.activity_generic_option_select_button_container);
-        params.setMargins(25, 40, 25, 0);
-
-        for(int i=0; i<items.length; i++) {
-            btnList.add(new Button(this));
-            btnList.get(i).setText(items[i]);
-            btnList.get(i).setTextColor(Color.argb(buttonIntAlpha, 255, 255, 255));
-            btnList.get(i).setTransformationMethod(null);
-            btnList.get(i).setBackgroundColor(ContextCompat.getColor(this, R.color.colorButtonLight));
-            btnList.get(i).setLayoutParams(params);
-            btnList.get(i).setElevation(40);
-            btnList.get(i).setAlpha(buttonAlpha);
-            container.addView(btnList.get(btnList.size() - 1));
+        titleTextView.setText(title);
+        if(subtitle != "") {
+            subtitleTextView.setText(subtitle);
         }
 
         homeButton.setOnClickListener(new View.OnClickListener() {
@@ -59,16 +42,14 @@ public class GenericSpecializationOptionActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
             }
-        });*/
-
+        });
     }
 
     protected void initButtonStrings() {
         Bundle bundle = this.getIntent().getExtras();
-        this.items = bundle.getStringArray("stringKey");
         this.title = bundle.getString("titleKey");
+        this.subtitle = bundle.getString("subtitleKey");
     }
-
 
 }
 

@@ -80,43 +80,68 @@ public class MainActivity extends AppCompatActivity {
                 // Perform action on click
                 String[] items;
                 String title = "";
+                String subtitle = "";
+                String activityType = "";
+
                 int dynSpinnerPresentPos = dynamicSpinnerPresent.getSelectedItemPosition();
                 int dynSpinnerFuturePos = dynamicSpinnerFuture.getSelectedItemPosition();
 
-                if(dynSpinnerPresentPos == 0 && dynSpinnerFuturePos == 1) {
+                if(dynSpinnerPresentPos == 0 && dynSpinnerFuturePos == 1) { // Test generic options
                     items = res.getStringArray(R.array.eleventh_study_options);
                     title = res.getString(R.string.eleventh_study_options_title);
-                    startGenericOptionSelectActivity(items, title);
+                    startGenericOptionSelectActivity(items, title, subtitle, activityType);
                 }
-                else if(dynSpinnerPresentPos == 1 && dynSpinnerFuturePos == 1) {
+                else if(dynSpinnerPresentPos == 1 && dynSpinnerFuturePos == 1) { // Test generic options
                     items = res.getStringArray(R.array.eleventh_study_options1);
                     title = res.getString(R.string.eleventh_study_options1_title);
-                    startGenericOptionSelectActivity(items, title);
+                    startGenericOptionSelectActivity(items, title, subtitle, activityType);
                 }
-                else if(dynSpinnerPresentPos == 2 && dynSpinnerFuturePos == 1) {
-                    items = res.getStringArray(R.array.eleventh_study_options2);
-                    title = res.getString(R.string.eleventh_study_options2_title);
-                    //startGenericOptionSelectActivity(items, title);
-                    Intent intent = new Intent(MainActivity.this, GenericSpecializationOptionActivity.class);
-                    startActivity(intent);
+                else if(dynSpinnerPresentPos == 2 && dynSpinnerFuturePos == 1) { // Test end options
+                    title = res.getString(R.string.computer_science_title);
+                    startGenericSpecializationOptionActivity(title, subtitle);
                 }
-                else if(dynSpinnerPresentPos == 3 && dynSpinnerFuturePos == 1) {
-                    items = res.getStringArray(R.array.eleventh_study_options2);
-                    title = res.getString(R.string.eleventh_study_options2_title);
-                    //startGenericOptionSelectActivity(items, title);
-                    Intent intent = new Intent(MainActivity.this, DisplaySalaryActivity.class);
-                    startActivity(intent);
+                else if(dynSpinnerPresentPos == 3 && dynSpinnerFuturePos == 0) { // Test career tips1
+                    items = res.getStringArray(R.array.computer_science_tips_title);
+                    title = res.getString(R.string.computer_science_title);
+                    subtitle = res.getString(R.string.career_tips);
+                    activityType = "tips";
+                    startGenericOptionSelectActivity(items, title, subtitle, activityType);
+                }
+                else if(dynSpinnerPresentPos == 3 && dynSpinnerFuturePos == 1) { // Test table
+                    title = res.getString(R.string.computer_science_title);
+                    subtitle = res.getString(R.string.salaries);
+                    startDisplaySalaryActivity(title, subtitle);
                 }
             }
         });
 
     }
 
-    protected void startGenericOptionSelectActivity(String[] items, String title){
+    protected void startGenericOptionSelectActivity(String[] items, String title, String subtitle, String activityType){
         Bundle bundle = new Bundle();
         Intent intent = new Intent(MainActivity.this, GenericOptionSelectActivity.class);
         bundle.putStringArray("stringKey", items);
         bundle.putString("titleKey", title);
+        bundle.putString("subtitleKey", subtitle);
+        bundle.putString("activityTypeKey", activityType);
+        intent.putExtras(bundle);
+        startActivity(intent);
+    }
+
+    protected void startGenericSpecializationOptionActivity(String title, String subtitle){
+        Bundle bundle = new Bundle();
+        Intent intent = new Intent(MainActivity.this, GenericSpecializationOptionActivity.class);
+        bundle.putString("titleKey", title);
+        bundle.putString("subtitleKey", subtitle);
+        intent.putExtras(bundle);
+        startActivity(intent);
+    }
+
+    protected void startDisplaySalaryActivity(String title, String subtitle){
+        Bundle bundle = new Bundle();
+        Intent intent = new Intent(MainActivity.this, DisplaySalaryActivity.class);
+        bundle.putString("titleKey", title);
+        bundle.putString("subtitleKey", subtitle);
         intent.putExtras(bundle);
         startActivity(intent);
     }

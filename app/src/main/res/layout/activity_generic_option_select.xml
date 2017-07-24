@@ -10,42 +10,8 @@
     android:orientation="vertical"
     android:background="@color/colorBackground"
     tools:context="com.example.vivekgopal.project1.activities.GenericOptionSelectActivity">
-    <android.support.constraint.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <Button
-            android:id="@+id/activity_generic_option_select_home_button"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:paddingBottom="15dp"
-            android:paddingTop="15dp"
-            android:alpha="0.65"
-            android:elevation="40dp"
-            android:background="@drawable/home_button_black" />
-        <TextView
-            android:id="@+id/activity_generic_option_select_title"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:textColor="@color/colorWhite"
-            android:padding="10dp"
-            android:paddingLeft="20dp"
-            android:textSize="20dp"
-            android:alpha="0.9"
-            app:layout_constraintLeft_toRightOf="@id/activity_generic_option_select_home_button"
-            />
-    </android.support.constraint.ConstraintLayout>
 
-
-<!--    <ImageView
-        android:id="@+id/activity_generic_option_select_title_divider"
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp"
-        android:alpha="0.60"
-        android:background="@color/colorWhite"/>-->
+    <include layout="@layout/layout_generic_header"/>
 
     <ScrollView
         android:id="@+id/activity_generic_option_select_scrollview"
