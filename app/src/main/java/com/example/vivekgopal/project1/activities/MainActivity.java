@@ -86,7 +86,13 @@ public class MainActivity extends AppCompatActivity {
                 int dynSpinnerPresentPos = dynamicSpinnerPresent.getSelectedItemPosition();
                 int dynSpinnerFuturePos = dynamicSpinnerFuture.getSelectedItemPosition();
 
-                if(dynSpinnerPresentPos == 0 && dynSpinnerFuturePos == 1) { // Test generic options
+                if(dynSpinnerPresentPos == 0 && dynSpinnerFuturePos == 0) { // Test generic options
+                    items = res.getStringArray(R.array.computer_science_career_ladder);
+                    title = res.getString(R.string.computer_programmer);
+                    subtitle = res.getString(R.string.career_ladder);
+                    startCareerLadderActivity(items, title, subtitle);
+                }
+                else if(dynSpinnerPresentPos == 0 && dynSpinnerFuturePos == 1) { // Test generic options
                     items = res.getStringArray(R.array.eleventh_study_options);
                     title = res.getString(R.string.eleventh_study_options_title);
                     startGenericOptionSelectActivity(items, title, subtitle, activityType);
@@ -140,6 +146,16 @@ public class MainActivity extends AppCompatActivity {
     protected void startDisplaySalaryActivity(String title, String subtitle){
         Bundle bundle = new Bundle();
         Intent intent = new Intent(MainActivity.this, DisplaySalaryActivity.class);
+        bundle.putString("titleKey", title);
+        bundle.putString("subtitleKey", subtitle);
+        intent.putExtras(bundle);
+        startActivity(intent);
+    }
+
+    protected void startCareerLadderActivity(String[] items, String title, String subtitle){
+        Bundle bundle = new Bundle();
+        Intent intent = new Intent(MainActivity.this, CareerLadderActivity.class);
+        bundle.putStringArray("stringKey", items);
         bundle.putString("titleKey", title);
         bundle.putString("subtitleKey", subtitle);
         intent.putExtras(bundle);

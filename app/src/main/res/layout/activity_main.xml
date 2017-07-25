@@ -12,6 +12,10 @@
     tools:context="com.example.vivekgopal.project1.activities.MainActivity">
 
     <!--<include layout="@layout/home_screen_logo"/>-->
-    <include layout="@layout/home_screen_dyn_spinner"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <include layout="@layout/home_screen_dyn_spinner"/>
+    </ScrollView>
 
 </RelativeLayout>

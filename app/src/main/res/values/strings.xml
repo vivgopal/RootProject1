@@ -9,6 +9,7 @@
     <string name="certifications">Certifications</string>
     <string name="career_tips">Career Tips</string>
     <string name="career_ladder">Career Ladder</string>
+    <string name="computer_programmer">Computer Programmer</string>
 
     <string name="Rs">\u20B9</string>
 
@@ -83,6 +84,19 @@
         <item>You might think technical skills are all you need for computer science careers – but in fact interpersonal skills are just as important. With this in mind, make sure your degree offers opportunities to develop communication and teamwork skills, as well as related areas of knowledge in high demand among employers, such as agile project management. More broadly, being part of a friendly and supportive community will help you develop and succeed during your studies and beyond. UCLan has a strong focus on ensuring computer science students develop a range of related skillsets, as well as running an award-winning orientation program to ensure new students quickly develop close bonds and social connections.</item>
         <item>Alongside work placements, another way to develop and show off your skills is by entering computer science competitions. These can be fun and rewarding ways to challenge yourself, as well as providing even more impressive material for your CV. For example, UCLan students have entered and won the national ‘Search for a Star’ and ‘Rising Star’ competitions. They also recently won the first Defectives University Challenge, and have achieved a top-three position every time they’ve entered the BBC Technology Challenge. UCLan students are well prepared to excel in such contests. Indeed, the first year of the undergraduate computer science program kicks off with a four-week challenge, in which students collaborate to design, develop and market new apps. Since this often includes a bit of dressing up, they’re more than ready to present their ideas to others!</item>
         <item>When choosing a location for your computer science studies, you may be attracted to cities where high numbers of employers are based. However, it’s also worth considering the level of competition for jobs; studying in an area with fewer universities could mean you have fewer fellow graduates to compete with. UCLan’s location as the only university in Preston, in North West England, means its graduates are in high demand among local employers. Companies such as IBM regularly visit the university to recruit directly from its pool of computer science students. In turn, UCLan’s strong local alumni community provides an instant professional network for new graduates. This is in stark contrast to many other parts of the country, where the higher density of universities means students and graduates often face fierce competition for roles.</item>
+    </string-array>
+
+    <string-array name="computer_science_career_ladder">
+        <item>Junior Developer</item>
+        <item>Senior Developer</item>
+        <item>Team Lead</item>
+        <item>Architect</item>
+        <item>Project Manager</item>
+        <item>Director</item>
+        <item>Senior Director</item>
+        <item>Vice President</item>
+        <item>Executive VP</item>
+        <item>CEO</item>
     </string-array>
 
 </resources>

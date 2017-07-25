@@ -24,6 +24,8 @@
             android:name=".activities.GenericSpecializationOptionActivity"
             android:parentActivityName=".activities.MainActivity"></activity>
         <activity android:name=".activities.DisplaySalaryActivity"></activity>
+        <activity android:name=".activities.CareerLadderActivity"></activity>
+
     </application>
 
 </manifest>
