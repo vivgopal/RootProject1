@@ -25,6 +25,7 @@
             android:parentActivityName=".activities.MainActivity"></activity>
         <activity android:name=".activities.DisplaySalaryActivity"></activity>
         <activity android:name=".activities.CareerLadderActivity"></activity>
+        <activity android:name=".activities.CertificationsActivity"></activity>
 
     </application>
 

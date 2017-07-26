@@ -97,6 +97,12 @@ public class MainActivity extends AppCompatActivity {
                     title = res.getString(R.string.eleventh_study_options_title);
                     startGenericOptionSelectActivity(items, title, subtitle, activityType);
                 }
+                if(dynSpinnerPresentPos == 1 && dynSpinnerFuturePos == 0) { // Test generic options
+                    items = res.getStringArray(R.array.computer_science_career_ladder);
+                    title = res.getString(R.string.computer_programmer);
+                    subtitle = res.getString(R.string.certifications);
+                    startCertificationsActivity(items, title, subtitle);
+                }
                 else if(dynSpinnerPresentPos == 1 && dynSpinnerFuturePos == 1) { // Test generic options
                     items = res.getStringArray(R.array.eleventh_study_options1);
                     title = res.getString(R.string.eleventh_study_options1_title);
@@ -155,6 +161,16 @@ public class MainActivity extends AppCompatActivity {
     protected void startCareerLadderActivity(String[] items, String title, String subtitle){
         Bundle bundle = new Bundle();
         Intent intent = new Intent(MainActivity.this, CareerLadderActivity.class);
+        bundle.putStringArray("stringKey", items);
+        bundle.putString("titleKey", title);
+        bundle.putString("subtitleKey", subtitle);
+        intent.putExtras(bundle);
+        startActivity(intent);
+    }
+
+    protected void startCertificationsActivity(String[] items, String title, String subtitle){
+        Bundle bundle = new Bundle();
+        Intent intent = new Intent(MainActivity.this, CertificationsActivity.class);
         bundle.putStringArray("stringKey", items);
         bundle.putString("titleKey", title);
         bundle.putString("subtitleKey", subtitle);
