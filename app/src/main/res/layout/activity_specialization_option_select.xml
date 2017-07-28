@@ -13,78 +13,90 @@
 
     <include layout="@layout/layout_generic_header"/>
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:layout_gravity="center"
-        android:gravity="center_vertical">
-
-        <Button
-            android:id="@+id/activity_specialization_option_select_round_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Computer Science"
-            android:textAllCaps="false"
-            android:textSize="15dp"
-            android:gravity="center"
-            android:background="@drawable/round_button"
-            android:elevation="40sp"
-            android:textColor="#ffffff"
-            android:layout_gravity="center"
-            android:layout_margin="2dp"
-            android:padding="5dp"/>
-
-        <ImageView
-            android:id="@+id/activity_specialization_option_select_left_arrow"
-            android:layout_width="20dp"
-            android:layout_height="40dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="7.5dp"
-            android:background="@drawable/ic_chevron_left"
-            android:elevation="40dp" />
-
+        android:layout_height="match_parent">
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:gravity="center">
             <Button
-                style="@style/specialization_button"
-                android:text="@string/skills"
-                android:padding="5dp"
-                android:id="@+id/activity_specialization_option_select_button1"
-                />
-            <Button
-                style="@style/specialization_button"
-                android:text="@string/companies"
-                android:padding="5dp"
-                android:id="@+id/activity_specialization_option_select_button2"
-                />
-            <Button
-                style="@style/specialization_button"
-                android:text="@string/salaries"
-                android:padding="5dp"
-                android:id="@+id/activity_specialization_option_select_button3"
-                />
-            <Button
-                style="@style/specialization_button"
-                android:text="@string/certifications"
-                android:padding="5dp"
-                android:id="@+id/activity_specialization_option_select_button4"
-                />
-            <Button
-                style="@style/specialization_button"
-                android:text="@string/career_tips"
-                android:padding="5dp"
-                android:id="@+id/activity_specialization_option_select_button5"
-                />
-            <Button
-                style="@style/specialization_button"
-                android:text="@string/career_ladder"
-                android:padding="5dp"
-                android:id="@+id/activity_specialization_option_select_button6"
-                />
-        </LinearLayout>
+                android:id="@+id/activity_specialization_option_select_round_button"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:text="Computer Science"
+                android:textAllCaps="false"
+                android:textSize="25dp"
+                android:gravity="center"
+                android:background="@drawable/round_button"
+                android:elevation="40sp"
+                android:textColor="#ffffff"
+                android:layout_gravity="center"
+                android:layout_margin="2dp"
+                android:padding="5dp"/>
 
-    </LinearLayout>
+            <ImageView
+                android:id="@+id/activity_specialization_option_select_left_arrow"
+                android:layout_width="20dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="7.5dp"
+                android:background="@drawable/ic_chevron_left"
+                android:elevation="40dp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <Button
+                    style="@style/specialization_button"
+                    android:text="@string/skills"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
+                    android:textSize="15dp"
+                    android:id="@+id/activity_specialization_option_select_button1"
+                    />
+                <Button
+                    style="@style/specialization_button"
+                    android:text="@string/companies"
+                    android:padding="5dp"
+                    android:textSize="15dp"
+                    android:id="@+id/activity_specialization_option_select_button2"
+                    />
+                <Button
+                    style="@style/specialization_button"
+                    android:text="@string/salaries"
+                    android:padding="5dp"
+                    android:textSize="15dp"
+                    android:id="@+id/activity_specialization_option_select_button3"
+                    />
+                <Button
+                    style="@style/specialization_button"
+                    android:text="@string/certifications"
+                    android:padding="5dp"
+                    android:textSize="15dp"
+                    android:id="@+id/activity_specialization_option_select_button4"
+                    />
+                <Button
+                    style="@style/specialization_button"
+                    android:text="@string/career_tips"
+                    android:padding="5dp"
+                    android:textSize="15dp"
+                    android:id="@+id/activity_specialization_option_select_button5"
+                    />
+                <Button
+                    style="@style/specialization_button"
+                    android:text="@string/career_ladder"
+                    android:padding="5dp"
+                    android:textSize="15dp"
+                    android:id="@+id/activity_specialization_option_select_button6"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
 </LinearLayout>

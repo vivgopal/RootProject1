@@ -23,6 +23,9 @@ public class MainActivity extends AppCompatActivity {
 
         // Set default fot to PT Sans Narrow
         FontsOverride.setDefaultFont(this, "MONOSPACE", "fonts/pt-sans.narrow.ttf");
+        FontsOverride.setDefaultFont(this, "DEFAULT", "fonts/pt-sans.narrow.ttf");
+        FontsOverride.setDefaultFont(this, "SERIF", "fonts/pt-sans.narrow.ttf");
+        FontsOverride.setDefaultFont(this, "SANS_SERIF", "fonts/pt-sans.narrow.ttf");
 
         setContentView(R.layout.activity_main);
 

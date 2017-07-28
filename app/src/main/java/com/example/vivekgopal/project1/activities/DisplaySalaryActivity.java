@@ -45,7 +45,8 @@ public class DisplaySalaryActivity extends AppCompatActivity {
         while (testdata.moveToNext()) {
             TableRow row = (TableRow) LayoutInflater.from(DisplaySalaryActivity.this).inflate(R.layout.table_row, null);
             ((TextView) row.findViewById(R.id.row_name)).setText(testdata.getString(1));
-            ((TextView) row.findViewById(R.id.row_value)).setText(testdata.getString(2));
+            ((TextView) row.findViewById(R.id.row_value)).setText("₹" + testdata.getString(2));
+            row.setPadding(5,5,5,5);
             table.addView(row);
         }
 
