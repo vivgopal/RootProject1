@@ -7,8 +7,11 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import com.example.vivekgopal.project1.data.DatabaseHelper;
+import com.example.vivekgopal.project1.data.SalaryItem;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by sreerakshakr on 5/20/17.
@@ -17,6 +20,14 @@ import java.io.IOException;
 public class DatabaseAdapter {
 
     protected static final String TAG = "DataAdapter";
+
+    // Table names
+    private static final String TABLE_SALARY = "SALARY_TABLE";
+
+    // SALARY_TABLE Columns names
+    private static final String KEY_ID = "_id";
+    private static final String KEY_COMPANY = "company";
+    private static final String KEY_SALARY = "salary";
 
     private final Context mContext;
     private SQLiteDatabase mDb;
@@ -67,7 +78,7 @@ public class DatabaseAdapter {
     {
         try
         {
-            Cursor dbCursor = mDb.query("salary_table", null, null, null, null, null, null);
+            Cursor dbCursor = mDb.query("SALARY_TABLE", null, null, null, null, null, null);
             //Cursor dbCursor = mDb.query("salary_table", null, null, null, null, null, null);
             //Cursor dbCursor = mDb.rawQuery("SELECT company_name, salary FROM salary_table", null);
             /*
@@ -88,5 +99,52 @@ public class DatabaseAdapter {
             Log.e(TAG, "getTestData >>"+ mSQLException.toString());
             throw mSQLException;
         }
+    }
+
+    // All CRUD Operation routines
+
+    // Getting All Salaries
+    public List<SalaryItem> getAllSalaries() {
+        List<SalaryItem> salaryList = new ArrayList<SalaryItem>();
+        // Select All Query
+        String selectQuery = "SELECT  * FROM " + TABLE_SALARY;
+
+        SQLiteDatabase db = mDbHelper.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                SalaryItem item = new SalaryItem();
+                item.set_id(cursor.getInt(0));
+                item.setCompany(cursor.getString(1));
+                item.setSalary(cursor.getInt(2));
+                // Adding contact to list
+                salaryList.add(item);
+            } while (cursor.moveToNext());
+        }
+
+        // return contact list
+        return salaryList;
+    }
+
+    // Getting single Salary
+    public SalaryItem getSalary(String company) {
+        SQLiteDatabase db = mDbHelper.getReadableDatabase();
+
+
+        Cursor cursor = db.query(TABLE_SALARY, new String[] { KEY_ID,
+                        KEY_COMPANY, KEY_SALARY }, KEY_COMPANY + "=?",
+                new String[] { String.valueOf(company) }, null, null, null, null);
+
+        if (cursor != null)
+            cursor.moveToFirst();
+
+        SalaryItem item = new SalaryItem();
+        item.set_id(cursor.getInt(0));
+        item.setCompany(cursor.getString(1));
+        item.setSalary(cursor.getInt(2));
+
+        return item;
     }
 }

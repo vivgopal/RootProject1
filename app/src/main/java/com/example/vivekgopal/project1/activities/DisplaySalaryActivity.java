@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.view.menu.ListMenuItemView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -13,11 +14,16 @@ import android.widget.TextView;
 
 import com.example.vivekgopal.project1.R;
 import com.example.vivekgopal.project1.adapters.DatabaseAdapter;
+import com.example.vivekgopal.project1.data.SalaryItem;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DisplaySalaryActivity extends AppCompatActivity {
 
     String title;
     String subtitle;
+    List<SalaryItem> salaryItemList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,22 +41,27 @@ public class DisplaySalaryActivity extends AppCompatActivity {
             subtitleTextView.setText(subtitle);
         }
 
-        DatabaseAdapter mDbHelper = new DatabaseAdapter(getApplicationContext());
-        mDbHelper.createDatabase();
-        mDbHelper.open();
+        DatabaseAdapter mDbAdapter = new DatabaseAdapter(getApplicationContext());
+        mDbAdapter.createDatabase();
+        mDbAdapter.open();
 
         TableLayout table = (TableLayout)DisplaySalaryActivity.this.findViewById(R.id.salary_table);
-        Cursor testdata = mDbHelper.getTestData();
 
-        while (testdata.moveToNext()) {
+        salaryItemList = new ArrayList<>();
+        salaryItemList = mDbAdapter.getAllSalaries();
+//        salaryItemList.add(mDbAdapter.getSalary("SAP"));
+//        salaryItemList.add(mDbAdapter.getSalary("Medtronic"));
+//        salaryItemList.add(mDbAdapter.getSalary("Infosys"));
+
+        for (SalaryItem item : salaryItemList) {
             TableRow row = (TableRow) LayoutInflater.from(DisplaySalaryActivity.this).inflate(R.layout.table_row, null);
-            ((TextView) row.findViewById(R.id.row_name)).setText(testdata.getString(1));
-            ((TextView) row.findViewById(R.id.row_value)).setText("₹" + testdata.getString(2));
+            ((TextView) row.findViewById(R.id.row_name)).setText(item.getCompany());
+            ((TextView) row.findViewById(R.id.row_value)).setText("₹" + item.getSalary());
             row.setPadding(5,5,5,5);
             table.addView(row);
         }
 
-        mDbHelper.close();
+        mDbAdapter.close();
 
         homeButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

@@ -23,7 +23,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     protected static final String TAG = "DatabaseHelper";
     private static String DB_PATH = "";
-    private static String DB_NAME = "salary_table.db";
+    private static String DB_NAME = "pathXploreDB.db";
 
 
 
