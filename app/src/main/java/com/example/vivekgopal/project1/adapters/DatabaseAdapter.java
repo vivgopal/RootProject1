@@ -6,6 +6,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import com.example.vivekgopal.project1.data.DataItem;
 import com.example.vivekgopal.project1.data.DatabaseHelper;
 import com.example.vivekgopal.project1.data.SalaryItem;
 
@@ -23,11 +24,21 @@ public class DatabaseAdapter {
 
     // Table names
     private static final String TABLE_SALARY = "SALARY_TABLE";
+    private static final String TABLE_DATA = "DATA_TABLE";
+
 
     // SALARY_TABLE Columns names
     private static final String KEY_ID = "_id";
     private static final String KEY_COMPANY = "company";
     private static final String KEY_SALARY = "salary";
+
+    // DATA_TABLE Columns names
+    private static final String KEY_STREAM = "stream";
+    private static final String KEY_SPECIALIZATION = "specialization";
+    private static final String KEY_SKILL = "skill";
+    private static final String KEY_CERTIFICATION = "certification";
+    private static final String KEY_TIPS = "tips";
+    private static final String KEY_LADDER = "ladder";
 
     private final Context mContext;
     private SQLiteDatabase mDb;
@@ -146,5 +157,34 @@ public class DatabaseAdapter {
         item.setSalary(cursor.getInt(2));
 
         return item;
+    }
+
+    // Getting All Data
+    public List<DataItem> getAllData() {
+        List<DataItem> dataList = new ArrayList();
+        // Select All Query
+        String selectQuery = "SELECT  * FROM " + TABLE_DATA;
+
+        SQLiteDatabase db = mDbHelper.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                DataItem item = new DataItem();
+                item.set_id(cursor.getString(0));
+                item.setStream(cursor.getString(1));
+                item.setSpecialization(cursor.getString(2));
+                item.setSkill(cursor.getString(3));
+                item.setCertification(cursor.getString(4));
+                item.setTips(cursor.getString(5));
+                item.setLadder(cursor.getString(6));
+                // Adding item to list
+                dataList.add(item);
+            } while (cursor.moveToNext());
+        }
+
+        // return contact list
+        return dataList;
     }
 }

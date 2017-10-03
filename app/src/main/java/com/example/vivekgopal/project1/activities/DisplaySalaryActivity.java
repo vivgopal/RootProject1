@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.example.vivekgopal.project1.R;
 import com.example.vivekgopal.project1.adapters.DatabaseAdapter;
+import com.example.vivekgopal.project1.data.DataItem;
 import com.example.vivekgopal.project1.data.SalaryItem;
 
 import java.util.ArrayList;
@@ -24,6 +25,7 @@ public class DisplaySalaryActivity extends AppCompatActivity {
     String title;
     String subtitle;
     List<SalaryItem> salaryItemList;
+    List<DataItem> dataItemsItemList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +54,16 @@ public class DisplaySalaryActivity extends AppCompatActivity {
 //        salaryItemList.add(mDbAdapter.getSalary("SAP"));
 //        salaryItemList.add(mDbAdapter.getSalary("Medtronic"));
 //        salaryItemList.add(mDbAdapter.getSalary("Infosys"));
+//
+//        dataItemsItemList = new ArrayList<>();
+//        dataItemsItemList = mDbAdapter.getAllData();
+//        for (DataItem item : dataItemsItemList) {
+//            TableRow row = (TableRow) LayoutInflater.from(DisplaySalaryActivity.this).inflate(R.layout.table_row, null);
+//            ((TextView) row.findViewById(R.id.row_name)).setText(item.getStream());
+//            ((TextView) row.findViewById(R.id.row_value)).setText("₹" + item.getSkill());
+//            row.setPadding(5,5,5,5);
+//            table.addView(row);
+//        }
 
         for (SalaryItem item : salaryItemList) {
             TableRow row = (TableRow) LayoutInflater.from(DisplaySalaryActivity.this).inflate(R.layout.table_row, null);
