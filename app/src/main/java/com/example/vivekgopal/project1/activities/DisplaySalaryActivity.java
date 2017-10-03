@@ -56,11 +56,11 @@ public class DisplaySalaryActivity extends AppCompatActivity {
 //        salaryItemList.add(mDbAdapter.getSalary("Infosys"));
 //
 //        dataItemsItemList = new ArrayList<>();
-//        dataItemsItemList = mDbAdapter.getAllData();
+//        dataItemsItemList = mDbAdapter.getTips("biomedical engineering", "consultant");
 //        for (DataItem item : dataItemsItemList) {
 //            TableRow row = (TableRow) LayoutInflater.from(DisplaySalaryActivity.this).inflate(R.layout.table_row, null);
-//            ((TextView) row.findViewById(R.id.row_name)).setText(item.getStream());
-//            ((TextView) row.findViewById(R.id.row_value)).setText("₹" + item.getSkill());
+//            ((TextView) row.findViewById(R.id.row_name)).setText(item.getTips());
+//            ((TextView) row.findViewById(R.id.row_value)).setText(item.getSpecialization());
 //            row.setPadding(5,5,5,5);
 //            table.addView(row);
 //        }

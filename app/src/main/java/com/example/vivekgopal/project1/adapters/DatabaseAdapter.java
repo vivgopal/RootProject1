@@ -187,4 +187,121 @@ public class DatabaseAdapter {
         // return contact list
         return dataList;
     }
+
+    // Getting skills
+    public List<DataItem> getSkills(String stream, String specialization) {
+        SQLiteDatabase db = mDbHelper.getReadableDatabase();
+        List<DataItem> dataList = new ArrayList();
+
+        Cursor cursor = db.query(TABLE_DATA, new String[] { KEY_ID,
+                        KEY_STREAM, KEY_SPECIALIZATION, KEY_SKILL,
+                        KEY_CERTIFICATION, KEY_TIPS, KEY_LADDER},
+                        KEY_STREAM + "=? AND " + KEY_SPECIALIZATION + "=? AND " + KEY_SKILL + " IS NOT NULL",
+                        new String[] {stream , specialization}, null, null, null, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                DataItem item = new DataItem();
+                item.set_id(cursor.getString(0));
+                item.setStream(cursor.getString(1));
+                item.setSpecialization(cursor.getString(2));
+                item.setSkill(cursor.getString(3));
+                item.setCertification(cursor.getString(4));
+                item.setTips(cursor.getString(5));
+                item.setLadder(cursor.getString(6));
+                // Adding item to list
+                dataList.add(item);
+            } while (cursor.moveToNext());
+        }
+
+        return dataList;
+    }
+
+    // Getting Certification
+    public List<DataItem> getCertifications(String stream, String specialization) {
+        SQLiteDatabase db = mDbHelper.getReadableDatabase();
+        List<DataItem> dataList = new ArrayList();
+
+        Cursor cursor = db.query(TABLE_DATA, new String[] { KEY_ID,
+                        KEY_STREAM, KEY_SPECIALIZATION, KEY_SKILL,
+                        KEY_CERTIFICATION, KEY_TIPS, KEY_LADDER},
+                KEY_STREAM + "=? AND " + KEY_SPECIALIZATION + "=? AND " + KEY_CERTIFICATION + " IS NOT NULL",
+                new String[] {stream , specialization}, null, null, null, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                DataItem item = new DataItem();
+                item.set_id(cursor.getString(0));
+                item.setStream(cursor.getString(1));
+                item.setSpecialization(cursor.getString(2));
+                item.setSkill(cursor.getString(3));
+                item.setCertification(cursor.getString(4));
+                item.setTips(cursor.getString(5));
+                item.setLadder(cursor.getString(6));
+                // Adding item to list
+                dataList.add(item);
+            } while (cursor.moveToNext());
+        }
+
+        return dataList;
+    }
+
+    // Getting Tips
+    public List<DataItem> getTips(String stream, String specialization) {
+        SQLiteDatabase db = mDbHelper.getReadableDatabase();
+        List<DataItem> dataList = new ArrayList();
+
+        Cursor cursor = db.query(TABLE_DATA, new String[] { KEY_ID,
+                        KEY_STREAM, KEY_SPECIALIZATION, KEY_SKILL,
+                        KEY_CERTIFICATION, KEY_TIPS, KEY_LADDER},
+                KEY_STREAM + "=? AND " + KEY_SPECIALIZATION + "=? AND " + KEY_TIPS + " IS NOT NULL",
+                new String[] {stream , specialization}, null, null, null, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                DataItem item = new DataItem();
+                item.set_id(cursor.getString(0));
+                item.setStream(cursor.getString(1));
+                item.setSpecialization(cursor.getString(2));
+                item.setSkill(cursor.getString(3));
+                item.setCertification(cursor.getString(4));
+                item.setTips(cursor.getString(5));
+                item.setLadder(cursor.getString(6));
+                // Adding item to list
+                dataList.add(item);
+            } while (cursor.moveToNext());
+        }
+
+        return dataList;
+    }
+
+    // Getting Ladder
+    public List<DataItem> getLadder(String stream, String specialization) {
+        SQLiteDatabase db = mDbHelper.getReadableDatabase();
+        List<DataItem> dataList = new ArrayList();
+
+        Cursor cursor = db.query(TABLE_DATA, new String[] { KEY_ID,
+                        KEY_STREAM, KEY_SPECIALIZATION, KEY_SKILL,
+                        KEY_CERTIFICATION, KEY_TIPS, KEY_LADDER},
+                KEY_STREAM + "=? AND " + KEY_SPECIALIZATION + "=? AND " + KEY_LADDER + " IS NOT NULL",
+                new String[] {stream , specialization}, null, null, null, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                DataItem item = new DataItem();
+                item.set_id(cursor.getString(0));
+                item.setStream(cursor.getString(1));
+                item.setSpecialization(cursor.getString(2));
+                item.setSkill(cursor.getString(3));
+                item.setCertification(cursor.getString(4));
+                item.setTips(cursor.getString(5));
+                item.setLadder(cursor.getString(6));
+                // Adding item to list
+                dataList.add(item);
+            } while (cursor.moveToNext());
+        }
+
+        return dataList;
+    }
+
 }
