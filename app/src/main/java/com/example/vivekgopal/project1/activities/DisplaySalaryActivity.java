@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.example.vivekgopal.project1.R;
 import com.example.vivekgopal.project1.adapters.DatabaseAdapter;
+import com.example.vivekgopal.project1.data.CertificationItem;
 import com.example.vivekgopal.project1.data.DataItem;
 import com.example.vivekgopal.project1.data.SalaryItem;
 
@@ -51,6 +52,10 @@ public class DisplaySalaryActivity extends AppCompatActivity {
 
         salaryItemList = new ArrayList<>();
         salaryItemList = mDbAdapter.getAllSalaries();
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Try accessing different types of rows with adapter
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //        salaryItemList.add(mDbAdapter.getSalary("SAP"));
 //        salaryItemList.add(mDbAdapter.getSalary("Medtronic"));
 //        salaryItemList.add(mDbAdapter.getSalary("Infosys"));
@@ -64,6 +69,37 @@ public class DisplaySalaryActivity extends AppCompatActivity {
 //            row.setPadding(5,5,5,5);
 //            table.addView(row);
 //        }
+//        List<String> strList = new ArrayList<>();
+//        strList = mDbAdapter.getTips("biomedical engineering", "consultant");
+//        for (String tip : strList) {
+//            TableRow row = (TableRow) LayoutInflater.from(DisplaySalaryActivity.this).inflate(R.layout.table_row, null);
+//            ((TextView) row.findViewById(R.id.row_name)).setText(tip);
+//            ((TextView) row.findViewById(R.id.row_value)).setText("consultant");
+//            row.setPadding(5,5,5,5);
+//            table.addView(row);
+//        }
+//
+//        List<CertificationItem> certificationItems = new ArrayList<>();
+//        certificationItems = mDbAdapter.getCertifications("biomedical engineering", "consultant");
+//        for (CertificationItem item : certificationItems) {
+//            TableRow row = (TableRow) LayoutInflater.from(DisplaySalaryActivity.this).inflate(R.layout.table_row, null);
+//            ((TextView) row.findViewById(R.id.row_name)).setText(item.getName());
+//            ((TextView) row.findViewById(R.id.row_value)).setText(item.getUrl());
+//            row.setPadding(5,5,5,5);
+//            table.addView(row);
+//        }
+//
+//        //strList = new;
+//        strList = mDbAdapter.getLadder("biomedical engineering", "consultant");
+//        for (String position : strList) {
+//            TableRow row = (TableRow) LayoutInflater.from(DisplaySalaryActivity.this).inflate(R.layout.table_row, null);
+//            ((TextView) row.findViewById(R.id.row_name)).setText(position);
+//            ((TextView) row.findViewById(R.id.row_value)).setText("consultant");
+//            row.setPadding(5,5,5,5);
+//            table.addView(row);
+//        }
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
         for (SalaryItem item : salaryItemList) {
             TableRow row = (TableRow) LayoutInflater.from(DisplaySalaryActivity.this).inflate(R.layout.table_row, null);

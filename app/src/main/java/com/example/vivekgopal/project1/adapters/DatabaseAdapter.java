@@ -6,12 +6,14 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import com.example.vivekgopal.project1.data.CertificationItem;
 import com.example.vivekgopal.project1.data.DataItem;
 import com.example.vivekgopal.project1.data.DatabaseHelper;
 import com.example.vivekgopal.project1.data.SalaryItem;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -143,7 +145,6 @@ public class DatabaseAdapter {
     public SalaryItem getSalary(String company) {
         SQLiteDatabase db = mDbHelper.getReadableDatabase();
 
-
         Cursor cursor = db.query(TABLE_SALARY, new String[] { KEY_ID,
                         KEY_COMPANY, KEY_SALARY }, KEY_COMPANY + "=?",
                 new String[] { String.valueOf(company) }, null, null, null, null);
@@ -189,9 +190,9 @@ public class DatabaseAdapter {
     }
 
     // Getting skills
-    public List<DataItem> getSkills(String stream, String specialization) {
+    public List<String> getSkills(String stream, String specialization) {
         SQLiteDatabase db = mDbHelper.getReadableDatabase();
-        List<DataItem> dataList = new ArrayList();
+        List<String> skills = new ArrayList();
 
         Cursor cursor = db.query(TABLE_DATA, new String[] { KEY_ID,
                         KEY_STREAM, KEY_SPECIALIZATION, KEY_SKILL,
@@ -201,26 +202,18 @@ public class DatabaseAdapter {
 
         if (cursor.moveToFirst()) {
             do {
-                DataItem item = new DataItem();
-                item.set_id(cursor.getString(0));
-                item.setStream(cursor.getString(1));
-                item.setSpecialization(cursor.getString(2));
-                item.setSkill(cursor.getString(3));
-                item.setCertification(cursor.getString(4));
-                item.setTips(cursor.getString(5));
-                item.setLadder(cursor.getString(6));
                 // Adding item to list
-                dataList.add(item);
+                skills.add(cursor.getString(3));
             } while (cursor.moveToNext());
         }
 
-        return dataList;
+        return skills;
     }
 
     // Getting Certification
-    public List<DataItem> getCertifications(String stream, String specialization) {
+    public List<CertificationItem> getCertifications(String stream, String specialization) {
         SQLiteDatabase db = mDbHelper.getReadableDatabase();
-        List<DataItem> dataList = new ArrayList();
+        List<CertificationItem> certifications = new ArrayList();
 
         Cursor cursor = db.query(TABLE_DATA, new String[] { KEY_ID,
                         KEY_STREAM, KEY_SPECIALIZATION, KEY_SKILL,
@@ -230,26 +223,21 @@ public class DatabaseAdapter {
 
         if (cursor.moveToFirst()) {
             do {
-                DataItem item = new DataItem();
-                item.set_id(cursor.getString(0));
-                item.setStream(cursor.getString(1));
-                item.setSpecialization(cursor.getString(2));
-                item.setSkill(cursor.getString(3));
-                item.setCertification(cursor.getString(4));
-                item.setTips(cursor.getString(5));
-                item.setLadder(cursor.getString(6));
+                CertificationItem item = new CertificationItem();
+                item.setName(cursor.getString(4).split(",")[0]);
+                item.setUrl(cursor.getString(4).split(",")[1]);
+                item.setSource(cursor.getString(4).split(",")[2]);
                 // Adding item to list
-                dataList.add(item);
+                certifications.add(item);
             } while (cursor.moveToNext());
         }
-
-        return dataList;
+        return certifications;
     }
 
     // Getting Tips
-    public List<DataItem> getTips(String stream, String specialization) {
+    public List<String> getTips(String stream, String specialization) {
         SQLiteDatabase db = mDbHelper.getReadableDatabase();
-        List<DataItem> dataList = new ArrayList();
+        List<String> tips = new ArrayList();
 
         Cursor cursor = db.query(TABLE_DATA, new String[] { KEY_ID,
                         KEY_STREAM, KEY_SPECIALIZATION, KEY_SKILL,
@@ -259,26 +247,16 @@ public class DatabaseAdapter {
 
         if (cursor.moveToFirst()) {
             do {
-                DataItem item = new DataItem();
-                item.set_id(cursor.getString(0));
-                item.setStream(cursor.getString(1));
-                item.setSpecialization(cursor.getString(2));
-                item.setSkill(cursor.getString(3));
-                item.setCertification(cursor.getString(4));
-                item.setTips(cursor.getString(5));
-                item.setLadder(cursor.getString(6));
-                // Adding item to list
-                dataList.add(item);
+                tips.add(cursor.getString(5));
             } while (cursor.moveToNext());
         }
-
-        return dataList;
+        return tips;
     }
 
     // Getting Ladder
-    public List<DataItem> getLadder(String stream, String specialization) {
+    public List<String> getLadder(String stream, String specialization) {
         SQLiteDatabase db = mDbHelper.getReadableDatabase();
-        List<DataItem> dataList = new ArrayList();
+        List<String> titles = new ArrayList();
 
         Cursor cursor = db.query(TABLE_DATA, new String[] { KEY_ID,
                         KEY_STREAM, KEY_SPECIALIZATION, KEY_SKILL,
@@ -288,20 +266,11 @@ public class DatabaseAdapter {
 
         if (cursor.moveToFirst()) {
             do {
-                DataItem item = new DataItem();
-                item.set_id(cursor.getString(0));
-                item.setStream(cursor.getString(1));
-                item.setSpecialization(cursor.getString(2));
-                item.setSkill(cursor.getString(3));
-                item.setCertification(cursor.getString(4));
-                item.setTips(cursor.getString(5));
-                item.setLadder(cursor.getString(6));
-                // Adding item to list
-                dataList.add(item);
+                titles = Arrays.asList(cursor.getString(6).split(","));
             } while (cursor.moveToNext());
         }
 
-        return dataList;
+        return titles;
     }
 
 }
