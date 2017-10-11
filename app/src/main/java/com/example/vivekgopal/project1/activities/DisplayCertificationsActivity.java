@@ -3,6 +3,7 @@ package com.example.vivekgopal.project1.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -33,6 +34,7 @@ public class DisplayCertificationsActivity extends GenericDbActivity {
     ListView list;
     String[] certificationTitle;
     Integer[] certificationLogoId;
+    String[] certificationUrl;
     List<CertificationItem> certificationItemList;
 
     @Override
@@ -48,9 +50,12 @@ public class DisplayCertificationsActivity extends GenericDbActivity {
 
         certificationTitle = new String[certificationItemList.size()];
         certificationLogoId = new Integer[certificationItemList.size()];
+        certificationUrl = new String[certificationItemList.size()];
+
         int i = 0;
         for(CertificationItem item : certificationItemList){
             certificationTitle[i] = item.getName();
+            certificationUrl[i] = item.getUrl();
             certificationLogoId[i] = getResources().getIdentifier("logo_" + WordUtils.uncapitalize(item.getSource()), "drawable", getPackageName());
             i++;
         }
@@ -61,7 +66,10 @@ public class DisplayCertificationsActivity extends GenericDbActivity {
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(DisplayCertificationsActivity.this, "You Clicked at " +certificationTitle[+ position], Toast.LENGTH_SHORT).show();
+                //Uri uri = Uri.parse("http://www.google.com"); // missing 'http://' will cause crashed
+                Uri uri = Uri.parse(certificationUrl[position]);
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
             }
         });
     }
