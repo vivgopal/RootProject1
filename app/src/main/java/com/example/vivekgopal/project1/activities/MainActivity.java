@@ -1,6 +1,7 @@
 package com.example.vivekgopal.project1.activities;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -10,10 +11,11 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
 
 import com.example.vivekgopal.project1.preferences.FontsOverride;
 import com.example.vivekgopal.project1.R;
-
+import org.apache.commons.lang3.text.WordUtils;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,32 +35,20 @@ public class MainActivity extends AppCompatActivity {
         final Resources res = getResources();
 
         // Initialize spinners
-        final Spinner dynamicSpinnerPresent = (Spinner) findViewById(R.id.dynamic_spinner_present);
-        final Spinner dynamicSpinnerFuture = (Spinner) findViewById(R.id.dynamic_spinner_future);
+        final Spinner dynamicSpinnerStream = (Spinner) findViewById(R.id.dynamic_spinner_specialization);
         final Button goButton = (Button) findViewById(R.id.home_go_button);
 
         // Initialize array lists
-        final String[] presentItems = res.getStringArray(R.array.present_items);
-        final String[] futureItems = res.getStringArray(R.array.future_items);
+        final String[] StreamItems = res.getStringArray(R.array.streams);
+        for (int i=0; i<StreamItems.length - 1; i++) { // Make text to have small caps
+            StreamItems[i] = WordUtils.capitalize(StreamItems[i]);
+        }
 
         // Create array adapter instances
-        ArrayAdapter<String> adapterPresent = new ArrayAdapter<String>(this, R.layout.textview_spinner_font, R.id.textViewSpinner,  presentItems){
+        ArrayAdapter<String> adapterStream = new ArrayAdapter<String>(this, R.layout.layout_spinner_font, R.id.textViewSpinner,  StreamItems){
             @Override
             public int getCount() {
-                return(presentItems.length - 1); // Truncate the list
-            }
-
-            @Override
-            public View getView(int position, View convertView, ViewGroup parent) {
-                View view = super.getView(position, convertView, parent);
-                view.setPadding(0, 0, 0, 0);
-                return view;
-            }
-        };
-        ArrayAdapter<String> adapterFuture = new ArrayAdapter<String>(this, R.layout.textview_spinner_font, R.id.textViewSpinner,  futureItems){
-            @Override
-            public int getCount() {
-                return(futureItems.length - 1); // Truncate the list
+                return(StreamItems.length - 1); // Truncate the list
             }
 
             @Override
@@ -70,12 +60,10 @@ public class MainActivity extends AppCompatActivity {
         };
 
         // set adapter to spinners
-        dynamicSpinnerPresent.setAdapter(adapterPresent);
-        dynamicSpinnerFuture.setAdapter(adapterFuture);
+        dynamicSpinnerStream.setAdapter(adapterStream);
 
         // Reduce the selection to length-1
-        dynamicSpinnerPresent.setSelection(presentItems.length - 1);
-        dynamicSpinnerFuture.setSelection(futureItems.length - 1);
+        dynamicSpinnerStream.setSelection(StreamItems.length - 1);
 
         // Listener for Go Button
         goButton.setOnClickListener(new View.OnClickListener() {
@@ -84,101 +72,34 @@ public class MainActivity extends AppCompatActivity {
                 String[] items;
                 String title = "";
                 String subtitle = "";
-                String activityType = "";
 
-                int dynSpinnerPresentPos = dynamicSpinnerPresent.getSelectedItemPosition();
-                int dynSpinnerFuturePos = dynamicSpinnerFuture.getSelectedItemPosition();
+                int dynSpinnerStreamPos = dynamicSpinnerStream.getSelectedItemPosition();
+                if(dynSpinnerStreamPos < StreamItems.length - 1) {
+                    String stream = res.getStringArray(R.array.streams)[dynSpinnerStreamPos];
+                    int id = res.getIdentifier("specialization_" + stream.replaceAll(" ", "_"), "array", getPackageName());
+                    items = res.getStringArray(id);
+                    title = WordUtils.capitalize(stream);
+                    subtitle = res.getString(R.string.roles);
+                    startGenericOptionSelectActivity(items, title, subtitle);
+                } else if(dynSpinnerStreamPos == StreamItems.length - 1) {
+                    Context context = getApplicationContext();
+                    CharSequence text = "Select a specialization";
+                    int duration = Toast.LENGTH_SHORT;
 
-                if(dynSpinnerPresentPos == 0 && dynSpinnerFuturePos == 0) { // Test generic options
-                    items = res.getStringArray(R.array.computer_science_career_ladder);
-                    title = res.getString(R.string.computer_programmer);
-                    subtitle = res.getString(R.string.career_ladder);
-                    startCareerLadderActivity(items, title, subtitle);
-                }
-                else if(dynSpinnerPresentPos == 0 && dynSpinnerFuturePos == 1) { // Test generic options
-                    items = res.getStringArray(R.array.eleventh_study_options);
-                    title = res.getString(R.string.eleventh_study_options_title);
-                    startGenericOptionSelectActivity(items, title, subtitle, activityType);
-                }
-                if(dynSpinnerPresentPos == 1 && dynSpinnerFuturePos == 0) { // Test generic options
-                    items = res.getStringArray(R.array.computer_science_career_ladder);
-                    title = res.getString(R.string.computer_programmer);
-                    subtitle = res.getString(R.string.certifications);
-                    startCertificationsActivity(items, title, subtitle);
-                }
-                else if(dynSpinnerPresentPos == 1 && dynSpinnerFuturePos == 1) { // Test generic options
-                    items = res.getStringArray(R.array.eleventh_study_options1);
-                    title = res.getString(R.string.eleventh_study_options1_title);
-                    startGenericOptionSelectActivity(items, title, subtitle, activityType);
-                }
-                else if(dynSpinnerPresentPos == 2 && dynSpinnerFuturePos == 1) { // Test end options
-                    title = res.getString(R.string.computer_science_title);
-                    startGenericSpecializationOptionActivity(title, subtitle);
-                }
-                else if(dynSpinnerPresentPos == 3 && dynSpinnerFuturePos == 0) { // Test career tips1
-                    items = res.getStringArray(R.array.computer_science_tips_title);
-                    title = res.getString(R.string.computer_science_title);
-                    subtitle = res.getString(R.string.career_tips);
-                    activityType = "tips";
-                    startGenericOptionSelectActivity(items, title, subtitle, activityType);
-                }
-                else if(dynSpinnerPresentPos == 3 && dynSpinnerFuturePos == 1) { // Test table
-                    title = res.getString(R.string.computer_science_title);
-                    subtitle = res.getString(R.string.salaries);
-                    startDisplaySalaryActivity(title, subtitle);
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
                 }
             }
         });
-
     }
 
-    protected void startGenericOptionSelectActivity(String[] items, String title, String subtitle, String activityType){
+    protected void startGenericOptionSelectActivity(String[] items, String title, String subtitle){
         Bundle bundle = new Bundle();
         Intent intent = new Intent(MainActivity.this, GenericOptionSelectActivity.class);
         bundle.putStringArray("stringKey", items);
         bundle.putString("titleKey", title);
         bundle.putString("subtitleKey", subtitle);
-        bundle.putString("activityTypeKey", activityType);
         intent.putExtras(bundle);
         startActivity(intent);
     }
-
-    protected void startGenericSpecializationOptionActivity(String title, String subtitle){
-        Bundle bundle = new Bundle();
-        Intent intent = new Intent(MainActivity.this, GenericSpecializationOptionActivity.class);
-        bundle.putString("titleKey", title);
-        bundle.putString("subtitleKey", subtitle);
-        intent.putExtras(bundle);
-        startActivity(intent);
-    }
-
-    protected void startDisplaySalaryActivity(String title, String subtitle){
-        Bundle bundle = new Bundle();
-        Intent intent = new Intent(MainActivity.this, DisplaySalaryActivity.class);
-        bundle.putString("titleKey", title);
-        bundle.putString("subtitleKey", subtitle);
-        intent.putExtras(bundle);
-        startActivity(intent);
-    }
-
-    protected void startCareerLadderActivity(String[] items, String title, String subtitle){
-        Bundle bundle = new Bundle();
-        Intent intent = new Intent(MainActivity.this, CareerLadderActivity.class);
-        bundle.putStringArray("stringKey", items);
-        bundle.putString("titleKey", title);
-        bundle.putString("subtitleKey", subtitle);
-        intent.putExtras(bundle);
-        startActivity(intent);
-    }
-
-    protected void startCertificationsActivity(String[] items, String title, String subtitle){
-        Bundle bundle = new Bundle();
-        Intent intent = new Intent(MainActivity.this, CertificationsActivity.class);
-        bundle.putStringArray("stringKey", items);
-        bundle.putString("titleKey", title);
-        bundle.putString("subtitleKey", subtitle);
-        intent.putExtras(bundle);
-        startActivity(intent);
-    }
-
 }

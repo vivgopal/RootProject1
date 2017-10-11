@@ -26,7 +26,6 @@
                 android:id="@+id/activity_specialization_option_select_round_button"
                 android:layout_width="200dp"
                 android:layout_height="200dp"
-                android:text="Computer Science"
                 android:textAllCaps="false"
                 android:textSize="25dp"
                 android:gravity="center"
@@ -58,42 +57,42 @@
                     android:paddingTop="2dp"
                     android:paddingBottom="2dp"
                     android:textSize="15dp"
-                    android:id="@+id/activity_specialization_option_select_button1"
+                    android:id="@+id/button_specialization_option_select_skills"
                     />
                 <Button
                     style="@style/specialization_button"
                     android:text="@string/companies"
                     android:padding="5dp"
                     android:textSize="15dp"
-                    android:id="@+id/activity_specialization_option_select_button2"
+                    android:id="@+id/button_specialization_option_select_companies"
                     />
                 <Button
                     style="@style/specialization_button"
                     android:text="@string/salaries"
                     android:padding="5dp"
                     android:textSize="15dp"
-                    android:id="@+id/activity_specialization_option_select_button3"
+                    android:id="@+id/button_specialization_option_select_salaries"
                     />
                 <Button
                     style="@style/specialization_button"
                     android:text="@string/certifications"
                     android:padding="5dp"
                     android:textSize="15dp"
-                    android:id="@+id/activity_specialization_option_select_button4"
+                    android:id="@+id/button_specialization_option_select_certifications"
                     />
                 <Button
                     style="@style/specialization_button"
                     android:text="@string/career_tips"
                     android:padding="5dp"
                     android:textSize="15dp"
-                    android:id="@+id/activity_specialization_option_select_button5"
+                    android:id="@+id/button_specialization_option_select_tips"
                     />
                 <Button
                     style="@style/specialization_button"
                     android:text="@string/career_ladder"
                     android:padding="5dp"
                     android:textSize="15dp"
-                    android:id="@+id/activity_specialization_option_select_button6"
+                    android:id="@+id/button_specialization_option_select_ladder"
                     />
             </LinearLayout>
         </LinearLayout>

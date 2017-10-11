@@ -16,41 +16,39 @@ import android.widget.TextView;
 
 import com.example.vivekgopal.project1.R;
 
+import org.apache.commons.lang3.text.WordUtils;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-public class CareerLadderActivity extends AppCompatActivity {
+public class DisplayCareerLadderActivity extends GenericDbActivity {
 
     LinearLayout container;
     List<TextView> positionList = new ArrayList<>();
     List<TextView> arrowList = new ArrayList<>();
     LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ActionBar.LayoutParams.MATCH_PARENT, ActionBar.LayoutParams.WRAP_CONTENT);
-    String[] items = {""};
-    String title;
-    String subtitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_career_ladder);
+        setupView();
 
-        // Initialize button parameters
-        final Button homeButton = (Button) findViewById(R.id.generic_header_home_button);
-        TextView titleTextView = (TextView) findViewById(R.id.generic_header_title);
-        TextView subtitleTextView = (TextView) findViewById(R.id.generic_header_subtitle);
+        openDatabase();
+        items = mDbAdapter.getLadder(WordUtils.uncapitalize(title), WordUtils.uncapitalize(subtitle)).toArray(items);
+        closeDatabase();
 
         float buttonAlpha = (float) 0.90;
         int buttonIntAlpha = (int) (buttonAlpha * 255);
-        initButtonStrings();
 
-        titleTextView.setText(title);
-        if(subtitle != "") {
-            subtitleTextView.setText(subtitle);
-        }
+        subtitleTextView.setText(subtitle + " | Career Ladder");
+
         container = (LinearLayout) findViewById(R.id.activity_career_ladder_button_container);
         params.setMargins(25, 40, 25, 0);
 
         for(int i=0; i<items.length; i++) {
+            items[i] = WordUtils.capitalize(items[i]);
             positionList.add(new TextView(this));
             if(i == 0) {
                 positionList.get(i).setText("\n" + items[i]);
@@ -69,23 +67,6 @@ public class CareerLadderActivity extends AppCompatActivity {
                 container.addView(arrowList.get(arrowList.size() - 1));
             }
         }
-
-        homeButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
-            }
-        });
-
     }
-
-    protected void initButtonStrings() {
-        Bundle bundle = this.getIntent().getExtras();
-        this.items = bundle.getStringArray("stringKey");
-        this.title = bundle.getString("titleKey");
-        this.subtitle = bundle.getString("subtitleKey");
-    }
-
-
 }
 

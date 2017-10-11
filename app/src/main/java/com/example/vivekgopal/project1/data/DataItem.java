@@ -12,6 +12,7 @@ public class DataItem {
     String certification;
     String tips;
     String ladder;
+    String company;
 
     // Constructor
     public DataItem() {
@@ -80,6 +81,14 @@ public class DataItem {
         this.ladder = ladder;
     }
 
+    public String getCompany() {
+        return company;
+    }
+
+    public void setCompany(String company) {
+        this.company = company;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -94,7 +103,9 @@ public class DataItem {
         if (certification != null ? !certification.equals(dataItem.certification) : dataItem.certification != null)
             return false;
         if (tips != null ? !tips.equals(dataItem.tips) : dataItem.tips != null) return false;
-        return ladder != null ? ladder.equals(dataItem.ladder) : dataItem.ladder == null;
+        if (ladder != null ? !ladder.equals(dataItem.ladder) : dataItem.ladder != null)
+            return false;
+        return company != null ? company.equals(dataItem.company) : dataItem.company == null;
 
     }
 
@@ -107,6 +118,7 @@ public class DataItem {
         result = 31 * result + (certification != null ? certification.hashCode() : 0);
         result = 31 * result + (tips != null ? tips.hashCode() : 0);
         result = 31 * result + (ladder != null ? ladder.hashCode() : 0);
+        result = 31 * result + (company != null ? company.hashCode() : 0);
         return result;
     }
 
@@ -120,6 +132,7 @@ public class DataItem {
                 ", certification='" + certification + '\'' +
                 ", tips='" + tips + '\'' +
                 ", ladder='" + ladder + '\'' +
+                ", company='" + company + '\'' +
                 '}';
     }
 }

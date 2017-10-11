@@ -15,7 +15,65 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <include layout="@layout/home_screen_dyn_spinner"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/home_screen_dyn_spinner"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="75dp"
+                />
+
+            <TextView
+                android:id="@+id/myRectangleView"
+                android:layout_width="fill_parent"
+                android:layout_height="100dp"
+                android:background="@drawable/rectangle"
+                android:textColor="@color/colorWhite"
+                android:padding="10dp"
+                android:textSize="20sp"
+                android:text="@string/pathxplore_logo"
+                android:gravity="center"
+                />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="125dp"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorButtonLight"
+                android:padding="10sp"
+                >
+                <Spinner
+                    android:id="@+id/dynamic_spinner_specialization"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:spinnerMode="dropdown"
+                    />
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="30dp"
+                />
+
+            <Button
+                android:id="@+id/home_go_button"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/home_button_go"
+                android:background="@color/colorButtonDark"
+                android:alpha="0.90"
+                android:elevation="40dp"
+                />
+
+        </LinearLayout>
     </ScrollView>
 
 </RelativeLayout>

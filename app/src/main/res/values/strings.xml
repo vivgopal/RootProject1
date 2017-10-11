@@ -1,10 +1,11 @@
 <resources>
     <string name="app_name">Project1</string>
     <string name="pathxplore_logo">PathXplore Logo</string>
-    <string name="home_button_go">GO</string>
+    <string name="home_button_go">View Roles</string>
 
     <string name="skills">Skills</string>
     <string name="companies">Companies</string>
+    <string name="roles">Roles</string>
     <string name="salaries">Salaries</string>
     <string name="certifications">Certifications</string>
     <string name="career_tips">Career Tips</string>
@@ -13,90 +14,21 @@
 
     <string name="Rs">\u20B9</string>
 
-    <string-array name="present_items">
-        <item>10th</item>
-        <item>11th/12th</item>
-        <item>Bachelors</item>
-        <item>Masters</item>
-        <item>Currently I do</item>
+    <string-array name="streams">
+        <item>biomedical engineering</item>
+        <item>I specialize in ...</item>
     </string-array>
 
-    <string-array name="future_items">
-        <item>Work</item>
-        <item>Study Further</item>
-        <item>I want to</item>
+    <string-array name="specialization_biomedical_engineering">
+        <item>consultant</item>
+        <item>field service engineer</item>
+        <item>data scientist</item>
+        <item>systems engineer</item>
+        <item>R&amp;D scientist</item>
+        <item>clinical engineer</item>
+        <item>manufacturing engineer</item>
+        <item>software developer</item>
+        <item>quality engineer</item>
+        <item>product &amp; sales engineer</item>
     </string-array>
-
-    <string name="eleventh_study_options1_title">Sample Title 1</string>
-    <string-array name="eleventh_study_options1">
-        <item>Diploma</item>
-        <item>BSc</item>
-        <item>BTech</item>
-        <item>BArch</item>
-        <item>BCom</item>
-        <item>MBBS</item>
-        <item>BBA</item>
-        <item>LLB</item>
-        <item>BA</item>
-    </string-array>
-
-    <string name="eleventh_study_options_title">Sample Title </string>
-    <string-array name="eleventh_study_options">
-        <item>Diploma1</item>
-        <item>BSc1</item>
-        <item>BTech1</item>
-        <item>BArch1</item>
-        <item>BCom1</item>
-        <item>MBBS1</item>
-        <item>BBA1</item>
-        <item>LLB1</item>
-        <item>BA1</item>
-    </string-array>
-
-    <string name="eleventh_study_options2_title">Sample Title 2</string>
-    <string-array name="eleventh_study_options2">
-        <item>Diploma2</item>
-        <item>BSc2</item>
-        <item>BTech2</item>
-        <item>BArch2</item>
-        <item>BCom2</item>
-        <item>MBBS2</item>
-        <item>BBA2</item>
-        <item>LLB2</item>
-        <item>BA2</item>
-    </string-array>
-
-    <string name="computer_science_title">Computer Science</string>
-    <string-array name="computer_science_tips_title">
-        <item>Choose a degree with a focus on employability Employability</item>
-        <item>Complete placements as part of your studies</item>
-        <item>Get a strong foundation before you specialize Computer science students</item>
-        <item>Check the accreditations of your course</item>
-        <item>Gain the ‘soft skills’ needed for computer science careers Soft skills</item>
-        <item>Develop your skills through competitions</item>
-        <item>Consider the local opportunities and competition Consider the local opportunities and competition</item>
-    </string-array>
-    <string-array name="computer_science_tips_description">
-        <item>Unless you’re planning to follow an academic career path, you’ll want to seek out computer science degrees with a strong focus on practical and applied approaches to learning. At the UK’s University of Central Lancashire (UCLan), for example, all computer science students complete a series of practical projects, including opportunities to work on real-life briefs for clients. This focus on applied learning ensures students emerge ready for the workplace, having gained valuable hands-on experience and feedback from employers.</item>
-        <item>As well as completing practical projects, there is no better way to prepare for computer science careers than by undertaking relevant work experience. At UCLan, all computer science students have the chance to complete a one-year paid and assessed work placement as part of their course, at both undergraduate and postgraduate level. Most placements are with local employers, but there is also the opportunity to complete this year in industry at an English-speaking employer elsewhere in Europe. This immersive period of work experience allows students to further develop their skills and understanding of the sector, while adding significant value to their CVs, and in some cases the placement even leads directly to a job offer.</item>
-        <item>You may already have a clear idea of the area of computer science you want to specialize in, and it can be tempting to dive straight into a highly specialized course. But don’t go too fast! You don’t want to waste time following a specialization which you later decide to change, or risk skipping past some of the essential elements which underlie all computer science careers. At UCLan, all undergraduate students start with an introduction to the core computer science topics, before deciding on a specialized pathway. Starting from a broad skills base allows students to select a specialization with more confidence, and also means a wider range of careers are open to them.</item>
-        <item>Before deciding on a computer science degree, you may also want to find out whether it is accredited by any professional bodies. For instance, UCLan’s computer science programs are accredited by the British Computer Society. This ensures high standards of course development and delivery are adhered to, with the department undergoing regular external assessment. It’s also an effective way for graduates to prove to employers that they are workplace-ready, as many companies will want to know students have studied a program with professional accreditation. Of course you’ll also want to know what other students think about the course, perhaps by seeking out the results of student satisfaction surveys. In the 2015 National Student Survey, UCLan was rated first in North West England for its computer science faculty, and 13th nationally (out of 105).</item>
-        <item>You might think technical skills are all you need for computer science careers – but in fact interpersonal skills are just as important. With this in mind, make sure your degree offers opportunities to develop communication and teamwork skills, as well as related areas of knowledge in high demand among employers, such as agile project management. More broadly, being part of a friendly and supportive community will help you develop and succeed during your studies and beyond. UCLan has a strong focus on ensuring computer science students develop a range of related skillsets, as well as running an award-winning orientation program to ensure new students quickly develop close bonds and social connections.</item>
-        <item>Alongside work placements, another way to develop and show off your skills is by entering computer science competitions. These can be fun and rewarding ways to challenge yourself, as well as providing even more impressive material for your CV. For example, UCLan students have entered and won the national ‘Search for a Star’ and ‘Rising Star’ competitions. They also recently won the first Defectives University Challenge, and have achieved a top-three position every time they’ve entered the BBC Technology Challenge. UCLan students are well prepared to excel in such contests. Indeed, the first year of the undergraduate computer science program kicks off with a four-week challenge, in which students collaborate to design, develop and market new apps. Since this often includes a bit of dressing up, they’re more than ready to present their ideas to others!</item>
-        <item>When choosing a location for your computer science studies, you may be attracted to cities where high numbers of employers are based. However, it’s also worth considering the level of competition for jobs; studying in an area with fewer universities could mean you have fewer fellow graduates to compete with. UCLan’s location as the only university in Preston, in North West England, means its graduates are in high demand among local employers. Companies such as IBM regularly visit the university to recruit directly from its pool of computer science students. In turn, UCLan’s strong local alumni community provides an instant professional network for new graduates. This is in stark contrast to many other parts of the country, where the higher density of universities means students and graduates often face fierce competition for roles.</item>
-    </string-array>
-
-    <string-array name="computer_science_career_ladder">
-        <item>Junior Developer</item>
-        <item>Senior Developer</item>
-        <item>Team Lead</item>
-        <item>Architect</item>
-        <item>Project Manager</item>
-        <item>Director</item>
-        <item>Senior Director</item>
-        <item>Vice President</item>
-        <item>Executive VP</item>
-        <item>CEO</item>
-    </string-array>
-
 </resources>

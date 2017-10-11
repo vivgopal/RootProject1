@@ -4,7 +4,7 @@ package com.example.vivekgopal.project1.data;
  * Created by sreerakshakr on 10/1/17.
  */
 
-public class SalaryItem {
+public class SalaryItem implements Comparable<SalaryItem> {
 
     private int _id;
     private String company;
@@ -74,5 +74,12 @@ public class SalaryItem {
                 ", company='" + company + '\'' +
                 ", salary=" + salary +
                 '}';
+    }
+
+    @Override
+    public int compareTo(SalaryItem compareItem) {
+        int compareSalary=((SalaryItem)compareItem).getSalary();
+        /* For descending order*/
+        return (compareSalary - this.salary);
     }
 }

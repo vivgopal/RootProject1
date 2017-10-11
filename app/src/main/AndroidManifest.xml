@@ -24,9 +24,14 @@
         <activity
             android:name=".activities.GenericSpecializationOptionActivity"
             android:parentActivityName=".activities.MainActivity"></activity>
-        <activity android:name=".activities.DisplaySalaryActivity"></activity>
-        <activity android:name=".activities.CareerLadderActivity"></activity>
-        <activity android:name=".activities.CertificationsActivity"></activity>
+        <activity android:name=".activities.DisplaySalariesActivity"></activity>
+        <activity android:name=".activities.DisplayCareerLadderActivity"></activity>
+        <activity android:name=".activities.DisplayCertificationsActivity"></activity>
+        <activity android:name=".activities.GenericDbActivity"></activity>
+        <activity android:name=".activities.DisplaySkillsActivity"></activity>
+        <activity android:name=".activities.DisplayCompaniesActivity"></activity>
+        <activity android:name=".activities.DisplayCareerTipsActivity"></activity>
+        <activity android:name=".activities.DisplayCareerTipActivity"></activity>
 
     </application>
 

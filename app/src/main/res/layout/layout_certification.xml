@@ -5,22 +5,9 @@
     android:id="@+id/activity_certifications"
     android:background="@color/colorButtonDark"
     android:layout_margin="5dp"
+    android:orientation="vertical"
+    android:padding="5dp"
     >
-    <ImageView
-        android:id="@+id/certification_screenshot"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:paddingBottom="15dp"
-        android:paddingTop="15dp"
-        android:src="@drawable/course_html"
-        />
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="5dp"
-        android:layout_gravity="center"
-        >
         <TextView
             android:id="@+id/certification_title"
             android:layout_width="match_parent"
@@ -32,11 +19,7 @@
             android:text="Introduction to HTML and CSS"
             android:textColor="@color/colorWhite"
             android:textSize="15dp" />
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:alpha="0.6"
-            android:background="@android:color/white" />
+
         <ImageView
             android:id="@+id/certification_logo"
             android:layout_width="210dp"
@@ -47,7 +30,4 @@
             android:layout_gravity="center"
             android:src="@drawable/logo_udacity"
             />
-    </LinearLayout>
-
-
 </LinearLayout>

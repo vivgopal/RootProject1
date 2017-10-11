@@ -8,7 +8,7 @@
     android:id="@+id/activity_certifications"
     android:orientation="vertical"
     android:background="@color/colorBackground"
-    tools:context="com.example.vivekgopal.project1.activities.CertificationsActivity">
+    tools:context="com.example.vivekgopal.project1.activities.DisplayCertificationsActivity">
 
     <include layout="@layout/layout_generic_header"/>
 

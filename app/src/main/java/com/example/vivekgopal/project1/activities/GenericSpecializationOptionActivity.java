@@ -1,25 +1,19 @@
 package com.example.vivekgopal.project1.activities;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.vivekgopal.project1.R;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class GenericSpecializationOptionActivity extends AppCompatActivity {
 
     String title;
     String subtitle;
+    Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,8 +21,15 @@ public class GenericSpecializationOptionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_specialization_option_select);
 
         final Button homeButton = (Button) findViewById(R.id.generic_header_home_button);
+        final Button skillsButton = (Button) findViewById(R.id.button_specialization_option_select_skills);
+        final Button companiesButton = (Button) findViewById(R.id.button_specialization_option_select_companies);
+        final Button salariesButton = (Button) findViewById(R.id.button_specialization_option_select_salaries);
+        final Button certificationsButton = (Button) findViewById(R.id.button_specialization_option_select_certifications);
+        final Button tipsButton = (Button) findViewById(R.id.button_specialization_option_select_tips);
+        final Button ladderButton = (Button) findViewById(R.id.button_specialization_option_select_ladder);
+
         TextView titleTextView = (TextView) findViewById(R.id.generic_header_title);
-        TextView subtitleTextView = (TextView) findViewById(R.id.generic_header_subtitle);
+        TextView subtitleTextView = (TextView) findViewById(R.id.activity_specialization_option_select_round_button);
 
         initButtonStrings();
 
@@ -36,6 +37,54 @@ public class GenericSpecializationOptionActivity extends AppCompatActivity {
         if(subtitle != "") {
             subtitleTextView.setText(subtitle);
         }
+
+        skillsButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                intent = new Intent(GenericSpecializationOptionActivity.this, DisplaySkillsActivity.class);
+                createBundle();
+                startActivity(intent);
+            }
+        });
+
+        companiesButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                intent = new Intent(GenericSpecializationOptionActivity.this, DisplayCompaniesActivity.class);
+                createBundle();
+                startActivity(intent);
+            }
+        });
+
+        salariesButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                intent = new Intent(GenericSpecializationOptionActivity.this, DisplaySalariesActivity.class);
+                createBundle();
+                startActivity(intent);
+            }
+        });
+
+        certificationsButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                intent = new Intent(GenericSpecializationOptionActivity.this, DisplayCertificationsActivity.class);
+                createBundle();
+                startActivity(intent);
+            }
+        });
+
+        tipsButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                intent = new Intent(GenericSpecializationOptionActivity.this, DisplayCareerTipsActivity.class);
+                createBundle();
+                startActivity(intent);
+            }
+        });
+
+        ladderButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                intent = new Intent(GenericSpecializationOptionActivity.this, DisplayCareerLadderActivity.class);
+                createBundle();
+                startActivity(intent);
+            }
+        });
 
         homeButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -51,5 +100,11 @@ public class GenericSpecializationOptionActivity extends AppCompatActivity {
         this.subtitle = bundle.getString("subtitleKey");
     }
 
+    protected void createBundle() {
+        Bundle bundle = new Bundle();
+        bundle.putString("titleKey", title);
+        bundle.putString("subtitleKey", subtitle);
+        intent.putExtras(bundle);
+    }
 }
 

@@ -87,33 +87,6 @@ public class DatabaseAdapter {
         mDbHelper.close();
     }
 
-    public Cursor getTestData()
-    {
-        try
-        {
-            Cursor dbCursor = mDb.query("SALARY_TABLE", null, null, null, null, null, null);
-            //Cursor dbCursor = mDb.query("salary_table", null, null, null, null, null, null);
-            //Cursor dbCursor = mDb.rawQuery("SELECT company_name, salary FROM salary_table", null);
-            /*
-            String sql ="SELECT * FROM salary_table";
-
-            Cursor mCur = mDb.rawQuery(sql, null);
-            if (mCur!=null)
-            {
-                mCur.moveToNext();
-            }
-            //Log.d(TAG, "getTestData >>"+ mCur.toString());
-            return mCur;
-            */
-            return dbCursor;
-        }
-        catch (SQLException mSQLException)
-        {
-            Log.e(TAG, "getTestData >>"+ mSQLException.toString());
-            throw mSQLException;
-        }
-    }
-
     // All CRUD Operation routines
 
     // Getting All Salaries
@@ -147,7 +120,7 @@ public class DatabaseAdapter {
 
         Cursor cursor = db.query(TABLE_SALARY, new String[] { KEY_ID,
                         KEY_COMPANY, KEY_SALARY }, KEY_COMPANY + "=?",
-                new String[] { String.valueOf(company) }, null, null, null, null);
+                new String[] { company }, null, null, null, null);
 
         if (cursor != null)
             cursor.moveToFirst();
@@ -196,7 +169,7 @@ public class DatabaseAdapter {
 
         Cursor cursor = db.query(TABLE_DATA, new String[] { KEY_ID,
                         KEY_STREAM, KEY_SPECIALIZATION, KEY_SKILL,
-                        KEY_CERTIFICATION, KEY_TIPS, KEY_LADDER},
+                        KEY_CERTIFICATION, KEY_TIPS, KEY_LADDER, KEY_COMPANY},
                         KEY_STREAM + "=? AND " + KEY_SPECIALIZATION + "=? AND " + KEY_SKILL + " IS NOT NULL",
                         new String[] {stream , specialization}, null, null, null, null);
 
@@ -217,7 +190,7 @@ public class DatabaseAdapter {
 
         Cursor cursor = db.query(TABLE_DATA, new String[] { KEY_ID,
                         KEY_STREAM, KEY_SPECIALIZATION, KEY_SKILL,
-                        KEY_CERTIFICATION, KEY_TIPS, KEY_LADDER},
+                        KEY_CERTIFICATION, KEY_TIPS, KEY_LADDER, KEY_COMPANY},
                 KEY_STREAM + "=? AND " + KEY_SPECIALIZATION + "=? AND " + KEY_CERTIFICATION + " IS NOT NULL",
                 new String[] {stream , specialization}, null, null, null, null);
 
@@ -241,7 +214,7 @@ public class DatabaseAdapter {
 
         Cursor cursor = db.query(TABLE_DATA, new String[] { KEY_ID,
                         KEY_STREAM, KEY_SPECIALIZATION, KEY_SKILL,
-                        KEY_CERTIFICATION, KEY_TIPS, KEY_LADDER},
+                        KEY_CERTIFICATION, KEY_TIPS, KEY_LADDER, KEY_COMPANY},
                 KEY_STREAM + "=? AND " + KEY_SPECIALIZATION + "=? AND " + KEY_TIPS + " IS NOT NULL",
                 new String[] {stream , specialization}, null, null, null, null);
 
@@ -260,7 +233,7 @@ public class DatabaseAdapter {
 
         Cursor cursor = db.query(TABLE_DATA, new String[] { KEY_ID,
                         KEY_STREAM, KEY_SPECIALIZATION, KEY_SKILL,
-                        KEY_CERTIFICATION, KEY_TIPS, KEY_LADDER},
+                        KEY_CERTIFICATION, KEY_TIPS, KEY_LADDER, KEY_COMPANY},
                 KEY_STREAM + "=? AND " + KEY_SPECIALIZATION + "=? AND " + KEY_LADDER + " IS NOT NULL",
                 new String[] {stream , specialization}, null, null, null, null);
 
@@ -271,6 +244,26 @@ public class DatabaseAdapter {
         }
 
         return titles;
+    }
+
+    // Getting Companies
+    public List<String> getCompanies(String stream, String specialization) {
+        SQLiteDatabase db = mDbHelper.getReadableDatabase();
+        List<String> companies = new ArrayList();
+
+        Cursor cursor = db.query(TABLE_DATA, new String[] { KEY_ID,
+                        KEY_STREAM, KEY_SPECIALIZATION, KEY_SKILL,
+                        KEY_CERTIFICATION, KEY_TIPS, KEY_LADDER, KEY_COMPANY},
+                KEY_STREAM + "=? AND " + KEY_SPECIALIZATION + "=? AND " + KEY_COMPANY + " IS NOT NULL",
+                new String[] {stream , specialization}, null, null, null, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                companies = Arrays.asList(cursor.getString(7).split(","));
+            } while (cursor.moveToNext());
+        }
+
+        return companies;
     }
 
 }
