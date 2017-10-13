@@ -1,32 +1,18 @@
 package com.example.vivekgopal.project1.activities;
 
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.TableRow;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.vivekgopal.project1.R;
 import com.example.vivekgopal.project1.adapters.CertificationListAdapter;
 import com.example.vivekgopal.project1.data.CertificationItem;
-import com.example.vivekgopal.project1.data.SalaryItem;
 
 import org.apache.commons.lang3.text.WordUtils;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class DisplayCertificationsActivity extends GenericDbActivity {
@@ -35,6 +21,7 @@ public class DisplayCertificationsActivity extends GenericDbActivity {
     String[] certificationTitle;
     Integer[] certificationLogoId;
     String[] certificationUrl;
+    List<String> certificationList;
     List<CertificationItem> certificationItemList;
 
     @Override
@@ -45,7 +32,8 @@ public class DisplayCertificationsActivity extends GenericDbActivity {
         subtitleTextView.setText(subtitle + " | Certifications");
 
         openDatabase();
-        certificationItemList = mDbAdapter.getCertifications(WordUtils.uncapitalize(title), WordUtils.uncapitalize(subtitle));
+        certificationList = mDbAdapter.getCertifications(WordUtils.uncapitalize(title), WordUtils.uncapitalize(subtitle));
+        certificationItemList = mDbAdapter.getCertificationItems(certificationList);
         closeDatabase();
 
         certificationTitle = new String[certificationItemList.size()];

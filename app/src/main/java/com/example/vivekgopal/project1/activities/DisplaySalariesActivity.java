@@ -7,7 +7,7 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.example.vivekgopal.project1.R;
-import com.example.vivekgopal.project1.data.SalaryItem;
+import com.example.vivekgopal.project1.data.CompanyItem;
 
 import org.apache.commons.lang3.text.WordUtils;
 
@@ -18,7 +18,7 @@ import java.util.List;
 public class DisplaySalariesActivity extends GenericDbActivity {
 
     List<String> companyList;
-    List<SalaryItem> salaryItemList;
+    List<CompanyItem> salaryItemList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +33,7 @@ public class DisplaySalariesActivity extends GenericDbActivity {
         companyList = mDbAdapter.getCompanies(WordUtils.uncapitalize(title), WordUtils.uncapitalize(subtitle));
         salaryItemList = new ArrayList<>();
         for (String company : companyList) {
-            SalaryItem item = mDbAdapter.getSalary(company);
+            CompanyItem item = mDbAdapter.getCompanyItem(company);
             if(item.getSalary() != 0) {
                 salaryItemList.add(item);
             }
@@ -41,7 +41,7 @@ public class DisplaySalariesActivity extends GenericDbActivity {
 
         Collections.sort(salaryItemList);
 
-        for (SalaryItem item : salaryItemList) {
+        for (CompanyItem item : salaryItemList) {
             TableRow row = (TableRow) LayoutInflater.from(DisplaySalariesActivity.this).inflate(R.layout.layout_table_row, null);
             ((TextView) row.findViewById(R.id.row_name)).setText(item.getCompany());
             ((TextView) row.findViewById(R.id.row_value)).setText("₹" + item.getSalary());

@@ -2,6 +2,7 @@ package com.example.vivekgopal.project1.activities;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
@@ -23,6 +24,7 @@ public class DisplayCompaniesActivity extends GenericDbActivity {
     LinearLayout container;
     List<Button> btnList = new ArrayList<>();
     LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ActionBar.LayoutParams.MATCH_PARENT, ActionBar.LayoutParams.WRAP_CONTENT);
+    List<String> companyURL = new ArrayList();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +35,9 @@ public class DisplayCompaniesActivity extends GenericDbActivity {
         openDatabase();
         items = mDbAdapter.getCompanies(WordUtils.uncapitalize(title), WordUtils.uncapitalize(subtitle)).toArray(items);
         Arrays.sort(items);
+        for(String company:items){
+            companyURL.add(mDbAdapter.getCompanyUrl(company));
+        }
         closeDatabase();
 
         float buttonAlpha = (float) 0.90;
@@ -44,6 +49,7 @@ public class DisplayCompaniesActivity extends GenericDbActivity {
         params.setMargins(25, 40, 25, 0);
 
         for(int i=0; i<items.length; i++) {
+            final int idx = i;
             btnList.add(new Button(this));
             btnList.get(i).setText(WordUtils.capitalize(items[i]));
             btnList.get(i).setTextColor(Color.argb(buttonIntAlpha, 255, 255, 255));
@@ -53,6 +59,15 @@ public class DisplayCompaniesActivity extends GenericDbActivity {
             btnList.get(i).setAlpha(buttonAlpha);
             btnList.get(i).setBackgroundColor(ContextCompat.getColor(this, R.color.colorButtonLight));
             container.addView(btnList.get(btnList.size() - 1));
+
+            btnList.get(i).setOnClickListener(new View.OnClickListener() {
+                  public void onClick(View v) {
+                      Uri uri = Uri.parse(companyURL.get(idx));
+                      Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                      startActivity(intent);
+                  }
+              }
+            );
         }
     }
 

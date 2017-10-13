@@ -9,12 +9,15 @@ import android.util.Log;
 import com.example.vivekgopal.project1.data.CertificationItem;
 import com.example.vivekgopal.project1.data.DataItem;
 import com.example.vivekgopal.project1.data.DatabaseHelper;
-import com.example.vivekgopal.project1.data.SalaryItem;
+import com.example.vivekgopal.project1.data.CompanyItem;
+import com.example.vivekgopal.project1.data.SkillItem;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import static com.example.vivekgopal.project1.R.string.certifications;
 
 /**
  * Created by sreerakshakr on 5/20/17.
@@ -25,22 +28,37 @@ public class DatabaseAdapter {
     protected static final String TAG = "DataAdapter";
 
     // Table names
-    private static final String TABLE_SALARY = "SALARY_TABLE";
+    private static final String TABLE_COMPANY = "COMPANY_TABLE";
     private static final String TABLE_DATA = "DATA_TABLE";
+    private static final String TABLE_CERTIFICATION = "CERTIFICATION_TABLE";
+    private static final String TABLE_SKILL = "SKILL_TABLE";
 
-
-    // SALARY_TABLE Columns names
+    // COMPANY_TABLE Columns names
     private static final String KEY_ID = "_id";
     private static final String KEY_COMPANY = "company";
     private static final String KEY_SALARY = "salary";
+    private static final String KEY_URL = "url";
 
     // DATA_TABLE Columns names
+    //private static final String KEY_ID = "_id";
     private static final String KEY_STREAM = "stream";
     private static final String KEY_SPECIALIZATION = "specialization";
     private static final String KEY_SKILL = "skill";
     private static final String KEY_CERTIFICATION = "certification";
     private static final String KEY_TIPS = "tips";
     private static final String KEY_LADDER = "ladder";
+    //private static final String KEY_COMPANY = "company";
+
+    // SKILL_TABLE Columns names
+    //private static final String KEY_ID = "_id";
+    //private static final String KEY_SKILL = "skill";
+    //private static final String KEY_URL = "url";
+
+    // CERTIFICATION_TABLE Columns names
+    //private static final String KEY_ID = "_id";
+    private static final String KEY_NAME = "name";
+    private static final String KEY_SOURCE = "source";
+    //private static final String KEY_URL = "url";
 
     private final Context mContext;
     private SQLiteDatabase mDb;
@@ -90,10 +108,10 @@ public class DatabaseAdapter {
     // All CRUD Operation routines
 
     // Getting All Salaries
-    public List<SalaryItem> getAllSalaries() {
-        List<SalaryItem> salaryList = new ArrayList<SalaryItem>();
+    public List<CompanyItem> getAllSalaries() {
+        List<CompanyItem> salaryList = new ArrayList<CompanyItem>();
         // Select All Query
-        String selectQuery = "SELECT  * FROM " + TABLE_SALARY;
+        String selectQuery = "SELECT  * FROM " + TABLE_COMPANY;
 
         SQLiteDatabase db = mDbHelper.getReadableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
@@ -101,7 +119,7 @@ public class DatabaseAdapter {
         // looping through all rows and adding to list
         if (cursor.moveToFirst()) {
             do {
-                SalaryItem item = new SalaryItem();
+                CompanyItem item = new CompanyItem();
                 item.set_id(cursor.getInt(0));
                 item.setCompany(cursor.getString(1));
                 item.setSalary(cursor.getInt(2));
@@ -114,23 +132,37 @@ public class DatabaseAdapter {
         return salaryList;
     }
 
-    // Getting single Salary
-    public SalaryItem getSalary(String company) {
+    // Getting single CompanyItem
+    public CompanyItem getCompanyItem(String company) {
         SQLiteDatabase db = mDbHelper.getReadableDatabase();
 
-        Cursor cursor = db.query(TABLE_SALARY, new String[] { KEY_ID,
-                        KEY_COMPANY, KEY_SALARY }, KEY_COMPANY + "=?",
+        Cursor cursor = db.query(TABLE_COMPANY, new String[] { KEY_ID,
+                        KEY_COMPANY, KEY_SALARY, KEY_URL}, KEY_COMPANY + "=?",
                 new String[] { company }, null, null, null, null);
 
         if (cursor != null)
             cursor.moveToFirst();
 
-        SalaryItem item = new SalaryItem();
-        item.set_id(cursor.getInt(0));
+        CompanyItem item = new CompanyItem();
         item.setCompany(cursor.getString(1));
         item.setSalary(cursor.getInt(2));
+        item.setUrl(cursor.getString(3));
 
         return item;
+    }
+
+    // Getting single Company URL
+    public String getCompanyUrl(String company) {
+        SQLiteDatabase db = mDbHelper.getReadableDatabase();
+
+        Cursor cursor = db.query(TABLE_COMPANY, new String[] { KEY_ID,
+                        KEY_COMPANY, KEY_SALARY, KEY_URL}, KEY_COMPANY + "=?",
+                new String[] { company }, null, null, null, null);
+
+        if (cursor != null)
+            cursor.moveToFirst();
+
+        return cursor.getString(3);
     }
 
     // Getting All Data
@@ -163,10 +195,11 @@ public class DatabaseAdapter {
     }
 
     // Getting skills
-    public List<String> getSkills(String stream, String specialization) {
+    public List<SkillItem> getSkills(String stream, String specialization) {
         SQLiteDatabase db = mDbHelper.getReadableDatabase();
-        List<String> skills = new ArrayList();
+        List<SkillItem> skillItemList = new ArrayList();
 
+        // Get all skills for given stream and specialization
         Cursor cursor = db.query(TABLE_DATA, new String[] { KEY_ID,
                         KEY_STREAM, KEY_SPECIALIZATION, KEY_SKILL,
                         KEY_CERTIFICATION, KEY_TIPS, KEY_LADDER, KEY_COMPANY},
@@ -176,17 +209,35 @@ public class DatabaseAdapter {
         if (cursor.moveToFirst()) {
             do {
                 // Adding item to list
-                skills.add(cursor.getString(3));
+                SkillItem item = new SkillItem();
+                item.setSkill(cursor.getString(3));
+                skillItemList.add(item);
             } while (cursor.moveToNext());
         }
 
-        return skills;
+        // Get Wikipedia URL for each skill
+        int i = 0;
+        for(SkillItem item:skillItemList) {
+
+            cursor = db.query(TABLE_SKILL, new String[]{KEY_ID,
+                            KEY_SKILL, KEY_URL},
+                    KEY_SKILL + "=?",
+                    new String[]{item.getSkill()}, null, null, null, null);
+
+            if (cursor != null)
+                cursor.moveToFirst();
+
+            skillItemList.get(i).setUrl(cursor.getString(2));
+            i++;
+        }
+
+        return skillItemList;
     }
 
     // Getting Certification
-    public List<CertificationItem> getCertifications(String stream, String specialization) {
+    public List<String> getCertifications(String stream, String specialization) {
         SQLiteDatabase db = mDbHelper.getReadableDatabase();
-        List<CertificationItem> certifications = new ArrayList();
+        List<String> certifications = new ArrayList();
 
         Cursor cursor = db.query(TABLE_DATA, new String[] { KEY_ID,
                         KEY_STREAM, KEY_SPECIALIZATION, KEY_SKILL,
@@ -196,15 +247,37 @@ public class DatabaseAdapter {
 
         if (cursor.moveToFirst()) {
             do {
-                CertificationItem item = new CertificationItem();
-                item.setName(cursor.getString(4).split(",")[0]);
-                item.setUrl(cursor.getString(4).split(",")[1]);
-                item.setSource(cursor.getString(4).split(",")[2]);
                 // Adding item to list
-                certifications.add(item);
+                certifications.add(cursor.getString(4));
             } while (cursor.moveToNext());
         }
         return certifications;
+    }
+
+    // Getting Certification
+    public List<CertificationItem> getCertificationItems(List<String> certificationList) {
+        SQLiteDatabase db = mDbHelper.getReadableDatabase();
+        List<CertificationItem> certificationItemList = new ArrayList();
+
+        for(String certification : certificationList) {
+            Cursor cursor = db.query(TABLE_CERTIFICATION, new String[] { KEY_ID,
+                            KEY_NAME, KEY_SOURCE, KEY_URL},
+                    KEY_NAME + "=?",
+                    new String[] {certification}, null, null, null, null);
+
+            if (cursor.moveToFirst()) {
+                do {
+                    CertificationItem item = new CertificationItem();
+                    item.setName(cursor.getString(1));
+                    item.setSource(cursor.getString(2));
+                    item.setUrl(cursor.getString(3));
+                    // Adding item to list
+                    certificationItemList.add(item);
+                } while (cursor.moveToNext());
+            }
+        }
+
+        return certificationItemList;
     }
 
     // Getting Tips
