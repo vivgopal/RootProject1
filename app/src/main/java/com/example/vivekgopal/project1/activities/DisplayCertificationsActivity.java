@@ -10,9 +10,12 @@ import android.widget.ListView;
 import com.example.vivekgopal.project1.R;
 import com.example.vivekgopal.project1.adapters.CertificationListAdapter;
 import com.example.vivekgopal.project1.data.CertificationItem;
+import com.example.vivekgopal.project1.data.SkillItem;
 
 import org.apache.commons.lang3.text.WordUtils;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class DisplayCertificationsActivity extends GenericDbActivity {
@@ -33,6 +36,7 @@ public class DisplayCertificationsActivity extends GenericDbActivity {
 
         openDatabase();
         certificationList = mDbAdapter.getCertifications(WordUtils.uncapitalize(title), WordUtils.uncapitalize(subtitle));
+        Collections.sort(certificationList);
         certificationItemList = mDbAdapter.getCertificationItems(certificationList);
         closeDatabase();
 

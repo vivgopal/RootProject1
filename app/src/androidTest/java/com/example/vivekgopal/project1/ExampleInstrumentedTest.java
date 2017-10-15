@@ -22,5 +22,9 @@ public class ExampleInstrumentedTest {
         Context appContext = InstrumentationRegistry.getTargetContext();
 
         assertEquals("com.example.vivekgopal.project1", appContext.getPackageName());
+
+        // Need checks for the following
+        // 1) Check if http links are active
+        // 2) Check if entries in DATA_TABLE have equivalent corresponding entries in SALARY_TABLE, SKILL_TABLE and CERTIFICATION_TABLE
     }
 }

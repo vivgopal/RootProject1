@@ -16,6 +16,8 @@ import com.example.vivekgopal.project1.data.SkillItem;
 import org.apache.commons.lang3.text.WordUtils;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class DisplaySkillsActivity extends GenericDbActivity {
@@ -34,6 +36,15 @@ public class DisplaySkillsActivity extends GenericDbActivity {
         openDatabase();
         skillItemList = mDbAdapter.getSkills(WordUtils.uncapitalize(title), WordUtils.uncapitalize(subtitle));
         closeDatabase();
+
+        if (skillItemList.size() > 0) {
+            Collections.sort(skillItemList, new Comparator<SkillItem>() {
+                @Override
+                public int compare(final SkillItem skill1, final SkillItem skill2) {
+                    return skill1.getSkill().compareTo(skill2.getSkill());
+                }
+            });
+        }
 
         float buttonAlpha = (float) 0.90;
         int buttonIntAlpha = (int) (buttonAlpha * 255);
