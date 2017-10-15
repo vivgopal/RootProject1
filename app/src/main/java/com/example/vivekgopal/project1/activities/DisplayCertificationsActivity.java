@@ -44,7 +44,7 @@ public class DisplayCertificationsActivity extends GenericDbActivity {
         for(CertificationItem item : certificationItemList){
             certificationTitle[i] = item.getName();
             certificationUrl[i] = item.getUrl();
-            certificationLogoId[i] = getResources().getIdentifier("logo_" + WordUtils.uncapitalize(item.getSource()), "drawable", getPackageName());
+            certificationLogoId[i] = getResources().getIdentifier("logo_" + item.getSource().toLowerCase(), "drawable", getPackageName());
             i++;
         }
         CertificationListAdapter adapter = new CertificationListAdapter(DisplayCertificationsActivity.this, certificationTitle, certificationLogoId);
