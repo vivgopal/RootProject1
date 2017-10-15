@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 
 import com.example.vivekgopal.project1.data.CertificationItem;
@@ -13,6 +14,7 @@ import com.example.vivekgopal.project1.data.CompanyItem;
 import com.example.vivekgopal.project1.data.SkillItem;
 
 import java.io.IOException;
+import java.io.InterruptedIOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -198,6 +200,7 @@ public class DatabaseAdapter {
     public List<SkillItem> getSkills(String stream, String specialization) {
         SQLiteDatabase db = mDbHelper.getReadableDatabase();
         List<SkillItem> skillItemList = new ArrayList();
+        List<String> skillsList = new ArrayList();
 
         // Get all skills for given stream and specialization
         Cursor cursor = db.query(TABLE_DATA, new String[] { KEY_ID,
@@ -208,27 +211,31 @@ public class DatabaseAdapter {
 
         if (cursor.moveToFirst()) {
             do {
+                skillsList = Arrays.asList(cursor.getString(3).split(","));
+            } while (cursor.moveToNext());
+        }
+
+        for (String skill:skillsList) {
                 // Adding item to list
                 SkillItem item = new SkillItem();
-                item.setSkill(cursor.getString(3));
+                item.setSkill(skill);
                 skillItemList.add(item);
-            } while (cursor.moveToNext());
         }
 
         // Get Wikipedia URL for each skill
         int i = 0;
         for(SkillItem item:skillItemList) {
-
             cursor = db.query(TABLE_SKILL, new String[]{KEY_ID,
-                            KEY_SKILL, KEY_URL},
-                    KEY_SKILL + "=?",
-                    new String[]{item.getSkill()}, null, null, null, null);
+                                KEY_SKILL, KEY_URL},
+                        KEY_SKILL + "=?",
+                        new String[]{item.getSkill()}, null, null, null, null);
 
-            if (cursor != null)
-                cursor.moveToFirst();
+                if (cursor != null) {
+                        cursor.moveToFirst();
+                        skillItemList.get(i).setUrl(cursor.getString(2));
+                        i++;
 
-            skillItemList.get(i).setUrl(cursor.getString(2));
-            i++;
+                }
         }
 
         return skillItemList;
@@ -248,7 +255,7 @@ public class DatabaseAdapter {
         if (cursor.moveToFirst()) {
             do {
                 // Adding item to list
-                certifications.add(cursor.getString(4));
+                certifications = Arrays.asList(cursor.getString(4).split(","));
             } while (cursor.moveToNext());
         }
         return certifications;
