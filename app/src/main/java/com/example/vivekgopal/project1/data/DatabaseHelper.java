@@ -131,6 +131,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         super.close();
     }
 
+    public boolean isOpen() {
+        if(database != null)
+            return database.isOpen();
+        else
+            return false;
+    }
 
     @Override
     public void onCreate(SQLiteDatabase db) {

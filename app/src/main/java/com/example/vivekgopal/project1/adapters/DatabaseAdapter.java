@@ -91,7 +91,7 @@ public class DatabaseAdapter {
         try
         {
             mDbHelper.openDataBase();
-            mDbHelper.close();
+            //mDbHelper.close();
             mDb = mDbHelper.getReadableDatabase();
         }
         catch (SQLException mSQLException)
@@ -107,11 +107,15 @@ public class DatabaseAdapter {
         mDbHelper.close();
     }
 
+    public boolean isOpen() {
+        return mDbHelper.isOpen();
+    }
+
     // All CRUD Operation routines
 
-    // Getting All Salaries
-    public List<CompanyItem> getAllSalaries() {
-        List<CompanyItem> salaryList = new ArrayList<CompanyItem>();
+    // Getting All CompanyItems
+    public List<CompanyItem> getAllCompanyItems() {
+        List<CompanyItem> companyItemList = new ArrayList<CompanyItem>();
         // Select All Query
         String selectQuery = "SELECT  * FROM " + TABLE_COMPANY;
 
@@ -122,16 +126,16 @@ public class DatabaseAdapter {
         if (cursor.moveToFirst()) {
             do {
                 CompanyItem item = new CompanyItem();
-                item.set_id(cursor.getInt(0));
                 item.setCompany(cursor.getString(1));
                 item.setSalary(cursor.getInt(2));
+                item.setUrl(cursor.getString(3));
                 // Adding contact to list
-                salaryList.add(item);
+                companyItemList.add(item);
             } while (cursor.moveToNext());
         }
 
         // return contact list
-        return salaryList;
+        return companyItemList;
     }
 
     // Getting single CompanyItem
@@ -196,24 +200,54 @@ public class DatabaseAdapter {
         return dataList;
     }
 
-    // Getting skills
-    public List<SkillItem> getSkills(String stream, String specialization) {
+    // Getting All SkillItems
+    public List<SkillItem> getAllSkillItems() {
+        List<SkillItem> skillItemList = new ArrayList<SkillItem>();
+        // Select All Query
+        String selectQuery = "SELECT  * FROM " + TABLE_SKILL;
+
         SQLiteDatabase db = mDbHelper.getReadableDatabase();
-        List<SkillItem> skillItemList = new ArrayList();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                SkillItem item = new SkillItem();
+                item.setSkill(cursor.getString(1));
+                item.setUrl(cursor.getString(2));
+                // Adding contact to list
+                skillItemList.add(item);
+            } while (cursor.moveToNext());
+        }
+
+        // return skill list
+        return skillItemList;
+    }
+
+    // Getting skills
+    public List<String> getSkills(String stream, String specialization) {
+        SQLiteDatabase db = mDbHelper.getReadableDatabase();
         List<String> skillsList = new ArrayList();
 
         // Get all skills for given stream and specialization
-        Cursor cursor = db.query(TABLE_DATA, new String[] { KEY_ID,
+        Cursor cursor = db.query(TABLE_DATA, new String[]{KEY_ID,
                         KEY_STREAM, KEY_SPECIALIZATION, KEY_SKILL,
                         KEY_CERTIFICATION, KEY_TIPS, KEY_LADDER, KEY_COMPANY},
-                        KEY_STREAM + "=? AND " + KEY_SPECIALIZATION + "=? AND " + KEY_SKILL + " IS NOT NULL",
-                        new String[] {stream , specialization}, null, null, null, null);
+                KEY_STREAM + "=? AND " + KEY_SPECIALIZATION + "=? AND " + KEY_SKILL + " IS NOT NULL",
+                new String[]{stream, specialization}, null, null, null, null);
 
         if (cursor.moveToFirst()) {
             do {
                 skillsList = Arrays.asList(cursor.getString(3).split(","));
             } while (cursor.moveToNext());
         }
+
+        return skillsList;
+    }
+
+    public List<SkillItem> getSkillItems(List<String> skillsList) {
+        SQLiteDatabase db = mDbHelper.getReadableDatabase();
+        List<SkillItem> skillItemList = new ArrayList();
 
         for (String skill:skillsList) {
                 // Adding item to list
@@ -225,7 +259,7 @@ public class DatabaseAdapter {
         // Get Wikipedia URL for each skill
         int i = 0;
         for(SkillItem item:skillItemList) {
-            cursor = db.query(TABLE_SKILL, new String[]{KEY_ID,
+            Cursor cursor = db.query(TABLE_SKILL, new String[]{KEY_ID,
                                 KEY_SKILL, KEY_URL},
                         KEY_SKILL + "=?",
                         new String[]{item.getSkill()}, null, null, null, null);
@@ -239,6 +273,31 @@ public class DatabaseAdapter {
         }
 
         return skillItemList;
+    }
+
+    // Getting All SkillItems
+    public List<CertificationItem> getAllCertificationItems() {
+        List<CertificationItem> certificationItemList = new ArrayList<CertificationItem>();
+        // Select All Query
+        String selectQuery = "SELECT  * FROM " + TABLE_CERTIFICATION;
+
+        SQLiteDatabase db = mDbHelper.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                CertificationItem item = new CertificationItem();
+                item.setName(cursor.getString(1));
+                item.setSource(cursor.getString(2));
+                item.setUrl(cursor.getString(3));
+                // Adding contact to list
+                certificationItemList.add(item);
+            } while (cursor.moveToNext());
+        }
+
+        // return skill list
+        return certificationItemList;
     }
 
     // Getting Certification
@@ -346,4 +405,16 @@ public class DatabaseAdapter {
         return companies;
     }
 
+    public boolean checkDataInDB(String TableName, String dbfield, String fieldValue) {
+        SQLiteDatabase db = mDbHelper.getReadableDatabase();
+        String Query = "SELECT * FROM  " + TableName + " WHERE " + dbfield + " LIKE '" + fieldValue + "'";
+        Cursor cursor = db.rawQuery(Query, null);
+
+        if(cursor.getCount() <= 0){
+            cursor.close();
+            return false;
+        }
+        cursor.close();
+        return true;
+    }
 }

@@ -34,9 +34,10 @@ public class DisplaySkillsActivity extends GenericDbActivity {
         setupView();
 
         openDatabase();
-        skillItemList = mDbAdapter.getSkills(WordUtils.uncapitalize(title), WordUtils.uncapitalize(subtitle));
+        skillItemList = mDbAdapter.getSkillItems(mDbAdapter.getSkills(WordUtils.uncapitalize(title), WordUtils.uncapitalize(subtitle)));
         closeDatabase();
 
+        // Sort skills alphabetically
         if (skillItemList.size() > 0) {
             Collections.sort(skillItemList, new Comparator<SkillItem>() {
                 @Override
