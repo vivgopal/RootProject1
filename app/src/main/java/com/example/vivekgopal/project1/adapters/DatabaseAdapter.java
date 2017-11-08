@@ -407,7 +407,7 @@ public class DatabaseAdapter {
 
     public boolean checkDataInDB(String TableName, String dbfield, String fieldValue) {
         SQLiteDatabase db = mDbHelper.getReadableDatabase();
-        String Query = "SELECT * FROM  " + TableName + " WHERE " + dbfield + " LIKE '" + fieldValue + "'";
+        String Query = "SELECT * FROM  " + TableName + " WHERE " + dbfield + " LIKE \"" + fieldValue + "\"";
         Cursor cursor = db.rawQuery(Query, null);
 
         if(cursor.getCount() <= 0){

@@ -44,7 +44,8 @@ public class DisplayCareerTipsActivity extends GenericDbActivity {
         params.setMargins(25, 40, 25, 0);
 
         for(int i=0; i<items.length; i++) {
-            items[i] = "Tip#" + i + "\n" + items[i];
+            int tip_num = i+1;
+            items[i] = "Tip#" + tip_num + "\n" + items[i];
             final String[] currentTip = {items[i]};
             final int idx = i;
             btnList.add(new Button(this));

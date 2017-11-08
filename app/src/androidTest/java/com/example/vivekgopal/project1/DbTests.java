@@ -59,6 +59,8 @@ public class DbTests {
     // 1) Check if http links are active
     // 2) Check if entries in DATA_TABLE have equivalent corresponding entries in SALARY_TABLE, SKILL_TABLE and CERTIFICATION_TABLE
     // 3) skills/companies/certifications/tips/career ladder are repeated more than once
+    // TODO
+    // 4) Check if an image exists for all certifications
 
     @Test
     public void DbHttpLinkTest() throws Exception {
@@ -164,6 +166,7 @@ public class DbTests {
 
         for(String specialization:specializationArray) {
             List<String> certificationList = mDbAdapter.getCertifications(WordUtils.uncapitalize(stream), WordUtils.uncapitalize(specialization));
+            Log.d(TAG, "Running through specialization '" + specialization);
 
             for (String certification : certificationList) {
                 try {
@@ -244,9 +247,9 @@ public class DbTests {
 
         try {
         HttpURLConnection httpUrlConn = (HttpURLConnection) new URL(linkURL).openConnection();
+            Log.d(TAG, "Trying URL (" + linkURL + ")");
 
         //server returns the response headers only
-
             httpUrlConn.setRequestMethod("HEAD");
 
 
@@ -268,5 +271,6 @@ public class DbTests {
             collector.addError(t);
             return false;
         }
+
     }
 }
