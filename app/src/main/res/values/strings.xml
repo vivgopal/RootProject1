@@ -16,7 +16,18 @@
 
     <string-array name="streams">
         <item>biomedical engineering</item>
-        <item>I specialize in ...</item>
+        <item>electrical and electronics engineering</item>
+        <item>computer engineering</item>
+        <item>biomedical engineering</item>
+        <item>electrical engineering</item>
+        <item>computer engineering</item>
+        <item>biomedical engineering</item>
+        <item>electrical engineering</item>
+        <item>computer engineering</item>
+        <item>biomedical engineering</item>
+        <item>electrical engineering</item>
+        <item>computer engineering</item>
+        <item>Select Degree ...</item>
     </string-array>
 
     <string-array name="specialization_biomedical_engineering">

@@ -4,6 +4,7 @@
     <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="android:typeface">monospace</item>
+        <item name="android:dropDownListViewStyle">@style/style_spinner_dropdown</item>
     </style>
 
     <style name="AppThemeActionBar" parent="ThemeOverlay.AppCompat.ActionBar">
