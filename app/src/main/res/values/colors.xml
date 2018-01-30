@@ -14,4 +14,6 @@
     <color name="colorDivider">#D9D9D9</color>
     <color name="colorGradientStart">#2BD0FE</color>
     <color name="colorGradientEnd">#30AAFF</color>
+    <color name="colorTransparent">#80000000</color>
+
 </resources>

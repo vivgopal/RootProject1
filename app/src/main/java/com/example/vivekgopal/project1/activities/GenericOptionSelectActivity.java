@@ -1,13 +1,16 @@
 package com.example.vivekgopal.project1.activities;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Color;
+import android.os.Build;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -27,8 +30,30 @@ public class GenericOptionSelectActivity extends AppCompatActivity {
     String title;
     String subtitle;
 
+    private View decorView;
+    private int display_mode;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN);
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+        }
+
+        decorView = this.getWindow().getDecorView();
+        display_mode = getResources().getConfiguration().orientation;
+
+        if(display_mode == Configuration.ORIENTATION_LANDSCAPE) {
+            decorView.setSystemUiVisibility(
+            View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                    //| View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                    | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION // hide nav bar
+                    //| View.SYSTEM_UI_FLAG_FULLSCREEN // hide status bar
+                    | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_generic_option_select);
 
@@ -89,7 +114,6 @@ public class GenericOptionSelectActivity extends AppCompatActivity {
         this.title = bundle.getString("titleKey");
         this.subtitle = bundle.getString("subtitleKey");
     }
-
 
 }
 
