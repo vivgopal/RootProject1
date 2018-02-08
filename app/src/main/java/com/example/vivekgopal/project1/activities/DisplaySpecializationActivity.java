@@ -49,6 +49,7 @@ public class DisplaySpecializationActivity extends AppCompatActivity {
         specialization_list = (RecyclerView) findViewById(R.id.layout_salary_table_row_recycler_view);
         specialization_list.setLayoutManager(new LinearLayoutManager(this));
         specialization_list.setAdapter(new RecyclerViewTypeOneAdapter(
+                title,
                 getResources().getStringArray(id),
                 getApplicationContext()
         ));

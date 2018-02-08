@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import com.example.vivekgopal.project1.R;
 
+import org.apache.commons.lang3.text.WordUtils;
+
 public class GenericSpecializationOptionActivity extends AppCompatActivity {
 
     String title;
@@ -35,7 +37,7 @@ public class GenericSpecializationOptionActivity extends AppCompatActivity {
 
         titleTextView.setText(title);
         if(subtitle != "") {
-            subtitleTextView.setText(subtitle);
+            subtitleTextView.setText(WordUtils.capitalize(subtitle));
         }
 
         skillsButton.setOnClickListener(new View.OnClickListener() {
@@ -80,9 +82,7 @@ public class GenericSpecializationOptionActivity extends AppCompatActivity {
 
         ladderButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                //intent = new Intent(GenericSpecializationOptionActivity.this, DisplayCareerLadderActivity.class);
-                // TEMP CODE
-                intent = new Intent(GenericSpecializationOptionActivity.this, DisplaySpecializationActivity.class);
+                intent = new Intent(GenericSpecializationOptionActivity.this, DisplayCareerLadderActivity.class);
                 createBundle();
                 startActivity(intent);
             }

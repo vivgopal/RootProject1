@@ -1,6 +1,8 @@
 package com.example.vivekgopal.project1.adapters;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +12,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.vivekgopal.project1.R;
+import com.example.vivekgopal.project1.activities.DisplaySpecializationActivity;
+import com.example.vivekgopal.project1.activities.GenericOptionSelectActivity;
+import com.example.vivekgopal.project1.activities.GenericSpecializationOptionActivity;
 
 import org.apache.commons.lang3.text.WordUtils;
 
@@ -21,12 +26,14 @@ import org.apache.commons.lang3.text.WordUtils;
 public class RecyclerViewTypeOneAdapter extends RecyclerView.Adapter<RecyclerViewTypeOneAdapter.ViewHolder> {
 
     String data[];
+    String title;
     Context context;
     String imageFileName = "";
     int imageFileId;
 
 
-    public RecyclerViewTypeOneAdapter(String data[], Context context){
+    public RecyclerViewTypeOneAdapter(String title, String data[], Context context){
+        this.title = title;
         this.data = data;
         this.context = context;
     }
@@ -61,7 +68,13 @@ public class RecyclerViewTypeOneAdapter extends RecyclerView.Adapter<RecyclerVie
                 if (isLongClick) {
                     Toast.makeText(context, "#" + position + " - " + data[position] + " (Long click)", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(context, "#" + position + " - " + data[position], Toast.LENGTH_SHORT).show();
+                    Bundle bundle = new Bundle();
+                    Intent intent = new Intent(view.getContext(), GenericSpecializationOptionActivity.class);
+                    bundle.putString("titleKey", title);
+                    bundle.putString("subtitleKey", data[position]);
+                    intent.putExtras(bundle);
+                    view.getContext().startActivity(intent);
+                    //Toast.makeText(context, "#" + position + " - " + data[position], Toast.LENGTH_SHORT).show();
                 }
             }
         });

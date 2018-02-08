@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
                     int id = res.getIdentifier("specialization_" + stream.replaceAll(" ", "_"), "array", getPackageName());
                     items = res.getStringArray(id);
                     title = WordUtils.capitalize(stream);
-                    subtitle = res.getString(R.string.roles);
+                    subtitle = res.getString(R.string.specializations);
                     startGenericOptionSelectActivity(items, title, subtitle);
                 } else if(dynSpinnerStreamPos == StreamItems.length - 1) {
                     Context context = getApplicationContext();
@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
 
     protected void startGenericOptionSelectActivity(String[] items, String title, String subtitle){
         Bundle bundle = new Bundle();
-        Intent intent = new Intent(MainActivity.this, GenericOptionSelectActivity.class);
+        Intent intent = new Intent(MainActivity.this, DisplaySpecializationActivity.class);
         bundle.putStringArray("stringKey", items);
         bundle.putString("titleKey", title);
         bundle.putString("subtitleKey", subtitle);
