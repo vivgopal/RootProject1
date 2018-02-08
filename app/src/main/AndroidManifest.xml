@@ -36,6 +36,7 @@
         <activity android:name=".activities.DisplayCompaniesActivity"></activity>
         <activity android:name=".activities.DisplayCareerTipsActivity"></activity>
         <activity android:name=".activities.DisplayCareerTipActivity"></activity>
+        <activity android:name=".activities.DisplaySpecializationActivity"></activity>
 
     </application>
 

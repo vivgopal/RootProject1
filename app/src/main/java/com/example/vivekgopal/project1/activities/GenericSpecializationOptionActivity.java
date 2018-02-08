@@ -80,7 +80,9 @@ public class GenericSpecializationOptionActivity extends AppCompatActivity {
 
         ladderButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                intent = new Intent(GenericSpecializationOptionActivity.this, DisplayCareerLadderActivity.class);
+                //intent = new Intent(GenericSpecializationOptionActivity.this, DisplayCareerLadderActivity.class);
+                // TEMP CODE
+                intent = new Intent(GenericSpecializationOptionActivity.this, DisplaySpecializationActivity.class);
                 createBundle();
                 startActivity(intent);
             }
