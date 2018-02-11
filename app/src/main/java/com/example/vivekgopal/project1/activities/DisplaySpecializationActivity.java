@@ -24,11 +24,11 @@ public class DisplaySpecializationActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.layout_generic_header_with_recycleview);
+        setContentView(R.layout.layout_toolbar_with_recycleview);
 
         // Setup toolbars
-        titleToolbar = (Toolbar) findViewById(R.id.layout_salary_table_row_toolbar_title);
-        subtitleToolbar = (Toolbar) findViewById(R.id.layout_salary_table_row_toolbar_subtitle);
+        titleToolbar = (Toolbar) findViewById(R.id.layout_toolbar_with_recycleview_title);
+        subtitleToolbar = (Toolbar) findViewById(R.id.layout_toolbar_with_recycleview_subtitle);
         setSupportActionBar(titleToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -37,8 +37,8 @@ public class DisplaySpecializationActivity extends AppCompatActivity {
         initTitleStrings();
 
         // Set text to title and subtitle toolbars
-        TextView titleTextView = (TextView) findViewById(R.id.layout_salary_table_row_toolbar_title_textview);
-        TextView subTitleTextView = (TextView) findViewById(R.id.layout_salary_table_row_toolbar_subtitle_textview);
+        TextView titleTextView = (TextView) findViewById(R.id.layout_toolbar_with_recycleview_title_textview);
+        TextView subTitleTextView = (TextView) findViewById(R.id.layout_toolbar_with_recycleview_subtitle_textview);
         titleTextView.setText(title);
         subTitleTextView.setText(subtitle);
 
@@ -46,7 +46,7 @@ public class DisplaySpecializationActivity extends AppCompatActivity {
         // Get Resources
         String stream = WordUtils.uncapitalize(title);
         int id = getResources().getIdentifier("specialization_" + stream.replaceAll(" ", "_"), "array", getPackageName());
-        specialization_list = (RecyclerView) findViewById(R.id.layout_salary_table_row_recycler_view);
+        specialization_list = (RecyclerView) findViewById(R.id.layout_toolbar_with_recycleview_container);
         specialization_list.setLayoutManager(new LinearLayoutManager(this));
         specialization_list.setAdapter(new RecyclerViewTypeOneAdapter(
                 title,

@@ -12,9 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.vivekgopal.project1.R;
-import com.example.vivekgopal.project1.activities.DisplaySpecializationActivity;
-import com.example.vivekgopal.project1.activities.GenericOptionSelectActivity;
-import com.example.vivekgopal.project1.activities.GenericSpecializationOptionActivity;
+import com.example.vivekgopal.project1.activities.DisplaySpecializationOptionActivity;
 
 import org.apache.commons.lang3.text.WordUtils;
 
@@ -66,10 +64,10 @@ public class RecyclerViewTypeOneAdapter extends RecyclerView.Adapter<RecyclerVie
             @Override
             public void onClick(View view, int position, boolean isLongClick) {
                 if (isLongClick) {
-                    Toast.makeText(context, "#" + position + " - " + data[position] + " (Long click)", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(context, "#" + position + " - " + data[position] + " (Long click)", Toast.LENGTH_SHORT).show();
                 } else {
                     Bundle bundle = new Bundle();
-                    Intent intent = new Intent(view.getContext(), GenericSpecializationOptionActivity.class);
+                    Intent intent = new Intent(view.getContext(), DisplaySpecializationOptionActivity.class);
                     bundle.putString("titleKey", title);
                     bundle.putString("subtitleKey", data[position]);
                     intent.putExtras(bundle);
