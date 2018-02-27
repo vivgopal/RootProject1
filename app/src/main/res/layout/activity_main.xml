@@ -26,7 +26,7 @@
             android:layout_height="125dp"
             android:gravity="center"
             android:layout_gravity="center_horizontal"
-            android:background="@drawable/rectangle"
+            android:background="@drawable/shape_rectangle"
             android:textColor="@color/colorScrollThumb"
             android:padding="10dp"
             android:textSize="20sp"

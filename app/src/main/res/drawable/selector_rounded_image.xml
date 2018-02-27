@@ -9,7 +9,7 @@
                 android:endColor="@color/colorGradientEnd"
                 android:type="linear" />
             <!--corners allow us to make the rounded corners button-->
-            <corners android:radius="5dp" />
+            <corners android:radius="10dp" />
         </shape>
     </item>
 </selector>
