@@ -405,6 +405,20 @@ public class DatabaseAdapter {
         return companies;
     }
 
+    // Getting Companies
+    public List<CompanyItem> getCompanyItems(List<String> companies) {
+
+        List<CompanyItem> companyItemList = new ArrayList();
+
+        for(String company:companies){
+            CompanyItem item;
+            item = getCompanyItem(company);
+            // Adding item to list
+            companyItemList.add(item);
+        }
+        return companyItemList;
+    }
+
     public boolean checkDataInDB(String TableName, String dbfield, String fieldValue) {
         SQLiteDatabase db = mDbHelper.getReadableDatabase();
         String Query = "SELECT * FROM  " + TableName + " WHERE " + dbfield + " LIKE \"" + fieldValue + "\"";

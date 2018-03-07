@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        >
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_rounded_imageview_shadow"
+            android:paddingRight="2dp"
+            android:paddingBottom="2dp"
+            >
+            <com.example.vivekgopal.project1.preferences.RoundedImageView
+                android:id="@+id/layout_recycleview_company_item_image"
+                android:layout_width="@dimen/square_image_thumbnail_length"
+                android:layout_height="@dimen/square_image_thumbnail_length"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            >
+            <TextView
+                android:layout_alignParentTop="true"
+                android:id="@+id/layout_recycleview_company_item_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:textSize="20dp"
+                android:layout_gravity="center_vertical"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:textColor="@color/colorBlack"/>
+        </LinearLayout>
+   </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/colorDivider" />
+</LinearLayout>

@@ -11,6 +11,10 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.example.vivekgopal.project1.R;
+import com.example.vivekgopal.project1.adapters.RecyclerViewCertificationAdapter;
+import com.example.vivekgopal.project1.adapters.RecyclerViewCompanyAdapter;
+import com.example.vivekgopal.project1.data.CertificationItem;
+import com.example.vivekgopal.project1.data.CompanyItem;
 
 import org.apache.commons.lang3.text.WordUtils;
 
@@ -19,57 +23,27 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class DisplayCompaniesActivity extends GenericDbActivity {
+public class DisplayCompaniesActivity extends GenericDbTempActivity {
 
-    LinearLayout container;
-    List<Button> btnList = new ArrayList<>();
-    LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ActionBar.LayoutParams.MATCH_PARENT, ActionBar.LayoutParams.WRAP_CONTENT);
-    List<String> companyURL = new ArrayList();
+    List<String> companyList;
+    List<CompanyItem> companyItemList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_generic_option_select);
-        setupView();
+        super.onCreate(savedInstanceState); // calls setupView() and initRecyclerView()
 
         openDatabase();
-        items = mDbAdapter.getCompanies(WordUtils.uncapitalize(title), WordUtils.uncapitalize(subtitle)).toArray(items);
-        Arrays.sort(items);
-        for(String company:items){
-            companyURL.add(mDbAdapter.getCompanyUrl(company));
-        }
+        companyList = mDbAdapter.getCompanies(WordUtils.uncapitalize(title), WordUtils.uncapitalize(subtitle));
+        Collections.sort(companyList);
+        companyItemList = mDbAdapter.getCompanyItems(companyList);
         closeDatabase();
 
-        float buttonAlpha = (float) 0.90;
-        int buttonIntAlpha = (int) (buttonAlpha * 255);
+        // Set adapter to recyclerview
+        recyclerView.setAdapter(new RecyclerViewCompanyAdapter(
+                title,
+                companyItemList,
+                getApplicationContext()
+        ));
 
-        subtitleTextView.setText(subtitle + " | Companies");
-
-        container = (LinearLayout) findViewById(R.id.activity_generic_option_select_button_container);
-        params.setMargins(25, 40, 25, 0);
-
-        for(int i=0; i<items.length; i++) {
-            final int idx = i;
-            btnList.add(new Button(this));
-            btnList.get(i).setText(WordUtils.capitalize(items[i]));
-            btnList.get(i).setTextColor(Color.argb(buttonIntAlpha, 255, 255, 255));
-            btnList.get(i).setTransformationMethod(null);
-            btnList.get(i).setLayoutParams(params);
-            btnList.get(i).setElevation(40);
-            btnList.get(i).setAlpha(buttonAlpha);
-            btnList.get(i).setBackgroundColor(ContextCompat.getColor(this, R.color.colorButtonLight));
-            container.addView(btnList.get(btnList.size() - 1));
-
-            btnList.get(i).setOnClickListener(new View.OnClickListener() {
-                  public void onClick(View v) {
-                      Uri uri = Uri.parse(companyURL.get(idx));
-                      Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                      startActivity(intent);
-                  }
-              }
-            );
-        }
     }
-
 }
-
