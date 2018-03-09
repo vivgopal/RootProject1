@@ -1,23 +1,7 @@
 package com.example.vivekgopal.project1.activities;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.widget.TableLayout;
-import android.widget.TableRow;
-import android.widget.TextView;
-
-import com.example.vivekgopal.project1.R;
 import com.example.vivekgopal.project1.adapters.RecyclerViewSalaryAdapter;
-import com.example.vivekgopal.project1.data.CompanyItem;
-
-import org.apache.commons.lang3.text.WordUtils;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
-import android.os.Bundle;
-import com.example.vivekgopal.project1.adapters.RecyclerViewCompanyAdapter;
 import com.example.vivekgopal.project1.data.CompanyItem;
 
 import org.apache.commons.lang3.text.WordUtils;

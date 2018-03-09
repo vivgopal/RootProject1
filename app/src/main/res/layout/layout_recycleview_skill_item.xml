@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:padding="10dp"
+        >
+        <TextView
+            android:id="@+id/layout_recycleview_skill_item_name"
+            android:layout_width="0dp"
+            android:layout_weight="5"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:gravity="left"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:textColor="@color/colorBlack"/>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:gravity="right">
+            <TextView
+                android:id="@+id/layout_recycleview_skill_item_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:textSize="20dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:background="@drawable/shape_rounded_rectangle"
+                android:textColor="@color/colorWhite"/>
+        </LinearLayout>
+
+   </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/colorDivider" />
+</LinearLayout>
