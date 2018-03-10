@@ -2,57 +2,103 @@ package com.example.vivekgopal.project1.activities;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.vivekgopal.project1.R;
+import com.example.vivekgopal.project1.adapters.DatabaseAdapter;
 
 import org.apache.commons.lang3.text.WordUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class DisplayCareerTipActivity extends GenericDbActivity {
+public class DisplayCareerTipActivity extends AppCompatActivity {
 
-    LinearLayout container;
-    List<Button> btnList = new ArrayList<>();
-    LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ActionBar.LayoutParams.MATCH_PARENT, ActionBar.LayoutParams.WRAP_CONTENT);
+    List<String> tips;
+    String[] currentTip;
+    String title;
+    String subtitle;
+    public DatabaseAdapter mDbAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_generic_option_select);
-        setupView();
+        setContentView(R.layout.layout_toolbar_with_tip);
 
+        // Setup toolbars
+        Toolbar titleToolbar;
+        TextView titleTextView = (TextView) findViewById(R.id.layout_toolbar_with_tip_title_textview);
+        titleToolbar = (Toolbar) findViewById(R.id.layout_toolbar_with_tip_title);
+        setSupportActionBar(titleToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        initButtonStrings();
+        titleTextView.setText(WordUtils.capitalize(subtitle));
+
+        // Initializa textviews in the tip activity
+        TextView tipNumberTextView = (TextView) findViewById(R.id.layout_toolbar_with_tip_number);
+        TextView tipContentTextView = (TextView) findViewById(R.id.layout_toolbar_with_tip_content);
+        TextView tipNameTextView = (TextView) findViewById(R.id.layout_toolbar_with_tip_name);
+        Bundle bundle = this.getIntent().getExtras();
+        int tipNum = bundle.getInt("tipIdKey");
+        int imageFileId = getResources().getIdentifier("icon_calandar" + Integer.toString((tipNum%5)+1), "drawable", getPackageName());
+        int colorId = getResources().getIdentifier("colorTip" + Integer.toString((tipNum%5)+1), "color", getPackageName());
+
+        // Get tips from the database
         openDatabase();
-        items = mDbAdapter.getTips(WordUtils.uncapitalize(title), WordUtils.uncapitalize(subtitle)).toArray(items);
+        tips = mDbAdapter.getTips(WordUtils.uncapitalize(title), WordUtils.uncapitalize(subtitle));
         closeDatabase();
 
-        subtitleTextView.setText(subtitle + " | Career Tips");
-        float buttonAlpha = (float) 0.90;
-        int buttonIntAlpha = (int) (buttonAlpha * 255);
 
-        container = (LinearLayout) findViewById(R.id.activity_generic_option_select_button_container);
-        params.setMargins(25, 40, 25, 0);
+        // Set text to the text views
+        currentTip = tips.get(tipNum).split("\n", 2); // first line contains the tip name and other lines contain the description
+        tipNameTextView.setText(currentTip[0]);
 
-        Bundle bundle = this.getIntent().getExtras();
-        int i = bundle.getInt("tipIdKey");
-        items[i] = "Tip#" + i + "\n\n" + items[i];
-        btnList.add(new Button(this));
-        btnList.get(0).setText(items[i]);
-        btnList.get(0).setTextColor(Color.argb(buttonIntAlpha, 255, 255, 255));
-        btnList.get(0).setTransformationMethod(null);
-        btnList.get(0).setBackgroundColor(ContextCompat.getColor(this, R.color.colorButtonDark));
-        btnList.get(0).setPadding(15,15,15,15);
-        btnList.get(0).setLayoutParams(params);
-        btnList.get(0).setElevation(40);
-        btnList.get(0).setAlpha(buttonAlpha);
-        container.addView(btnList.get(btnList.size() - 1));
+        currentTip = currentTip[1].split("\n", 2); // first line is a new line and reuse variable to remove the new line
+        tipContentTextView.setText(currentTip[1]);
+
+        tipNumberTextView.setText("#"+Integer.toString(tipNum+1));
+        tipNumberTextView.setBackgroundResource(imageFileId);
+        tipNumberTextView.setTextColor(getResources().getColor(colorId));
+        //tipNameTextView.setText("Title");
+        //tipContentTextView.setText("Content Content Content Content Content Content Content ");
     }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
+
+    protected void initButtonStrings() {
+        Bundle bundle = this.getIntent().getExtras();
+        this.title = bundle.getString("titleKey");
+        this.subtitle = bundle.getString("subtitleKey");
+    }
+
+    //---------------- Database related methods ----------------
+    public void openDatabase() {
+        mDbAdapter = new DatabaseAdapter(getApplicationContext());
+        mDbAdapter.createDatabase();
+        mDbAdapter.open();
+    }
+
+    public void closeDatabase() {
+        mDbAdapter.close();
+    }
+
+
 }
 

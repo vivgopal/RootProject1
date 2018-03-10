@@ -41,8 +41,8 @@ public class DisplaySpecializationOptionActivity extends AppCompatActivity {
         final ImageButton tipsButton = (ImageButton) findViewById(R.id.layout_toolbar_with_specialization_career_tips);
         final ImageButton ladderButton = (ImageButton) findViewById(R.id.layout_toolbar_with_specialization_career_ladder);
 
-        TextView titleTextView = (TextView) findViewById(R.id.layout_toolbar_with_specialization_title_textview);
         // Setup toolbars
+        TextView titleTextView = (TextView) findViewById(R.id.layout_toolbar_with_specialization_title_textview);
         titleToolbar = (Toolbar) findViewById(R.id.layout_toolbar_with_specialization_title);
         setSupportActionBar(titleToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

@@ -17,4 +17,9 @@
     <color name="colorGradientMiddle">#2DBDFE</color>
     <color name="colorTransparent">#80000000</color>
     <color name="colorStatusBar">#008BEB</color>
+    <color name="colorTip1">#00AA8D</color>
+    <color name="colorTip2">#3F51B5</color>
+    <color name="colorTip3">#2196F3</color>
+    <color name="colorTip4">#F44336</color>
+    <color name="colorTip5">#F6BF26</color>
 </resources>
