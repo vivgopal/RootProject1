@@ -22,51 +22,35 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class DisplayCareerLadderActivity extends GenericDbActivity {
 
-    LinearLayout container;
-    List<TextView> positionList = new ArrayList<>();
-    List<TextView> arrowList = new ArrayList<>();
-    LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ActionBar.LayoutParams.MATCH_PARENT, ActionBar.LayoutParams.WRAP_CONTENT);
+import android.os.Bundle;
+import com.example.vivekgopal.project1.adapters.RecyclerViewCompanyAdapter;
+import com.example.vivekgopal.project1.adapters.RecyclerViewLadderAdapter;
+import com.example.vivekgopal.project1.data.CompanyItem;
+
+import org.apache.commons.lang3.text.WordUtils;
+
+import java.util.Collections;
+import java.util.List;
+
+public class DisplayCareerLadderActivity extends GenericDbTempActivity {
+
+    List<String> careerLadderList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_career_ladder);
-        setupView();
+        super.onCreate(savedInstanceState); // calls setupView() and initRecyclerView()
 
         openDatabase();
-        items = mDbAdapter.getLadder(WordUtils.uncapitalize(title), WordUtils.uncapitalize(subtitle)).toArray(items);
+        careerLadderList = mDbAdapter.getLadder(WordUtils.uncapitalize(title), WordUtils.uncapitalize(subtitle));
         closeDatabase();
 
-        float buttonAlpha = (float) 0.90;
-        int buttonIntAlpha = (int) (buttonAlpha * 255);
+        // Set adapter to recyclerview
+        recyclerView.setAdapter(new RecyclerViewLadderAdapter(
+                title,
+                careerLadderList,
+                getApplicationContext()
+        ));
 
-        subtitleTextView.setText(subtitle + " | Career Ladder");
-
-        container = (LinearLayout) findViewById(R.id.activity_career_ladder_button_container);
-        params.setMargins(25, 40, 25, 0);
-
-        for(int i=0; i<items.length; i++) {
-            items[i] = WordUtils.capitalize(items[i]);
-            positionList.add(new TextView(this));
-            if(i == 0) {
-                positionList.get(i).setText("\n" + items[i]);
-            } else {
-                positionList.get(i).setText(items[i]);
-            }
-            positionList.get(i).setTextColor(Color.argb(buttonIntAlpha, 255, 255, 255));
-            positionList.get(i).setGravity(Gravity.CENTER);
-            container.addView(positionList.get(positionList.size() - 1));
-
-            if(i != items.length - 1) {
-                arrowList.add(new TextView(this));
-                arrowList.get(i).setText("↓");
-                arrowList.get(i).setTextColor(Color.BLACK);
-                arrowList.get(i).setGravity(Gravity.CENTER);
-                container.addView(arrowList.get(arrowList.size() - 1));
-            }
-        }
     }
 }
-

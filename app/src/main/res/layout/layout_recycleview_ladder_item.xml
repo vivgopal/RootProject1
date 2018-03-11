@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingLeft="10dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        >
+        <View
+            android:layout_width="5dp"
+            android:layout_above="@+id/layout_recycleview_ladder_item_image"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:background="@color/colorDivider" />
+        <View
+            android:layout_width="5dp"
+            android:layout_below="@+id/layout_recycleview_ladder_item_image"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:background="@color/colorDivider" />
+        <ImageView
+            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/layout_recycleview_ladder_item_image"
+            android:layout_width="@dimen/square_image_thumbnail_length"
+            android:layout_height="@dimen/square_image_thumbnail_length"/>
+
+    </RelativeLayout>
+    <TextView
+        android:layout_alignParentTop="true"
+        android:id="@+id/layout_recycleview_ladder_item_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="20dp"
+        android:textSize="20dp"
+        android:layout_gravity="center_vertical"
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:textColor="@color/colorBlack"/>
+</LinearLayout>
+
