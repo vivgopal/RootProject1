@@ -39,8 +39,7 @@
     <LinearLayout
         android:id="@+id/horizontal_container_wrapper"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingBottom="48dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:background="@color/colorWhite">
 
@@ -248,5 +247,11 @@
             </LinearLayout>
         </LinearLayout>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@color/colorBlack"
+            ></View>
     </LinearLayout>
+
 </LinearLayout>
