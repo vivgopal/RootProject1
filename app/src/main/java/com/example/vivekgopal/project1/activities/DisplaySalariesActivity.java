@@ -9,7 +9,7 @@ import org.apache.commons.lang3.text.WordUtils;
 import java.util.Collections;
 import java.util.List;
 
-public class DisplaySalariesActivity extends GenericDbTempActivity {
+public class DisplaySalariesActivity extends GenericDbActivity {
 
     List<String> companyList;
     List<CompanyItem> companyItemList;

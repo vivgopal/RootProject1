@@ -2,16 +2,13 @@ package com.example.vivekgopal.project1.activities;
 
 import android.os.Bundle;
 
-import com.example.vivekgopal.project1.adapters.RecyclerViewSkillAdapter;
 import com.example.vivekgopal.project1.adapters.RecyclerViewTipsAdapter;
-import com.example.vivekgopal.project1.data.SkillItem;
 
 import org.apache.commons.lang3.text.WordUtils;
 
-import java.util.Collections;
 import java.util.List;
 
-public class DisplayCareerTipsActivity extends GenericDbTempActivity {
+public class DisplayCareerTipsActivity extends GenericDbActivity {
 
     List<String> tipsList;
 
