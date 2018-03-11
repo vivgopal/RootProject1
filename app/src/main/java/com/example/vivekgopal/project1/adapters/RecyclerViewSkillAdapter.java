@@ -2,6 +2,8 @@ package com.example.vivekgopal.project1.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -37,9 +39,35 @@ public class RecyclerViewSkillAdapter extends RecyclerView.Adapter<RecyclerViewS
     }
 
     public void populate_holder(RecyclerViewSkillAdapter.ViewHolder holder, int position) {
+        GradientDrawable gd = new GradientDrawable();
+        int colorId = R.color.colorTip1;
+
         holder.text_view1.setText(WordUtils.capitalize(skillItemList.get(position).getSkill()));
-        holder.text_view2.setText(WordUtils.capitalize(skillItemList.get(position).getSkill()));
-        //holder.text_view2.setText(WordUtils.capitalize("Analytical"));
+        holder.text_view2.setText(WordUtils.capitalize(skillItemList.get(position).getType()));
+
+        switch (skillItemList.get(position).getType()) {
+            case "Analytical":
+                colorId = R.color.colorTip3;
+                break;
+            case "Leadership":
+                colorId = R.color.colorTip2;
+                break;
+            case "Programming":
+                colorId = R.color.colorTip1;
+                break;
+            case "Computer":
+                colorId = R.color.colorTip4;
+                break;
+            case "Communication":
+                colorId = R.color.colorTip5;
+                break;
+            default:
+                colorId = R.color.colorBlack;
+                break;
+        }
+        gd.setColor(context.getResources().getColor(colorId));
+        gd.setCornerRadius(60);
+        holder.text_view2.setBackgroundDrawable(gd);
     }
 
     public void doOnClick(View view, int position) {

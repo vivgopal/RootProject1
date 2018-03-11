@@ -55,6 +55,7 @@ public class DatabaseAdapter {
     //private static final String KEY_ID = "_id";
     //private static final String KEY_SKILL = "skill";
     //private static final String KEY_URL = "url";
+    private static final String KEY_TYPE = "type";
 
     // CERTIFICATION_TABLE Columns names
     //private static final String KEY_ID = "_id";
@@ -215,6 +216,7 @@ public class DatabaseAdapter {
                 SkillItem item = new SkillItem();
                 item.setSkill(cursor.getString(1));
                 item.setUrl(cursor.getString(2));
+                item.setType(cursor.getString(3));
                 // Adding contact to list
                 skillItemList.add(item);
             } while (cursor.moveToNext());
@@ -260,14 +262,15 @@ public class DatabaseAdapter {
         int i = 0;
         for(SkillItem item:skillItemList) {
             Cursor cursor = db.query(TABLE_SKILL, new String[]{KEY_ID,
-                                KEY_SKILL, KEY_URL},
+                                KEY_SKILL, KEY_URL, KEY_TYPE},
                         KEY_SKILL + "=?",
                         new String[]{item.getSkill()}, null, null, null, null);
 
                 if (cursor != null) {
-                        cursor.moveToFirst();
-                        skillItemList.get(i).setUrl(cursor.getString(2));
-                        i++;
+                    cursor.moveToFirst();
+                    skillItemList.get(i).setUrl(cursor.getString(2));
+                    skillItemList.get(i).setType(cursor.getString(3));
+                    i++;
 
                 }
         }

@@ -23,7 +23,7 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="3"
+            android:layout_weight="4"
             android:gravity="right">
             <TextView
                 android:id="@+id/layout_recycleview_skill_item_type"
@@ -37,7 +37,6 @@
                 android:paddingRight="15dp"
                 android:maxLines="1"
                 android:ellipsize="end"
-                android:background="@drawable/shape_rounded_rectangle"
                 android:textColor="@color/colorWhite"/>
         </LinearLayout>
 

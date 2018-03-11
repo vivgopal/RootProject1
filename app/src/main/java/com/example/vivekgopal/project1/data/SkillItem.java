@@ -7,11 +7,13 @@ package com.example.vivekgopal.project1.data;
 public class SkillItem {
     String skill;
     String url;
+    String type;
 
     // Constructors
-    public SkillItem(String skill, String url) {
+    public SkillItem(String skill, String url, String type) {
         this.skill = skill;
         this.url = url;
+        this.type = type;
     }
     public SkillItem() {
     }
@@ -31,5 +33,13 @@ public class SkillItem {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }
