@@ -4,7 +4,7 @@ android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
     defaultConfig {
-        applicationId "com.example.vivekgopal.project1"
+        applicationId "com.pathxplore.vivekgopal.project1"
         minSdkVersion 15
         targetSdkVersion 25
         versionCode 1
