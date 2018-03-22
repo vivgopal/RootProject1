@@ -3,17 +3,22 @@ package com.example.vivekgopal.project1.activities;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.vivekgopal.project1.preferences.FontsOverride;
@@ -22,8 +27,16 @@ import org.apache.commons.lang3.text.WordUtils;
 
 public class MainActivity extends AppCompatActivity {
 
+    Boolean firstTime = null;
+    LinearLayout tutorialContainer;
+    LinearLayout tutorialLayout;
+    Context context;
+    boolean isClickable = true;
+    Spinner dynamicSpinnerStream;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        context = MainActivity.this;
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN);
@@ -45,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         final Resources res = getResources();
 
         // Initialize spinners
-        final Spinner dynamicSpinnerStream = (Spinner) findViewById(R.id.dynamic_spinner_specialization);
+        dynamicSpinnerStream = (Spinner) findViewById(R.id.dynamic_spinner_specialization);
         final Button goButton = (Button) findViewById(R.id.home_go_button);
 
         // Initialize array lists
@@ -83,24 +96,38 @@ public class MainActivity extends AppCompatActivity {
                 String title = "";
                 String subtitle = "";
 
-                int dynSpinnerStreamPos = dynamicSpinnerStream.getSelectedItemPosition();
-                if(dynSpinnerStreamPos < StreamItems.length - 1) {
-                    String stream = res.getStringArray(R.array.streams)[dynSpinnerStreamPos];
-                    int id = res.getIdentifier("specialization_" + stream.replaceAll(" ", "_"), "array", getPackageName());
-                    items = res.getStringArray(id);
-                    title = WordUtils.capitalize(stream);
-                    subtitle = res.getString(R.string.specializations);
-                    startGenericOptionSelectActivity(items, title, subtitle);
-                } else if(dynSpinnerStreamPos == StreamItems.length - 1) {
-                    Context context = getApplicationContext();
-                    CharSequence text = "Select a specialization";
-                    int duration = Toast.LENGTH_SHORT;
+                if(isClickable == true) {
+                    int dynSpinnerStreamPos = dynamicSpinnerStream.getSelectedItemPosition();
+                    if (dynSpinnerStreamPos < StreamItems.length - 1) {
+                        String stream = res.getStringArray(R.array.streams)[dynSpinnerStreamPos];
+                        int id = res.getIdentifier("specialization_" + stream.replaceAll(" ", "_"), "array", getPackageName());
+                        items = res.getStringArray(id);
+                        title = WordUtils.capitalize(stream);
+                        subtitle = res.getString(R.string.specializations);
+                        startGenericOptionSelectActivity(items, title, subtitle);
+                    } else if (dynSpinnerStreamPos == StreamItems.length - 1) {
+                        Context context = getApplicationContext();
+                        CharSequence text = "Select a specialization";
+                        int duration = Toast.LENGTH_SHORT;
 
-                    Toast toast = Toast.makeText(context, text, duration);
-                    toast.show();
+                        Toast toast = Toast.makeText(context, text, duration);
+                        toast.show();
+                    }
                 }
             }
         });
+
+        if(isFirstTime(this.getClass().getSimpleName(), getApplicationContext().MODE_PRIVATE)) {
+            // Lock spinner selection and button press
+            isClickable = false;
+            dynamicSpinnerStream.setEnabled(false);
+
+            // inflate tutorial layout and and add to the container defined in parent layout
+            tutorialContainer = (LinearLayout) findViewById(R.id.activity_main_tutorial_container);
+            tutorialLayout = (LinearLayout) LayoutInflater.from(context).inflate(R.layout.activity_main_tutorial, tutorialContainer, false);
+            tutorialLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
+            tutorialContainer.addView(tutorialLayout);
+        }
     }
 
     protected void startGenericOptionSelectActivity(String[] items, String title, String subtitle){
@@ -111,6 +138,26 @@ public class MainActivity extends AppCompatActivity {
         bundle.putString("subtitleKey", subtitle);
         intent.putExtras(bundle);
         startActivity(intent);
+    }
+
+    protected boolean isFirstTime(String name, int mode) {
+        if (firstTime == null) {
+            SharedPreferences mPreferences = this.getSharedPreferences(name, mode);
+            firstTime = mPreferences.getBoolean("firstTime", true);
+            if (firstTime) {
+                SharedPreferences.Editor editor = mPreferences.edit();
+                editor.putBoolean("firstTime", false);
+                editor.apply();
+            }
+        }
+        return firstTime;
+    }
+
+    // Execute this when the tutorial is seen already
+    public void tutorialSeen(View v) {
+        tutorialContainer.removeAllViews();
+        isClickable = true;
+        dynamicSpinnerStream.setEnabled(true);
     }
 
 }
