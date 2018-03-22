@@ -30,6 +30,7 @@ public class RecyclerViewSkillAdapter extends RecyclerView.Adapter<RecyclerViewS
     String title;
     Context context;
     int layoutItemId;
+    public boolean isClickable = true;
 
     public RecyclerViewSkillAdapter(String title, List<SkillItem> skillItemList, Context context){
         this.title = title;
@@ -71,9 +72,19 @@ public class RecyclerViewSkillAdapter extends RecyclerView.Adapter<RecyclerViewS
     }
 
     public void doOnClick(View view, int position) {
-        Uri uri = Uri.parse(skillItemList.get(position).getUrl());
-        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-        view.getContext().startActivity(intent);
+        if(isClickable == true) {
+            Uri uri = Uri.parse(skillItemList.get(position).getUrl());
+            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+            view.getContext().startActivity(intent);
+        }
+    }
+
+    public void enableClick() {
+        isClickable = true;
+    }
+
+    public void disableClick() {
+        isClickable = false;
     }
 
     @Override

@@ -28,6 +28,7 @@ public class RecyclerViewTipsAdapter extends RecyclerView.Adapter<RecyclerViewTi
     String subtitle;
     Context context;
     int layoutItemId;
+    public boolean isClickable = true;
 
     public RecyclerViewTipsAdapter(String title, String subtitle, List<String> tipsList, Context context){
         this.title = title;
@@ -51,13 +52,23 @@ public class RecyclerViewTipsAdapter extends RecyclerView.Adapter<RecyclerViewTi
     }
 
     public void doOnClick(View view, int position) {
-        Bundle bundle = new Bundle();
-        Intent intent = new Intent(view.getContext(), DisplayCareerTipActivity.class);
-        bundle.putString("titleKey", title);
-        bundle.putString("subtitleKey", WordUtils.capitalize(subtitle));
-        bundle.putInt("tipIdKey", position);
-        intent.putExtras(bundle);
-        view.getContext().startActivity(intent);
+        if(isClickable == true) {
+            Bundle bundle = new Bundle();
+            Intent intent = new Intent(view.getContext(), DisplayCareerTipActivity.class);
+            bundle.putString("titleKey", title);
+            bundle.putString("subtitleKey", WordUtils.capitalize(subtitle));
+            bundle.putInt("tipIdKey", position);
+            intent.putExtras(bundle);
+            view.getContext().startActivity(intent);
+        }
+    }
+
+    public void enableClick() {
+        isClickable = true;
+    }
+
+    public void disableClick() {
+        isClickable = false;
     }
 
     @Override

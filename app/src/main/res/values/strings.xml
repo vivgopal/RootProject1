@@ -32,4 +32,17 @@
         <item>quality engineer</item>
         <item>product &amp; sales engineer</item>
     </string-array>
+
+    <string name="scroll_message_specializations">Scroll to explore\nmore specializations</string>
+    <string name="scroll_message_companies">Scroll to explore\nmore companies</string>
+    <string name="scroll_message_skills">Scroll to explore\nmore skills</string>
+    <string name="scroll_message_tips">Scroll to explore\nmore tips</string>
+    <string name="scroll_message_certifications">Scroll to explore\nmore certifications</string>
+
+    <string name="click_message_specializations">Press to explore\nthis specialization</string>
+    <string name="click_message_companies">Press to open company\'s\nLinkedin page</string>
+    <string name="click_message_skills">Press to view skill\'s\nWikipedia page</string>
+    <string name="click_message_tips">Press to view\nmore details</string>
+    <string name="click_message_certifications">Press to view\ncourse website</string>
+
 </resources>

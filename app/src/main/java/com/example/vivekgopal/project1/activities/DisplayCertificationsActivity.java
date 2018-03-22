@@ -1,6 +1,8 @@
 package com.example.vivekgopal.project1.activities;
 
 import android.os.Bundle;
+
+import com.example.vivekgopal.project1.R;
 import com.example.vivekgopal.project1.adapters.RecyclerViewCertificationAdapter;
 import com.example.vivekgopal.project1.data.CertificationItem;
 
@@ -13,10 +15,12 @@ public class DisplayCertificationsActivity extends GenericDbActivity {
 
     List<String> certificationList;
     List<CertificationItem> certificationItemList;
+    RecyclerViewCertificationAdapter recyclerViewCertificationAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState); // calls setupView() and initRecyclerView()
+        context = DisplayCertificationsActivity.this;
 
         openDatabase();
         certificationList = mDbAdapter.getCertifications(WordUtils.uncapitalize(title), WordUtils.uncapitalize(subtitle));
@@ -24,12 +28,32 @@ public class DisplayCertificationsActivity extends GenericDbActivity {
         certificationItemList = mDbAdapter.getCertificationItems(certificationList);
         closeDatabase();
 
-        // Set adapter to recyclerview
-        recyclerView.setAdapter(new RecyclerViewCertificationAdapter(
+        recyclerViewCertificationAdapter = new RecyclerViewCertificationAdapter(
                 title,
                 certificationItemList,
                 getApplicationContext()
-        ));
+        );
 
+        if(isFirstTime(this.getClass().getSimpleName(), getApplicationContext().MODE_PRIVATE)) {
+            setupTutorialView(
+                    context,
+                    getResources().getString(R.string.click_message_certifications),
+                    getResources().getString(R.string.scroll_message_certifications)
+            );
+        }
+
+        // Set adapter to recyclerview
+        recyclerView.setAdapter(recyclerViewCertificationAdapter);
+
+    }
+
+    @Override
+    public void disableClick(){
+        recyclerViewCertificationAdapter.disableClick();
+    }
+
+    @Override
+    public void enableClick(){
+        recyclerViewCertificationAdapter.enableClick();
     }
 }

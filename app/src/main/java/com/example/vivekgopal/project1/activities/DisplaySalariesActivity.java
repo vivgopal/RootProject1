@@ -40,4 +40,12 @@ public class DisplaySalariesActivity extends GenericDbActivity {
         ));
 
     }
+
+    @Override
+    public void disableClick(){
+    }
+
+    @Override
+    public void enableClick(){
+    }
 }

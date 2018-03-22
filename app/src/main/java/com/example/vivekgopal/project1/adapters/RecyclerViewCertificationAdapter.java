@@ -28,6 +28,7 @@ public class RecyclerViewCertificationAdapter extends RecyclerView.Adapter<Recyc
     String title;
     Context context;
     int layoutItemId;
+    public boolean isClickable = true;
 
     public RecyclerViewCertificationAdapter(String title, List<CertificationItem> certificationItemList, Context context){
         this.title = title;
@@ -45,9 +46,19 @@ public class RecyclerViewCertificationAdapter extends RecyclerView.Adapter<Recyc
     }
 
     public void doOnClick(View view, int position) {
-        Uri uri = Uri.parse(certificationItemList.get(position).getUrl());
-        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-        view.getContext().startActivity(intent);
+        if(isClickable == true) {
+            Uri uri = Uri.parse(certificationItemList.get(position).getUrl());
+            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+            view.getContext().startActivity(intent);
+        }
+    }
+
+    public void enableClick() {
+        isClickable = true;
+    }
+
+    public void disableClick() {
+        isClickable = false;
     }
 
     @Override

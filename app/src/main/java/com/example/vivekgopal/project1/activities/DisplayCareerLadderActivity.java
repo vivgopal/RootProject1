@@ -29,4 +29,12 @@ public class DisplayCareerLadderActivity extends GenericDbActivity {
         ));
 
     }
+
+    @Override
+    public void disableClick(){
+    }
+
+    @Override
+    public void enableClick(){
+    }
 }

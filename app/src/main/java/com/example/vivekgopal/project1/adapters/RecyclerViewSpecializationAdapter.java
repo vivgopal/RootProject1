@@ -26,6 +26,7 @@ public class RecyclerViewSpecializationAdapter extends RecyclerView.Adapter<Recy
     String title;
     Context context;
     int layoutItemId;
+    public boolean isClickable = true;
 
     public RecyclerViewSpecializationAdapter(String title, String data[], Context context){
         this.title = title;
@@ -42,12 +43,22 @@ public class RecyclerViewSpecializationAdapter extends RecyclerView.Adapter<Recy
     }
 
     public void doOnClick(View view, int position) {
-        Bundle bundle = new Bundle();
-        Intent intent = new Intent(view.getContext(), DisplaySpecializationOptionActivity.class);
-        bundle.putString("titleKey", title);
-        bundle.putString("subtitleKey", data[position]);
-        intent.putExtras(bundle);
-        view.getContext().startActivity(intent);
+        if(isClickable == true) {
+            Bundle bundle = new Bundle();
+            Intent intent = new Intent(view.getContext(), DisplaySpecializationOptionActivity.class);
+            bundle.putString("titleKey", title);
+            bundle.putString("subtitleKey", data[position]);
+            intent.putExtras(bundle);
+            view.getContext().startActivity(intent);
+        }
+    }
+
+    public void enableClick() {
+        isClickable = true;
+    }
+
+    public void disableClick() {
+        isClickable = false;
     }
 
     @Override

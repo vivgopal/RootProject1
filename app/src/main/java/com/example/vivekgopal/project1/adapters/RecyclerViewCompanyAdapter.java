@@ -29,6 +29,7 @@ public class RecyclerViewCompanyAdapter extends RecyclerView.Adapter<RecyclerVie
     String title;
     Context context;
     int layoutItemId;
+    public boolean isClickable = true;
 
     public RecyclerViewCompanyAdapter(String title, List<CompanyItem> companyItemList, Context context){
         this.title = title;
@@ -45,9 +46,19 @@ public class RecyclerViewCompanyAdapter extends RecyclerView.Adapter<RecyclerVie
     }
 
     public void doOnClick(View view, int position) {
-        Uri uri = Uri.parse(companyItemList.get(position).getUrl());
-        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-        view.getContext().startActivity(intent);
+        if(isClickable == true) {
+            Uri uri = Uri.parse(companyItemList.get(position).getUrl());
+            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+            view.getContext().startActivity(intent);
+        }
+    }
+
+    public void enableClick() {
+        isClickable = true;
+    }
+
+    public void disableClick() {
+        isClickable = false;
     }
 
     @Override

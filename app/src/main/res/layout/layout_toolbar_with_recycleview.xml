@@ -4,47 +4,48 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
-
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/my_appbar_container"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:contentInsetStartWithNavigation="0dp"
-        android:fitsSystemWindows="false"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" >
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/layout_toolbar_with_recycleview_title"
+        android:layout_height="match_parent">
+        <LinearLayout
             android:layout_width="match_parent"
-            style="@style/GenericToolbar"
-            app:contentInsetStartWithNavigation="0dp"
-            app:layout_scrollFlags="scroll|enterAlwaysCollapsed|snap">
-            <TextView
-                android:id="@+id/layout_toolbar_with_recycleview_title_textview"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+            <android.support.design.widget.AppBarLayout
+                android:id="@+id/my_appbar_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="?attr/actionBarSize"
-                android:gravity="center"
-                />
-        </android.support.v7.widget.Toolbar>
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/layout_toolbar_with_recycleview_subtitle"
-            android:layout_width="match_parent"
-            style="@style/GenericToolbar"
-            app:contentInsetStartWithNavigation="0dp">
-            <TextView
-                android:id="@+id/layout_toolbar_with_recycleview_subtitle_textview"
+                app:contentInsetStartWithNavigation="0dp"
+                android:fitsSystemWindows="false"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" >
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/layout_toolbar_with_recycleview_title"
+                    android:layout_width="match_parent"
+                    style="@style/GenericToolbar"
+                    app:contentInsetStartWithNavigation="0dp"
+                    app:layout_scrollFlags="scroll|enterAlwaysCollapsed|snap">
+                    <TextView
+                        android:id="@+id/layout_toolbar_with_recycleview_title_textview"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="?attr/actionBarSize"
+                        android:gravity="center"
+                        />
+                </android.support.v7.widget.Toolbar>
+            </android.support.design.widget.AppBarLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/layout_toolbar_with_recycleview_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="?attr/actionBarSize"
-                android:layout_marginLeft="?attr/actionBarSize"
-                android:gravity="center"
-                />
-        </android.support.v7.widget.Toolbar>
-    </android.support.design.widget.AppBarLayout>
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/layout_toolbar_with_recycleview_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/layout_toolbar_with_recycleview_tutorials_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+        </LinearLayout>
+    </FrameLayout>
 </android.support.design.widget.CoordinatorLayout>
