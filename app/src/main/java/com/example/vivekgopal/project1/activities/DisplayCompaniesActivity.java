@@ -39,6 +39,7 @@ public class DisplayCompaniesActivity extends GenericDbActivity {
 
         recyclerViewCompanyAdapter = new RecyclerViewCompanyAdapter(
                 title,
+                subtitle,
                 companyItemList,
                 getApplicationContext()
         );

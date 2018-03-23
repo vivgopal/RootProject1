@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.example.vivekgopal.project1.R;
 import com.example.vivekgopal.project1.activities.DisplaySpecializationOptionActivity;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import org.apache.commons.lang3.text.WordUtils;
 
@@ -49,6 +50,14 @@ public class RecyclerViewSpecializationAdapter extends RecyclerView.Adapter<Recy
             bundle.putString("titleKey", title);
             bundle.putString("subtitleKey", data[position]);
             intent.putExtras(bundle);
+
+            // Add Analytics
+            Bundle params = new Bundle();
+            params.putString(context.getResources().getString(R.string.DEGREE_NAME), WordUtils.uncapitalize(title));
+            params.putString(context.getResources().getString(R.string.SPECIALIZATION_NAME), WordUtils.uncapitalize(data[position]));
+            FirebaseAnalytics.getInstance(context.getApplicationContext()).logEvent(
+                    context.getResources().getString(R.string.EVENT_SPECIALIZATION_SELECTED), params);
+
             view.getContext().startActivity(intent);
         }
     }

@@ -1,5 +1,5 @@
 package com.example.vivekgopal.project1.activities;
-
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import android.content.Context;
 import android.content.Intent;
@@ -137,6 +137,13 @@ public class MainActivity extends AppCompatActivity {
         bundle.putString("titleKey", title);
         bundle.putString("subtitleKey", subtitle);
         intent.putExtras(bundle);
+
+        // Add Analytics
+        Bundle params = new Bundle();
+        params.putString(getResources().getString(R.string.DEGREE_NAME), WordUtils.uncapitalize(title));
+        FirebaseAnalytics.getInstance(getApplicationContext()).logEvent(
+                getResources().getString(R.string.EVENT_DEGREE_SELECTED), params);
+
         startActivity(intent);
     }
 

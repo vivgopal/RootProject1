@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.example.vivekgopal.project1.R;
 import com.example.vivekgopal.project1.activities.DisplayCareerTipActivity;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import org.apache.commons.lang3.text.WordUtils;
 
@@ -24,15 +25,15 @@ import java.util.List;
 public class RecyclerViewTipsAdapter extends RecyclerView.Adapter<RecyclerViewTipsAdapter.ViewHolder> {
 
     List<String> tipsList;
-    String title;
-    String subtitle;
+    String degree;
+    String specialization;
     Context context;
     int layoutItemId;
     public boolean isClickable = true;
 
-    public RecyclerViewTipsAdapter(String title, String subtitle, List<String> tipsList, Context context){
-        this.title = title;
-        this.subtitle = subtitle;
+    public RecyclerViewTipsAdapter(String degree, String specialization, List<String> tipsList, Context context){
+        this.degree = degree;
+        this.specialization = specialization;
         this.tipsList = tipsList;
         this.context = context;
         setlayoutItemId(R.layout.layout_recycleview_tips_item);
@@ -55,10 +56,19 @@ public class RecyclerViewTipsAdapter extends RecyclerView.Adapter<RecyclerViewTi
         if(isClickable == true) {
             Bundle bundle = new Bundle();
             Intent intent = new Intent(view.getContext(), DisplayCareerTipActivity.class);
-            bundle.putString("titleKey", title);
-            bundle.putString("subtitleKey", WordUtils.capitalize(subtitle));
+            bundle.putString("titleKey", degree);
+            bundle.putString("subtitleKey", WordUtils.capitalize(specialization));
             bundle.putInt("tipIdKey", position);
             intent.putExtras(bundle);
+
+            // Add Analytics
+            Bundle params = new Bundle();
+            params.putString(context.getResources().getString(R.string.DEGREE_NAME), WordUtils.uncapitalize(degree));
+            params.putString(context.getResources().getString(R.string.SPECIALIZATION_NAME), WordUtils.uncapitalize(specialization));
+            params.putInt(context.getResources().getString(R.string.CAREER_TIP_ID), position);
+            FirebaseAnalytics.getInstance(context.getApplicationContext()).logEvent(
+                    context.getResources().getString(R.string.EVENT_CAREER_TIP_SELECTED), params);
+
             view.getContext().startActivity(intent);
         }
     }

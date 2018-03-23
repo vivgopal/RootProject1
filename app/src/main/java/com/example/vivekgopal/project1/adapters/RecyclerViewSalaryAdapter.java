@@ -3,6 +3,7 @@ package com.example.vivekgopal.project1.adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 
 import com.example.vivekgopal.project1.R;
 import com.example.vivekgopal.project1.data.CompanyItem;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import org.apache.commons.lang3.text.WordUtils;
 
@@ -25,12 +27,14 @@ import java.util.List;
 public class RecyclerViewSalaryAdapter extends RecyclerView.Adapter<RecyclerViewSalaryAdapter.ViewHolder> {
 
     List<CompanyItem> companyItemList;
-    String title;
+    String degree;
+    String specialization;
     Context context;
     int layoutItemId;
 
-    public RecyclerViewSalaryAdapter(String title, List<CompanyItem> companyItemList, Context context){
-        this.title = title;
+    public RecyclerViewSalaryAdapter(String degree, String specialization, List<CompanyItem> companyItemList, Context context){
+        this.degree = degree;
+        this.specialization = specialization;
         this.companyItemList = companyItemList;
         this.context = context;
         setlayoutItemId(R.layout.layout_recycleview_salary_item);
@@ -42,6 +46,15 @@ public class RecyclerViewSalaryAdapter extends RecyclerView.Adapter<RecyclerView
     }
 
     public void doOnClick(View view, int position) {
+        // Add Analytics
+        Bundle params = new Bundle();
+        params.putString(context.getResources().getString(R.string.DEGREE_NAME), WordUtils.uncapitalize(degree));
+        params.putString(context.getResources().getString(R.string.SPECIALIZATION_NAME), WordUtils.uncapitalize(specialization));
+        params.putString(context.getResources().getString(R.string.COMPANY_NAME), WordUtils.uncapitalize(companyItemList.get(position).getCompany()));
+        params.putInt(context.getResources().getString(R.string.SALARY_VALUE), companyItemList.get(position).getSalary());
+        FirebaseAnalytics.getInstance(context.getApplicationContext()).logEvent(
+                context.getResources().getString(R.string.EVENT_SALARY_SELECTED), params);
+
         Uri uri = Uri.parse(companyItemList.get(position).getUrl());
         Intent intent = new Intent(Intent.ACTION_VIEW, uri);
         view.getContext().startActivity(intent);

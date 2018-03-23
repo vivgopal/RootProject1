@@ -12,6 +12,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.vivekgopal.project1.R;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import org.apache.commons.lang3.text.WordUtils;
 
@@ -57,6 +58,7 @@ public class DisplaySpecializationOptionActivity extends AppCompatActivity {
             public void onClick(View v) {
                 intent = new Intent(DisplaySpecializationOptionActivity.this, DisplaySkillsActivity.class);
                 createBundle();
+                addAnalytics(getResources().getString(R.string.SKILLS));
                 startActivity(intent);
             }
         });
@@ -65,6 +67,7 @@ public class DisplaySpecializationOptionActivity extends AppCompatActivity {
             public void onClick(View v) {
                 intent = new Intent(DisplaySpecializationOptionActivity.this, DisplayCompaniesActivity.class);
                 createBundle();
+                addAnalytics(getResources().getString(R.string.COMPANIES));
                 startActivity(intent);
             }
         });
@@ -73,6 +76,7 @@ public class DisplaySpecializationOptionActivity extends AppCompatActivity {
             public void onClick(View v) {
                 intent = new Intent(DisplaySpecializationOptionActivity.this, DisplaySalariesActivity.class);
                 createBundle();
+                addAnalytics(getResources().getString(R.string.SALARIES));
                 startActivity(intent);
             }
         });
@@ -81,6 +85,7 @@ public class DisplaySpecializationOptionActivity extends AppCompatActivity {
             public void onClick(View v) {
                 intent = new Intent(DisplaySpecializationOptionActivity.this, DisplayCertificationsActivity.class);
                 createBundle();
+                addAnalytics(getResources().getString(R.string.CERTIFICATIONS));
                 startActivity(intent);
             }
         });
@@ -89,6 +94,7 @@ public class DisplaySpecializationOptionActivity extends AppCompatActivity {
             public void onClick(View v) {
                 intent = new Intent(DisplaySpecializationOptionActivity.this, DisplayCareerTipsActivity.class);
                 createBundle();
+                addAnalytics(getResources().getString(R.string.CAREER_TIPS));
                 startActivity(intent);
             }
         });
@@ -97,6 +103,7 @@ public class DisplaySpecializationOptionActivity extends AppCompatActivity {
             public void onClick(View v) {
                 intent = new Intent(DisplaySpecializationOptionActivity.this, DisplayCareerLadderActivity.class);
                 createBundle();
+                addAnalytics(getResources().getString(R.string.CAREER_LADDER));
                 startActivity(intent);
             }
         });
@@ -120,6 +127,17 @@ public class DisplaySpecializationOptionActivity extends AppCompatActivity {
         bundle.putString("titleKey", title);
         bundle.putString("subtitleKey", subtitle);
         intent.putExtras(bundle);
+    }
+
+    protected void addAnalytics(String specializationOption) {
+        // Add Analytics
+        Bundle params = new Bundle();
+        params.putString(getResources().getString(R.string.DEGREE_NAME), WordUtils.uncapitalize(title));
+        params.putString(getResources().getString(R.string.SPECIALIZATION_NAME), WordUtils.uncapitalize(subtitle));
+        params.putString(getResources().getString(R.string.SPECIALIZATION_OPTION_NAME), WordUtils.uncapitalize(specializationOption));
+        FirebaseAnalytics.getInstance(getApplicationContext()).logEvent(
+                getResources().getString(R.string.EVENT_SPECIALIZATION_OPTION_SELECTED), params);
+
     }
 }
 

@@ -31,6 +31,7 @@ public class DisplaySkillsActivity extends GenericDbActivity {
 
         recyclerViewSkillAdapter = new RecyclerViewSkillAdapter(
                 title,
+                subtitle,
                 skillItemList,
                 getApplicationContext()
         );

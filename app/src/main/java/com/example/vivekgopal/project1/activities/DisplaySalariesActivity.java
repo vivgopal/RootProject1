@@ -35,6 +35,7 @@ public class DisplaySalariesActivity extends GenericDbActivity {
         // Set adapter to recyclerview
         recyclerView.setAdapter(new RecyclerViewSalaryAdapter(
                 title,
+                subtitle,
                 companyItemList,
                 getApplicationContext()
         ));

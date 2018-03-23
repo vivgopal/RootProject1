@@ -30,6 +30,7 @@ public class DisplayCertificationsActivity extends GenericDbActivity {
 
         recyclerViewCertificationAdapter = new RecyclerViewCertificationAdapter(
                 title,
+                subtitle,
                 certificationItemList,
                 getApplicationContext()
         );
