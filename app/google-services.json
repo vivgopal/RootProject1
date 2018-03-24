@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "79129708310",
+    "firebase_url": "https://pathxplore-d170a.firebaseio.com",
+    "project_id": "pathxplore-d170a",
+    "storage_bucket": "pathxplore-d170a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:79129708310:android:91e5f5a59076fc43",
+        "android_client_info": {
+          "package_name": "com.pathxplore.vivekgopal.project1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "79129708310-j0vi322hq8fm5tide2iq7nsafff7gt6g.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.pathxplore.vivekgopal.project1",
+            "certificate_hash": "be4680c800841a0413129e36d5e7e3300dab06c9"
+          }
+        },
+        {
+          "client_id": "79129708310-2obct1k51roq89obddmd229kdf45igh6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAolFt08ryKVzHY4ZZNtM1ELflQKRSbCRk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "79129708310-2obct1k51roq89obddmd229kdf45igh6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
