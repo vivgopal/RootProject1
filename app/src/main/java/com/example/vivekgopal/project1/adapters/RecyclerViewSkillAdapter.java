@@ -78,10 +78,10 @@ public class RecyclerViewSkillAdapter extends RecyclerView.Adapter<RecyclerViewS
 
             // Add Analytics
             Bundle params = new Bundle();
-            params.putString(context.getResources().getString(R.string.DEGREE_NAME), WordUtils.uncapitalize(degree));
-            params.putString(context.getResources().getString(R.string.SPECIALIZATION_NAME), WordUtils.uncapitalize(specialization));
-            params.putString(context.getResources().getString(R.string.SKILL_NAME), WordUtils.uncapitalize(skillItemList.get(position).getSkill()));
-            params.putString(context.getResources().getString(R.string.SKILL_TYPE), WordUtils.uncapitalize(skillItemList.get(position).getType()));
+            params.putInt(context.getResources().getString(R.string.DEGREE_NAME), context.getResources().getInteger(context.getResources().getIdentifier(degree.toLowerCase().replace(" ", "_").replace("&", "and"), "integer", context.getPackageName())));
+            params.putInt(context.getResources().getString(R.string.SPECIALIZATION_NAME), context.getResources().getInteger(context.getResources().getIdentifier(specialization.toLowerCase().replace(" ", "_").replace("&", "and"), "integer", context.getPackageName())));
+            params.putInt(context.getResources().getString(R.string.SKILL_TYPE), context.getResources().getInteger(context.getResources().getIdentifier(skillItemList.get(position).getType().toLowerCase().replace(" ", "_").replace("&", "and"), "integer", context.getPackageName())));
+            params.putString(context.getResources().getString(R.string.SKILL_NAME), skillItemList.get(position).getSkill().toLowerCase());
             FirebaseAnalytics.getInstance(context.getApplicationContext()).logEvent(
                     context.getResources().getString(R.string.EVENT_SKILL_SELECTED), params);
 

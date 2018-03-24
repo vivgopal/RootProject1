@@ -53,8 +53,8 @@ public class RecyclerViewSpecializationAdapter extends RecyclerView.Adapter<Recy
 
             // Add Analytics
             Bundle params = new Bundle();
-            params.putString(context.getResources().getString(R.string.DEGREE_NAME), WordUtils.uncapitalize(title));
-            params.putString(context.getResources().getString(R.string.SPECIALIZATION_NAME), WordUtils.uncapitalize(data[position]));
+            params.putInt(context.getResources().getString(R.string.DEGREE_NAME), context.getResources().getInteger(context.getResources().getIdentifier(title.toLowerCase().replace(" ", "_").replace("&", "and"), "integer", context.getPackageName())));
+            params.putInt(context.getResources().getString(R.string.SPECIALIZATION_NAME), context.getResources().getInteger(context.getResources().getIdentifier(data[position].toLowerCase().replace(" ", "_").replace("&", "and"), "integer", context.getPackageName())));
             FirebaseAnalytics.getInstance(context.getApplicationContext()).logEvent(
                     context.getResources().getString(R.string.EVENT_SPECIALIZATION_SELECTED), params);
 

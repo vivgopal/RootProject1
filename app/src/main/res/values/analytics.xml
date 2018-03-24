@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <integer name="biomedical_engineering">0</integer>
+
+    <integer name="consultant">0</integer>
+    <integer name="field_service_engineer">1</integer>
+    <integer name="data_scientist">2</integer>
+    <integer name="systems_engineer">3</integer>
+    <integer name="randd_scientist">4</integer>
+    <integer name="clinical_engineer">5</integer>
+    <integer name="manufacturing_engineer">6</integer>
+    <integer name="software_developer">7</integer>
+    <integer name="quality_engineer">8</integer>
+    <integer name="product_and_sales_engineer">9</integer>
+
+    <integer name="skills">0</integer>
+    <integer name="companies">1</integer>
+    <integer name="certifications">2</integer>
+    <integer name="career_tips">3</integer>
+    <integer name="career_ladder">4</integer>
+    <integer name="salaries">5</integer>
+
+    <integer name="alison">0</integer>
+    <integer name="codecademy">1</integer>
+    <integer name="comsol">2</integer>
+    <integer name="coursera">3</integer>
+    <integer name="edx">4</integer>
+    <integer name="futurelearn">5</integer>
+    <integer name="kahnacademy">6</integer>
+    <integer name="lynda">7</integer>
+    <integer name="openlearn">8</integer>
+    <integer name="sas">9</integer>
+    <integer name="udacity">10</integer>
+    <integer name="udemy">11</integer>
+    <integer name="vimeo">12</integer>
+    <integer name="yale">13</integer>
+    <integer name="youtube">14</integer>
+
+    <integer name="analytical">0</integer>
+    <integer name="leadership">1</integer>
+    <integer name="programming">2</integer>
+    <integer name="computer">3</integer>
+    <integer name="communication">4</integer>
+
+    <!--Analytics Event Identifiers-->
+    <string name="EVENT_DEGREE_SELECTED">degree_selected</string>
+    <string name="EVENT_SPECIALIZATION_SELECTED">specialization_selected</string>
+    <string name="EVENT_SPECIALIZATION_OPTION_SELECTED">specialization_option_selected</string>
+    <string name="EVENT_SKILL_SELECTED">skill_selected</string>
+    <string name="EVENT_COMPANY_SELECTED">company_selected</string>
+    <string name="EVENT_CERTIFICATION_SELECTED">certification_selected</string>
+    <string name="EVENT_CAREER_TIP_SELECTED">career_tip_selected</string>
+    <string name="EVENT_SALARY_SELECTED">salary_selected</string>
+
+    <!--Analytics Key Identifiers-->
+    <string name="DEGREE_NAME">degree_name</string>
+    <string name="SPECIALIZATION_NAME">specialization_name</string>
+    <string name="SPECIALIZATION_OPTION_NAME">specialization_option_name</string>
+    <string name="SKILL_NAME">skill_name</string>
+    <string name="SKILL_TYPE">skill_type</string>
+    <string name="COMPANY_NAME">company_name</string>
+    <string name="CERTIFICATION_NAME">certification_name</string>
+    <string name="CERTIFICATION_SOURCE">certification_source</string>
+    <string name="CAREER_TIP_ID">career_tip_id</string>
+    <string name="SALARY_VALUE">salary_value</string>
+
+    <!--Analytics Value Identifiers-->
+    <string name="SKILLS">skills</string>
+    <string name="COMPANIES">companies</string>
+    <string name="CERTIFICATIONS">certifications</string>
+    <string name="CAREER_TIPS">career_tips</string>
+    <string name="CAREER_LADDER">career_ladder</string>
+    <string name="SALARIES">salaries</string>
+</resources>

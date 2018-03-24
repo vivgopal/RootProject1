@@ -48,10 +48,10 @@ public class RecyclerViewSalaryAdapter extends RecyclerView.Adapter<RecyclerView
     public void doOnClick(View view, int position) {
         // Add Analytics
         Bundle params = new Bundle();
-        params.putString(context.getResources().getString(R.string.DEGREE_NAME), WordUtils.uncapitalize(degree));
-        params.putString(context.getResources().getString(R.string.SPECIALIZATION_NAME), WordUtils.uncapitalize(specialization));
-        params.putString(context.getResources().getString(R.string.COMPANY_NAME), WordUtils.uncapitalize(companyItemList.get(position).getCompany()));
+        params.putInt(context.getResources().getString(R.string.DEGREE_NAME), context.getResources().getInteger(context.getResources().getIdentifier(degree.toLowerCase().replace(" ", "_").replace("&", "and"), "integer", context.getPackageName())));
+        params.putInt(context.getResources().getString(R.string.SPECIALIZATION_NAME), context.getResources().getInteger(context.getResources().getIdentifier(specialization.toLowerCase().replace(" ", "_").replace("&", "and"), "integer", context.getPackageName())));
         params.putInt(context.getResources().getString(R.string.SALARY_VALUE), companyItemList.get(position).getSalary());
+        params.putString(context.getResources().getString(R.string.COMPANY_NAME), companyItemList.get(position).getCompany().toLowerCase());
         FirebaseAnalytics.getInstance(context.getApplicationContext()).logEvent(
                 context.getResources().getString(R.string.EVENT_SALARY_SELECTED), params);
 

@@ -140,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Add Analytics
         Bundle params = new Bundle();
-        params.putString(getResources().getString(R.string.DEGREE_NAME), WordUtils.uncapitalize(title));
+        params.putInt(getResources().getString(R.string.DEGREE_NAME), getResources().getInteger(getResources().getIdentifier(title.toLowerCase().replace(" ", "_").replace("&", "and"), "integer", getPackageName())));
         FirebaseAnalytics.getInstance(getApplicationContext()).logEvent(
                 getResources().getString(R.string.EVENT_DEGREE_SELECTED), params);
 

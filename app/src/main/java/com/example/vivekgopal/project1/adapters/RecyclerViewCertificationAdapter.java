@@ -53,10 +53,10 @@ public class RecyclerViewCertificationAdapter extends RecyclerView.Adapter<Recyc
         if(isClickable == true) {
             // Add Analytics
             Bundle params = new Bundle();
-            params.putString(context.getResources().getString(R.string.DEGREE_NAME), WordUtils.uncapitalize(degree));
-            params.putString(context.getResources().getString(R.string.SPECIALIZATION_NAME), WordUtils.uncapitalize(specialization));
-            params.putString(context.getResources().getString(R.string.CERTIFICATION_NAME), WordUtils.uncapitalize(certificationItemList.get(position).getName()));
-            params.putString(context.getResources().getString(R.string.CERTIFICATION_SOURCE), WordUtils.uncapitalize(certificationItemList.get(position).getSource()));
+            params.putInt(context.getResources().getString(R.string.DEGREE_NAME), context.getResources().getInteger(context.getResources().getIdentifier(degree.toLowerCase().replace(" ", "_").replace("&", "and"), "integer", context.getPackageName())));
+            params.putInt(context.getResources().getString(R.string.SPECIALIZATION_NAME), context.getResources().getInteger(context.getResources().getIdentifier(specialization.toLowerCase().replace(" ", "_").replace("&", "and"), "integer", context.getPackageName())));
+            params.putInt(context.getResources().getString(R.string.CERTIFICATION_SOURCE), context.getResources().getInteger(context.getResources().getIdentifier(certificationItemList.get(position).getSource().toLowerCase().replace(" ", "_").replace("&", "and"), "integer", context.getPackageName())));
+            params.putString(context.getResources().getString(R.string.CERTIFICATION_NAME), certificationItemList.get(position).getName().toLowerCase());
             FirebaseAnalytics.getInstance(context.getApplicationContext()).logEvent(
                     context.getResources().getString(R.string.EVENT_CERTIFICATION_SELECTED), params);
 

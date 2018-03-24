@@ -45,34 +45,4 @@
     <string name="click_message_tips">Press to view\nmore details</string>
     <string name="click_message_certifications">Press to view\ncourse website</string>
 
-    <!--Analytics Event Identifiers-->
-    <string name="EVENT_DEGREE_SELECTED">degree_selected</string>
-    <string name="EVENT_SPECIALIZATION_SELECTED">specialization_selected</string>
-    <string name="EVENT_SPECIALIZATION_OPTION_SELECTED">specialization_option_selected</string>
-    <string name="EVENT_SKILL_SELECTED">skill_selected</string>
-    <string name="EVENT_COMPANY_SELECTED">company_selected</string>
-    <string name="EVENT_CERTIFICATION_SELECTED">certification_selected</string>
-    <string name="EVENT_CAREER_TIP_SELECTED">career_tip_selected</string>
-    <string name="EVENT_SALARY_SELECTED">salary_selected</string>
-
-    <!--Analytics Key Identifiers-->
-    <string name="DEGREE_NAME">degree_name</string>
-    <string name="SPECIALIZATION_NAME">specialization_name</string>
-    <string name="SPECIALIZATION_OPTION_NAME">specialization_option_name</string>
-    <string name="SKILL_NAME">skill_name</string>
-    <string name="SKILL_TYPE">skill_type</string>
-    <string name="COMPANY_NAME">company_name</string>
-    <string name="CERTIFICATION_NAME">certification_name</string>
-    <string name="CERTIFICATION_SOURCE">certification_source</string>
-    <string name="CAREER_TIP_ID">career_tip_id</string>
-    <string name="SALARY_VALUE">salary_value</string>
-
-    <!--Analytics Value Identifiers-->
-    <string name="SKILLS">skills</string>
-    <string name="COMPANIES">companies</string>
-    <string name="CERTIFICATIONS">certifications</string>
-    <string name="CAREER_TIPS">career_tips</string>
-    <string name="CAREER_LADDER">career_ladder</string>
-    <string name="SALARIES">salaries</string>
-
 </resources>

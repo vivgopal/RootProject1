@@ -132,9 +132,9 @@ public class DisplaySpecializationOptionActivity extends AppCompatActivity {
     protected void addAnalytics(String specializationOption) {
         // Add Analytics
         Bundle params = new Bundle();
-        params.putString(getResources().getString(R.string.DEGREE_NAME), WordUtils.uncapitalize(title));
-        params.putString(getResources().getString(R.string.SPECIALIZATION_NAME), WordUtils.uncapitalize(subtitle));
-        params.putString(getResources().getString(R.string.SPECIALIZATION_OPTION_NAME), WordUtils.uncapitalize(specializationOption));
+        params.putInt(getResources().getString(R.string.DEGREE_NAME), getResources().getInteger(getResources().getIdentifier(title.toLowerCase().replace(" ", "_").replace("&", "and"), "integer", getPackageName())));
+        params.putInt(getResources().getString(R.string.SPECIALIZATION_NAME), getResources().getInteger(getResources().getIdentifier(subtitle.toLowerCase().replace(" ", "_").replace("&", "and"), "integer", getPackageName())));
+        params.putInt(getResources().getString(R.string.SPECIALIZATION_OPTION_NAME), getResources().getInteger(getResources().getIdentifier(specializationOption.toLowerCase().replace(" ", "_").replace("&", "and"), "integer", getPackageName())));
         FirebaseAnalytics.getInstance(getApplicationContext()).logEvent(
                 getResources().getString(R.string.EVENT_SPECIALIZATION_OPTION_SELECTED), params);
 
