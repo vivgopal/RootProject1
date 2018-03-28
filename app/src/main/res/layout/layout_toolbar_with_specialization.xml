@@ -14,13 +14,6 @@
         android:fitsSystemWindows="false"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" >
         <android.support.v7.widget.Toolbar
-            android:layout_width="match_parent"
-            android:layout_height="24dp"
-            style="@style/GenericToolbar"
-            app:contentInsetStartWithNavigation="0dp"
-            app:layout_scrollFlags="enterAlways">
-        </android.support.v7.widget.Toolbar>
-        <android.support.v7.widget.Toolbar
             android:id="@+id/layout_toolbar_with_specialization_title"
             android:layout_width="match_parent"
             style="@style/GenericToolbar"
@@ -30,6 +23,8 @@
                 android:id="@+id/layout_toolbar_with_specialization_title_textview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="@color/colorWhite"
                 android:layout_marginRight="?attr/actionBarSize"
                 android:gravity="center"
                 />
@@ -246,12 +241,6 @@
                 </TextView>
             </LinearLayout>
         </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:background="@color/colorBlack"
-            ></View>
     </LinearLayout>
 
 </LinearLayout>

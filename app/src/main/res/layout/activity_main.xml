@@ -27,17 +27,16 @@
                 android:orientation="vertical"
                 android:gravity="center_vertical"
                 >
-                <TextView
+
+                <ImageView
                     android:id="@+id/myRectangleView"
                     android:layout_width="125dp"
                     android:layout_height="125dp"
                     android:gravity="center"
                     android:layout_gravity="center_horizontal"
-                    android:background="@drawable/shape_rectangle"
+                    android:background="@mipmap/ic_launcher"
                     android:textColor="@color/colorScrollThumb"
                     android:padding="10dp"
-                    android:textSize="20sp"
-                    android:text="@string/pathxplore_logo"
                     android:elevation="20dp"
                     />
             </LinearLayout>
@@ -58,24 +57,29 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
-                android:orientation="vertical"
-                android:gravity="center_vertical"
-                android:background="@drawable/shape_spinner_dropdown"
-                android:paddingBottom="@dimen/activity_vertical_margin"
-                android:paddingLeft="@dimen/activity_horizontal_margin"
-                android:paddingRight="@dimen/activity_horizontal_margin"
-                android:paddingTop="@dimen/activity_vertical_margin"
+                android:padding="20dp"
+                android:gravity="center"
+                android:background="@drawable/shape_rounded_rectangle_spinner"
                 app:layout_heightPercent="30%"
-                app:layout_marginTopPercent="45%"
+                app:layout_marginTopPercent="55%"
                 android:elevation="10dp"
                 >
-                <Spinner
-                    android:id="@+id/dynamic_spinner_specialization"
-                    android:layout_width="fill_parent"
+                <LinearLayout
                     android:layout_height="wrap_content"
-                    android:spinnerMode="dialog"
-                    style="@style/style_spinner"
-                    />
+                    android:layout_width="match_parent"
+                    android:layout_gravity="center"
+                    android:elevation="2dp"
+                    android:padding="5dp"
+                    android:background="@drawable/shape_rounded_rectangle_spinner"
+                    android:orientation="horizontal">
+                    <Spinner
+                        android:paddingLeft="10dp"
+                        android:id="@+id/dynamic_spinner_specialization"
+                        android:layout_width="fill_parent"
+                        android:layout_height="40dp"
+                        android:spinnerMode="dialog"
+                        />
+                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
@@ -87,7 +91,7 @@
                 android:gravity="center_vertical"
                 android:background="@android:color/transparent"
                 android:layout_centerHorizontal="true"
-                app:layout_marginTopPercent="71%"
+                app:layout_marginTopPercent="81%"
                 app:layout_heightPercent="8%"
                 android:elevation="40dp"
                 >
@@ -103,13 +107,6 @@
                     android:textAllCaps="false"
                     />
             </LinearLayout>
-
-            <View
-                android:layout_alignParentBottom="true"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:background="@color/colorBlack"
-                ></View>
 
         </android.support.percent.PercentRelativeLayout>
     </LinearLayout>

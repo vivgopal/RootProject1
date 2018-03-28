@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">PathXplore</string>
     <string name="pathxplore_logo">PathXplore Logo</string>
-    <string name="home_button_go">View Roles</string>
+    <string name="home_button_go">Explore</string>
 
     <string name="skills">Skills</string>
     <string name="companies">Companies</string>

@@ -30,11 +30,6 @@ public class DisplaySpecializationOptionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_toolbar_with_specialization);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN);
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
-        }
-
         final ImageButton skillsButton = (ImageButton) findViewById(R.id.layout_toolbar_with_specialization_skills);
         final ImageButton companiesButton = (ImageButton) findViewById(R.id.layout_toolbar_with_specialization_companies);
         final ImageButton salariesButton = (ImageButton) findViewById(R.id.layout_toolbar_with_specialization_salaries);
