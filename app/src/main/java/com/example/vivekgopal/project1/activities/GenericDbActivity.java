@@ -4,12 +4,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -64,6 +70,14 @@ public abstract class GenericDbActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
+        // Setup home button in toolbar
+        Drawable drawable= getResources().getDrawable(R.drawable.ic_home_white);
+        Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
+        Drawable newdrawable = new BitmapDrawable(getResources(), Bitmap.createScaledBitmap(bitmap, 75, 75, true));
+        newdrawable.setAlpha(229);
+        //newdrawable.setColorFilter(Color.BLUE, PorterDuff.Mode.SRC_ATOP);
+        getSupportActionBar().setHomeAsUpIndicator(newdrawable);
+
         // Set text to title and subtitle toolbars
         TextView titleTextView = (TextView) findViewById(R.id.layout_toolbar_with_recycleview_title_textview);
         //TextView subTitleTextView = (TextView) findViewById(R.id.layout_toolbar_with_recycleview_subtitle_textview);
@@ -78,11 +92,15 @@ public abstract class GenericDbActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onSupportNavigateUp() {
-        onBackPressed();
-        return true;
+    public boolean onOptionsItemSelected(MenuItem menuItem) {
+        switch (menuItem.getItemId()) {
+            case android.R.id.home:
+                Intent homeIntent = new Intent(this, MainActivity.class);
+                homeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(homeIntent);
+        }
+        return (super.onOptionsItemSelected(menuItem));
     }
-
 
     //-----------------------------------------------------------
     //---------------- Database related methods ----------------
