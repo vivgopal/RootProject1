@@ -41,7 +41,8 @@ public class DisplayCompaniesActivity extends GenericDbActivity {
                 title,
                 subtitle,
                 companyItemList,
-                getApplicationContext()
+                getApplicationContext(),
+                this
         );
 
         if(isFirstTime(this.getClass().getSimpleName(), getApplicationContext().MODE_PRIVATE)) {

@@ -33,7 +33,8 @@ public class DisplaySkillsActivity extends GenericDbActivity {
                 title,
                 subtitle,
                 skillItemList,
-                getApplicationContext()
+                getApplicationContext(),
+                this
         );
 
         if(isFirstTime(this.getClass().getSimpleName(), getApplicationContext().MODE_PRIVATE)) {

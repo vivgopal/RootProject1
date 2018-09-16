@@ -1,10 +1,14 @@
 package com.example.vivekgopal.project1.adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.customtabs.CustomTabsIntent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +23,9 @@ import org.apache.commons.lang3.text.WordUtils;
 
 import java.util.List;
 
+import static android.R.attr.bitmap;
+import static android.R.attr.buttonStyleInset;
+
 /**
  * Created by sreerakshakr on 2/4/18.
  */
@@ -30,14 +37,16 @@ public class RecyclerViewSkillAdapter extends RecyclerView.Adapter<RecyclerViewS
     String degree;
     String specialization;
     Context context;
+    Activity activity;
     int layoutItemId;
     public boolean isClickable = true;
 
-    public RecyclerViewSkillAdapter(String degree, String specialization, List<SkillItem> skillItemList, Context context){
+    public RecyclerViewSkillAdapter(String degree, String specialization, List<SkillItem> skillItemList, Context context, Activity activity){
         this.degree = degree;
         this.specialization = specialization;
         this.skillItemList = skillItemList;
         this.context = context;
+        this.activity = activity;
         setlayoutItemId(R.layout.layout_recycleview_skill_item);
     }
 
@@ -85,9 +94,17 @@ public class RecyclerViewSkillAdapter extends RecyclerView.Adapter<RecyclerViewS
             FirebaseAnalytics.getInstance(context.getApplicationContext()).logEvent(
                     context.getResources().getString(R.string.EVENT_SKILL_SELECTED), params);
 
-            Uri uri = Uri.parse(skillItemList.get(position).getUrl());
-            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-            view.getContext().startActivity(intent);
+            //Opens in default browser
+            //Uri uri = Uri.parse(skillItemList.get(position).getUrl());
+            //Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+            //view.getContext().startActivity(intent);
+
+            //Opens in custom tab within app
+            CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
+            builder.setToolbarColor(activity.getResources().getColor(R.color.colorChromeCustomTab));
+            builder.setShowTitle(true);
+            CustomTabsIntent customTabsIntent = builder.build();
+            customTabsIntent.launchUrl(activity, Uri.parse(skillItemList.get(position).getUrl()));
         }
     }
 

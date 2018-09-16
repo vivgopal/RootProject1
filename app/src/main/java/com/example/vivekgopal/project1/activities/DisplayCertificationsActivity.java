@@ -32,7 +32,8 @@ public class DisplayCertificationsActivity extends GenericDbActivity {
                 title,
                 subtitle,
                 certificationItemList,
-                getApplicationContext()
+                getApplicationContext(),
+                this
         );
 
         if(isFirstTime(this.getClass().getSimpleName(), getApplicationContext().MODE_PRIVATE)) {

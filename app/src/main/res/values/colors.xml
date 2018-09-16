@@ -27,4 +27,5 @@
     <color name="colorTip3">#2196F3</color>
     <color name="colorTip4">#F44336</color>
     <color name="colorTip5">#F6BF26</color>
+    <color name="colorChromeCustomTab">#2196F3</color>
 </resources>

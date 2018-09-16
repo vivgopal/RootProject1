@@ -1,9 +1,11 @@
 package com.example.vivekgopal.project1.adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.customtabs.CustomTabsIntent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,13 +32,15 @@ public class RecyclerViewSalaryAdapter extends RecyclerView.Adapter<RecyclerView
     String degree;
     String specialization;
     Context context;
+    Activity activity;
     int layoutItemId;
 
-    public RecyclerViewSalaryAdapter(String degree, String specialization, List<CompanyItem> companyItemList, Context context){
+    public RecyclerViewSalaryAdapter(String degree, String specialization, List<CompanyItem> companyItemList, Context context, Activity activity){
         this.degree = degree;
         this.specialization = specialization;
         this.companyItemList = companyItemList;
         this.context = context;
+        this.activity = activity;
         setlayoutItemId(R.layout.layout_recycleview_salary_item);
     }
 
@@ -55,9 +59,17 @@ public class RecyclerViewSalaryAdapter extends RecyclerView.Adapter<RecyclerView
         FirebaseAnalytics.getInstance(context.getApplicationContext()).logEvent(
                 context.getResources().getString(R.string.EVENT_SALARY_SELECTED), params);
 
-        Uri uri = Uri.parse(companyItemList.get(position).getUrl());
-        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-        view.getContext().startActivity(intent);
+        //Opens in custom tab within app
+        CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
+        builder.setToolbarColor(activity.getResources().getColor(R.color.colorChromeCustomTab));
+        builder.setShowTitle(true);
+        CustomTabsIntent customTabsIntent = builder.build();
+        customTabsIntent.launchUrl(activity, Uri.parse(companyItemList.get(position).getUrl()));
+
+        //Opens in default browser
+        //Uri uri = Uri.parse(companyItemList.get(position).getUrl());
+        //Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        //view.getContext().startActivity(intent);
     }
 
     @Override

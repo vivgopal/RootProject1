@@ -37,7 +37,8 @@ public class DisplaySalariesActivity extends GenericDbActivity {
                 title,
                 subtitle,
                 companyItemList,
-                getApplicationContext()
+                getApplicationContext(),
+                this
         ));
 
     }

@@ -126,11 +126,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void createViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(this.getSupportFragmentManager());
-        //adapter.addFrag(new MainActivityExploreFragment(), "Tab 1");
-        adapter.addFrag(new MainActivitySearchFragment(), "Tab 1");
+        adapter.addFrag(new MainActivityExploreFragment(), "Tab 1");
         adapter.addFrag(new MainActivitySearchFragment(), "Tab 2");
-        //adapter.addFrag(new Fragment1(), "Tab 1");
-        //adapter.addFrag(new Fragment1(), "Tab 2");
         viewPager.setAdapter(adapter);
     }
 

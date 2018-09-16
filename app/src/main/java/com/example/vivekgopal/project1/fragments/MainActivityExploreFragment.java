@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +17,6 @@ import android.widget.Toast;
 
 import com.example.vivekgopal.project1.R;
 import com.example.vivekgopal.project1.activities.DisplaySpecializationActivity;
-import com.example.vivekgopal.project1.preferences.FontsOverride;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
 import org.apache.commons.lang3.text.WordUtils;
@@ -40,17 +38,17 @@ public class MainActivityExploreFragment extends Fragment {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onActivityCreated(Bundle savedInstanceState) {
         context = this.getActivity();
 
-        super.onCreate(savedInstanceState);
+        super.onActivityCreated(savedInstanceState);
 
         // Get Resources
         final Resources res = getResources();
 
         // Initialize spinners
-        dynamicSpinnerStream = (Spinner) getView().findViewById(R.id.dynamic_spinner_specialization);
-        final Button goButton = (Button) getView().findViewById(R.id.home_go_button);
+        dynamicSpinnerStream = (Spinner) getView().findViewById(R.id.explore_fragment_dynamic_spinner_specialization);
+        final Button goButton = (Button) getView().findViewById(R.id.explore_fragment_home_go_button);
 
         // Initialize array lists
         final String[] StreamItems = res.getStringArray(R.array.streams);
@@ -108,6 +106,7 @@ public class MainActivityExploreFragment extends Fragment {
             }
         });
 
+        /*
         if(isFirstTime(this.getClass().getSimpleName(), getActivity().MODE_PRIVATE)) {
             // Lock spinner selection and button press
             isClickable = false;
@@ -119,6 +118,7 @@ public class MainActivityExploreFragment extends Fragment {
             tutorialLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
             tutorialContainer.addView(tutorialLayout);
         }
+        */
     }
 
     protected void startGenericOptionSelectActivity(String[] items, String title, String subtitle){
