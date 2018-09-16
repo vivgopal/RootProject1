@@ -20,4 +20,16 @@
         <item name="android:popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
         <item name="android:minHeight">?attr/actionBarSize</item>
     </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:textColorPrimary">@color/colorAccent</item>
+        <item name="android:textColorSecondary">@color/colorBlack</item>
+    </style>
+
+    <style name="AppTheme.PopupOverlay" parent="AppTheme.PopupOverlay">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
 </resources>

@@ -10,6 +10,7 @@
     <color name="colorWhiteBorder">#F8F8F8</color>
     <color name="colorWhiteAlpha">#E6E6E6</color>
     <color name="colorBlack">#000000</color>
+    <color name="colorBlueTab">#00BAFF</color>
     <color name="colorScrollTrack">#59A3F7</color>
     <color name="colorScrollThumb">#656C77</color>
     <color name="colorDivider">#D9D9D9</color>
@@ -20,7 +21,7 @@
     <color name="colorTransparentBlack">#D0000000</color>
     <color name="colorTransparentWhite">#80FFFFFF</color>
     <color name="colorTransparentGrey">#40FFFFFF</color>
-    <color name="colorStatusBar">#008BEB</color>
+    <color name="colorStatusBar">#00BAFF</color>
     <color name="colorTip1">#00AA8D</color>
     <color name="colorTip2">#3F51B5</color>
     <color name="colorTip3">#2196F3</color>

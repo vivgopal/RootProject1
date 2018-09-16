@@ -1,44 +1,41 @@
 package com.example.vivekgopal.project1.activities;
-import com.google.firebase.analytics.FirebaseAnalytics;
 
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.pm.ActivityInfo;
-import android.content.res.Configuration;
-import android.content.res.Resources;
-import android.os.Build;
+
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.Spinner;
-import android.support.v7.app.AppCompatActivity;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.vivekgopal.project1.preferences.FontsOverride;
 import com.example.vivekgopal.project1.R;
-import org.apache.commons.lang3.text.WordUtils;
+import com.example.vivekgopal.project1.fragments.MainActivityExploreFragment;
+import com.example.vivekgopal.project1.fragments.MainActivitySearchFragment;
+import com.example.vivekgopal.project1.fragments.Fragment1;
+import com.example.vivekgopal.project1.preferences.FontsOverride;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-
-    Boolean firstTime = null;
-    LinearLayout tutorialContainer;
-    LinearLayout tutorialLayout;
-    Context context;
-    boolean isClickable = true;
-    Spinner dynamicSpinnerStream;
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        context = MainActivity.this;
-
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        //setSupportActionBar(toolbar);
+        final View tabOne;
+        final View tabTwo;
 
         // Set default fot to PT Sans Narrow
         FontsOverride.setDefaultFont(this, "MONOSPACE", "fonts/pt-sans.narrow.ttf");
@@ -46,119 +43,124 @@ public class MainActivity extends AppCompatActivity {
         FontsOverride.setDefaultFont(this, "SERIF", "fonts/pt-sans.narrow.ttf");
         FontsOverride.setDefaultFont(this, "SANS_SERIF", "fonts/pt-sans.narrow.ttf");
 
-        setContentView(R.layout.activity_main);
+        viewPager = (ViewPager) findViewById(R.id.viewpager);
+        createViewPager(viewPager);
 
-        // Get Resources
-        final Resources res = getResources();
+        tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(viewPager);
 
-        // Initialize spinners
-        dynamicSpinnerStream = (Spinner) findViewById(R.id.dynamic_spinner_specialization);
-        final Button goButton = (Button) findViewById(R.id.home_go_button);
+        //createTabIcons();
+        tabOne = LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
+        TextView tabOneText = (TextView) tabOne.findViewById(R.id.tab_text);
+        ImageView tabOneImage = (ImageView) tabOne.findViewById(R.id.tab_image);
+        //tabOne.findViewById(R.id.tab_image).setAlpha((float)0.2);
+        tabOneText.setText("Explore Careers");
+        tabOneImage.setImageResource(R.drawable.ic_briefcase);
+        //tabOne.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.icon_calandar1, 0, 0);
+        tabLayout.getTabAt(0).setCustomView(tabOne);
 
-        // Initialize array lists
-        final String[] StreamItems = res.getStringArray(R.array.streams);
-        for (int i=0; i<StreamItems.length - 1; i++) { // Make text to have small caps
-            StreamItems[i] = WordUtils.capitalize(StreamItems[i]);
-        }
+        tabTwo = LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
+        TextView tabTwoText = (TextView) tabTwo.findViewById(R.id.tab_text);
+        ImageView tabTwoImage = (ImageView) tabTwo.findViewById(R.id.tab_image);
+        tabTwoText.setText("Search");
+        tabTwoImage.setImageResource(R.drawable.ic_magnifier);
+        //tabTwo.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.icon_calandar2, 0, 0);
+        tabLayout.getTabAt(1).setCustomView(tabTwo);
 
-        // Create array adapter instances
-        ArrayAdapter<String> adapterStream = new ArrayAdapter<String>(this, R.layout.layout_spinner_font, R.id.textViewSpinner,  StreamItems){
+        // Instantiate tab colors
+        tabOne.findViewById(R.id.tab_image).setAlpha((float)0.9);
+        tabOne.findViewById(R.id.tab_text).setAlpha((float)0.9);
+        tabTwo.findViewById(R.id.tab_image).setAlpha((float)0.3);
+        tabTwo.findViewById(R.id.tab_text).setAlpha((float)0.3);
+
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+
+        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
-            public int getCount() {
-                return(StreamItems.length - 1); // Truncate the list
-            }
+            public void onTabSelected(TabLayout.Tab tab) {
+                //Toast.makeText(MainActivity.this, "tabSelected:  " + tab.getPosition(), Toast.LENGTH_SHORT).show();
 
-            @Override
-            public View getView(int position, View convertView, ViewGroup parent) {
-                View view = super.getView(position, convertView, parent);
-                view.setPadding(0, 0, 0, 0);
-                return view;
-            }
-        };
-
-        // set adapter to spinners
-        dynamicSpinnerStream.setAdapter(adapterStream);
-
-        // Reduce the selection to length-1
-        dynamicSpinnerStream.setSelection(StreamItems.length - 1);
-
-        // Listener for Go Button
-        goButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                // Perform action on click
-                String[] items;
-                String title = "";
-                String subtitle = "";
-
-                if(isClickable == true) {
-                    int dynSpinnerStreamPos = dynamicSpinnerStream.getSelectedItemPosition();
-                    if (dynSpinnerStreamPos < StreamItems.length - 1) {
-                        String stream = res.getStringArray(R.array.streams)[dynSpinnerStreamPos];
-                        int id = res.getIdentifier("specialization_" + stream.replaceAll(" ", "_"), "array", getPackageName());
-                        items = res.getStringArray(id);
-                        title = WordUtils.capitalize(stream);
-                        subtitle = res.getString(R.string.specializations);
-                        startGenericOptionSelectActivity(items, title, subtitle);
-                    } else if (dynSpinnerStreamPos == StreamItems.length - 1) {
-                        Context context = getApplicationContext();
-                        CharSequence text = "Select a specialization";
-                        int duration = Toast.LENGTH_SHORT;
-
-                        Toast toast = Toast.makeText(context, text, duration);
-                        toast.show();
-                    }
+                switch (tab.getPosition()) {
+                    case 0:
+                        tabOne.findViewById(R.id.tab_image).setAlpha((float)0.9);
+                        tabOne.findViewById(R.id.tab_text).setAlpha((float)0.9);
+                        tabTwo.findViewById(R.id.tab_image).setAlpha((float)0.3);
+                        tabTwo.findViewById(R.id.tab_text).setAlpha((float)0.3);
+                        break;
+                    case 1:
+                        tabTwo.findViewById(R.id.tab_image).setAlpha((float)0.9);
+                        tabTwo.findViewById(R.id.tab_text).setAlpha((float)0.9);
+                        tabOne.findViewById(R.id.tab_image).setAlpha((float)0.3);
+                        tabOne.findViewById(R.id.tab_text).setAlpha((float)0.3);
+                        break;
                 }
+
+                viewPager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
             }
         });
+    }
 
-        if(isFirstTime(this.getClass().getSimpleName(), getApplicationContext().MODE_PRIVATE)) {
-            // Lock spinner selection and button press
-            isClickable = false;
-            dynamicSpinnerStream.setEnabled(false);
+    private void createTabIcons() {
 
-            // inflate tutorial layout and and add to the container defined in parent layout
-            tutorialContainer = (LinearLayout) findViewById(R.id.activity_main_tutorial_container);
-            tutorialLayout = (LinearLayout) LayoutInflater.from(context).inflate(R.layout.activity_main_tutorial, tutorialContainer, false);
-            tutorialLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
-            tutorialContainer.addView(tutorialLayout);
+        View tabOne = LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
+        TextView tabOneText = (TextView) tabOne.findViewById(R.id.tab_text);
+        //tabOne.findViewById(R.id.tab_image).setAlpha((float)0.2);
+        tabOneText.setText("Explore Careers");
+        //tabOne.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.icon_calandar1, 0, 0);
+        tabLayout.getTabAt(0).setCustomView(tabOne);
+
+        View tabTwo = LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
+        TextView tabTwoText = (TextView) tabTwo.findViewById(R.id.tab_text);
+        tabTwoText.setText("Search");
+        //tabTwo.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.icon_calandar2, 0, 0);
+        tabLayout.getTabAt(1).setCustomView(tabTwo);
+    }
+
+    private void createViewPager(ViewPager viewPager) {
+        ViewPagerAdapter adapter = new ViewPagerAdapter(this.getSupportFragmentManager());
+        //adapter.addFrag(new MainActivityExploreFragment(), "Tab 1");
+        adapter.addFrag(new MainActivitySearchFragment(), "Tab 1");
+        adapter.addFrag(new MainActivitySearchFragment(), "Tab 2");
+        //adapter.addFrag(new Fragment1(), "Tab 1");
+        //adapter.addFrag(new Fragment1(), "Tab 2");
+        viewPager.setAdapter(adapter);
+    }
+
+    class ViewPagerAdapter extends FragmentPagerAdapter {
+        private final List<Fragment> mFragmentList = new ArrayList<>();
+        private final List<String> mFragmentTitleList = new ArrayList<>();
+
+        public ViewPagerAdapter(FragmentManager manager) {
+            super(manager);
         }
-    }
 
-    protected void startGenericOptionSelectActivity(String[] items, String title, String subtitle){
-        Bundle bundle = new Bundle();
-        Intent intent = new Intent(MainActivity.this, DisplaySpecializationActivity.class);
-        bundle.putStringArray("stringKey", items);
-        bundle.putString("titleKey", title);
-        bundle.putString("subtitleKey", subtitle);
-        intent.putExtras(bundle);
-
-        // Add Analytics
-        Bundle params = new Bundle();
-        params.putInt(getResources().getString(R.string.DEGREE_NAME), getResources().getInteger(getResources().getIdentifier(title.toLowerCase().replace(" ", "_").replace("&", "and"), "integer", getPackageName())));
-        FirebaseAnalytics.getInstance(getApplicationContext()).logEvent(
-                getResources().getString(R.string.EVENT_DEGREE_SELECTED), params);
-
-        startActivity(intent);
-    }
-
-    protected boolean isFirstTime(String name, int mode) {
-        if (firstTime == null) {
-            SharedPreferences mPreferences = this.getSharedPreferences(name, mode);
-            firstTime = mPreferences.getBoolean("firstTime", true);
-            if (firstTime) {
-                SharedPreferences.Editor editor = mPreferences.edit();
-                editor.putBoolean("firstTime", false);
-                editor.apply();
-            }
+        @Override
+        public Fragment getItem(int position) {
+            return mFragmentList.get(position);
         }
-        return firstTime;
-    }
 
-    // Execute this when the tutorial is seen already
-    public void tutorialSeen(View v) {
-        tutorialContainer.removeAllViews();
-        isClickable = true;
-        dynamicSpinnerStream.setEnabled(true);
-    }
+        @Override
+        public int getCount() {
+            return mFragmentList.size();
+        }
 
+        public void addFrag(Fragment fragment, String title) {
+            mFragmentList.add(fragment);
+            mFragmentTitleList.add(title);
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return mFragmentTitleList.get(position);
+        }
+
+    }
 }
