@@ -45,4 +45,6 @@
     <string name="click_message_tips">Press to view\nmore details</string>
     <string name="click_message_certifications">Press to view\ncourse website</string>
 
+    <string name="action_search">Search</string>
+
 </resources>

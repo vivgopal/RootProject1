@@ -2,25 +2,12 @@ package com.example.vivekgopal.project1.activities;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.view.MenuItemCompat;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
-import android.text.TextUtils;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.WindowManager;
-import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.vivekgopal.project1.R;
@@ -28,7 +15,6 @@ import com.example.vivekgopal.project1.adapters.DatabaseAdapter;
 
 import org.apache.commons.lang3.text.WordUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class DisplayCareerTipActivity extends AppCompatActivity {
@@ -42,7 +28,7 @@ public class DisplayCareerTipActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.layout_toolbar_with_tip);
+        setContentView(R.layout.layout_tip_with_toolbar);
 
         // Setup toolbars
         Toolbar titleToolbar;
@@ -54,7 +40,7 @@ public class DisplayCareerTipActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         // Setup home button in toolbar
-        Drawable drawable= getResources().getDrawable(R.drawable.ic_home_white);
+        Drawable drawable= getResources().getDrawable(R.drawable.ic_home);
         Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
         Drawable newdrawable = new BitmapDrawable(getResources(), Bitmap.createScaledBitmap(bitmap, 75, 75, true));
         newdrawable.setAlpha(229);

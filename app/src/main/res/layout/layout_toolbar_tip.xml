@@ -1,0 +1,15 @@
+<android.support.v7.widget.Toolbar android:id="@+id/layout_toolbar_with_tip_title"
+    android:layout_width="match_parent"
+    style="@style/GenericToolbar"
+    app:contentInsetStartWithNavigation="0dp"
+    app:layout_scrollFlags="enterAlways"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView
+        android:id="@+id/layout_toolbar_with_tip_title_textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="?attr/actionBarSize"
+        android:gravity="center"
+        />
+</android.support.v7.widget.Toolbar>

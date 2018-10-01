@@ -4,14 +4,11 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -32,7 +29,7 @@ public class DisplaySpecializationOptionActivity extends AppCompatActivity {
         Toolbar titleToolbar;
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.layout_toolbar_with_specialization);
+        setContentView(R.layout.layout_specialization_with_toolbar);
 
         final ImageButton skillsButton = (ImageButton) findViewById(R.id.layout_toolbar_with_specialization_skills);
         final ImageButton companiesButton = (ImageButton) findViewById(R.id.layout_toolbar_with_specialization_companies);
@@ -50,7 +47,7 @@ public class DisplaySpecializationOptionActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         // Setup home button in toolbar
-        Drawable drawable= getResources().getDrawable(R.drawable.ic_home_white);
+        Drawable drawable= getResources().getDrawable(R.drawable.ic_home);
         Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
         Drawable newdrawable = new BitmapDrawable(getResources(), Bitmap.createScaledBitmap(bitmap, 75, 75, true));
         newdrawable.setAlpha(229);
